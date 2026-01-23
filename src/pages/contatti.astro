@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
+import { social } from '../constants/socials';
 
 const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
 ---
@@ -90,8 +91,8 @@ const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
               </svg>
               <div>
                 <p class="font-medium text-navy">Email</p>
-                <a href="mailto:letiziamancini.chinesiologa@gmail.com" class="text-accent hover:underline">
-                  letiziamancini.chinesiologa@gmail.com
+                <a href=`mailto:${social.mail}` class="text-accent hover:underline">
+                  {social.mail}
                 </a>
               </div>
             </li>
@@ -133,7 +134,7 @@ const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
           </h3>
           <div class="flex gap-4">
             <a
-              href="https://www.facebook.com/profile.php?id=61555750393500"
+              href={social.facebook}
               target="_blank"
               rel="noopener noreferrer"
               class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center hover:bg-sage transition-colors group"
@@ -144,7 +145,7 @@ const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/letizia-mancini-8a6163242"
+              href={social.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center hover:bg-sage transition-colors group"
@@ -155,7 +156,7 @@ const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
               </svg>
             </a>
             <a
-              href="https://www.instagram.com/letiziamancini_chinesiologa"
+              href={social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               class="w-12 h-12 bg-sage-light rounded-full flex items-center justify-center hover:bg-sage transition-colors group"
