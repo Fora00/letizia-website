@@ -1,13 +1,15 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const leftNavItems = [
-  { href: '/', label: 'Home', icon: 'home' },
-  { href: '/chi-sono', label: 'Chi sono', icon: 'user' },
-  { href: '/a-chi-mi-rivolgo', label: 'A chi mi rivolgo', icon: 'users' },
-  { href: '/servizi', label: 'Servizi', icon: 'briefcase' },
-  { href: '/dicono-di-me', label: 'Dicono di me', icon: 'chat' },
+  { href: `${base}/`, label: 'Home', icon: 'home' },
+  { href: `${base}/chi-sono`, label: 'Chi sono', icon: 'user' },
+  { href: `${base}/a-chi-mi-rivolgo`, label: 'A chi mi rivolgo', icon: 'users' },
+  { href: `${base}/servizi`, label: 'Servizi', icon: 'briefcase' },
+  { href: `${base}/dicono-di-me`, label: 'Dicono di me', icon: 'chat' },
 ];
 
-const contactItem = { href: '/contatti', label: 'Contatti', icon: 'mail' };
+const contactItem = { href: `${base}/contatti`, label: 'Contatti', icon: 'mail' };
 
 const allNavItems = [...leftNavItems, contactItem];
 

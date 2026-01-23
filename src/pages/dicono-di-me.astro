@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const testimonials = [
   {
     quote: "Letizia è una professionista seria e preparata. Mi ha aiutata a ritrovare fiducia nel mio corpo dopo anni di sedentarietà. Il suo approccio gentile ma determinato mi ha motivata a non mollare mai.",
@@ -60,7 +62,7 @@ const testimonials = [
         Contattami per scoprire come posso aiutarti a raggiungere i tuoi obiettivi.
       </p>
       <a
-        href="/contatti"
+        href={`${base}/contatti`}
         class="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full hover:bg-navy transition-colors"
       >
         Inizia il tuo percorso
