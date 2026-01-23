@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+---
+
+<Layout title="Chi sono" description="Scopri chi sono e il mio approccio alla chinesiologia e al personal training">
+  <Section>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-block bg-sage-light text-accent font-semibold px-4 py-2 rounded-full text-sm mb-6">
+          Specialista dell'esercizio fisico per la salute
+        </span>
+        <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy mb-6">
+          Chi sono
+        </h1>
+        <div class="space-y-4 text-navy/80 leading-relaxed">
+          <p>
+            Sono <strong>Letizia Mancini</strong>, Dott.ssa in Scienze Motorie e Sportive
+            specializzata in Attività Fisica e Salute. Ho conseguito un European MSc in
+            Health and Physical Activity, focalizzandomi su scienze dell'esercizio preventivo
+            e attività fisica adattata.
+          </p>
+          <p>
+            Continuo costantemente la mia formazione con certificazioni recenti in ginnastica
+            ipopressiva e aggiornamenti su condizioni fisiologiche e patologiche speciali.
+          </p>
+          <p>
+            Da <strong>più di 5 anni</strong> lavoro con persone di tutte le età,
+            aiutandole a migliorare sia la salute psicofisica che le performance atletiche.
+          </p>
+          <p>
+            Lavoro in Trentino-Alto Adige, tra <strong>Trento</strong> e <strong>Rovereto</strong>,
+            ma sono disponibile anche per consulenze <strong>online</strong>,
+            per accompagnarti ovunque tu sia.
+          </p>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <img
+          src="/images/who_am_i.webp"
+          alt="Letizia Mancini - Chinesiologa"
+          class="w-80 h-auto max-h-[28rem] object-cover rounded-2xl shadow-xl"
+        />
+      </div>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="La mia formazione" centered>
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="bg-white rounded-xl p-6 text-center">
+        <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+          </svg>
+        </div>
+        <h3 class="font-heading font-semibold text-navy mb-2">Laurea in Scienze Motorie</h3>
+        <p class="text-sm text-navy/70">Dott.ssa in Scienze Motorie e Sportive</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 text-center">
+        <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="font-heading font-semibold text-navy mb-2">European MSc</h3>
+        <p class="text-sm text-navy/70">Health and Physical Activity</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 text-center">
+        <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <h3 class="font-heading font-semibold text-navy mb-2">Attività Fisica Adattata</h3>
+        <p class="text-sm text-navy/70">Specializzazione in esercizio preventivo</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section centered>
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading font-bold text-3xl text-navy mb-6">
+        Il mio approccio
+      </h2>
+      <p class="text-navy/80 leading-relaxed mb-8">
+        Credo fermamente che il movimento debba essere accessibile a tutti.
+        Il mio obiettivo è aiutarti a riscoprire il piacere di muoverti,
+        nel rispetto del tuo corpo e delle tue possibilità.
+        Insieme costruiremo un percorso che si adatta a te, non viceversa.
+      </p>
+      <a
+        href="/contatti"
+        class="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full hover:bg-navy transition-colors"
+      >
+        Inizia il tuo percorso
+      </a>
+    </div>
+  </Section>
+</Layout>

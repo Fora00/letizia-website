@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  showCta?: boolean;
+  ctaText?: string;
+  ctaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  backgroundSrc?: string;
+}
+
+const {
+  title,
+  subtitle,
+  showCta = false,
+  ctaText = "Contattami",
+  ctaHref = "/contatti",
+  imageSrc,
+  imageAlt = "Letizia Mancini",
+  backgroundSrc
+} = Astro.props;
+---
+
+<section class="relative py-16 md:py-24 bg-sage-light overflow-hidden">
+  {backgroundSrc && (
+    <div
+      class="absolute inset-0 opacity-30"
+      style={`background-image: url('${backgroundSrc}'); background-size: cover; background-position: left center;`}
+    />
+  )}
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1">
+        <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-navy mb-6 leading-tight">
+          {title}
+        </h1>
+        {subtitle && (
+          <p class="text-lg md:text-xl text-navy/80 mb-8 leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+        {showCta && (
+          <a
+            href={ctaHref}
+            class="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full hover:bg-navy transition-colors"
+          >
+            {ctaText}
+          </a>
+        )}
+      </div>
+      <div class="order-1 md:order-2 flex justify-center">
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            class="rounded-2xl shadow-xl max-w-sm w-full object-cover"
+          />
+        ) : (
+          <div class="w-72 h-96 bg-sage rounded-2xl shadow-xl flex items-center justify-center">
+            <span class="text-white/60 text-sm">Immagine profilo</span>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

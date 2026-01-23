@@ -1,0 +1,6 @@
+# Robots.txt for letiziamancini.it
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://letiziamancini.it/sitemap-index.xml

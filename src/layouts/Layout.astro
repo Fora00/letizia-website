@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = "Chinesiologa clinica e personal trainer in Trentino-Alto Adige e online",
+  image = "/images/og-image.jpg"
+} = Astro.props;
+
+const siteUrl = "https://letiziamancini.it";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(image, siteUrl).href;
+const fullTitle = `${title} | Letizia Mancini`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Letizia Mancini",
+      "description": "Chinesiologa clinica e personal trainer",
+      "inLanguage": "it-IT"
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Letizia Mancini",
+      "jobTitle": "Chinesiologa clinica e Personal Trainer",
+      "url": siteUrl,
+      "sameAs": []
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#business`,
+      "name": "Letizia Mancini - Personal Trainer",
+      "description": "Servizi di chinesiologia clinica e personal training in Trentino-Alto Adige e online",
+      "url": siteUrl,
+      "priceRange": "€€",
+      "areaServed": [
+        { "@type": "Place", "name": "Trentino-Alto Adige" },
+        { "@type": "Place", "name": "Online" }
+      ],
+      "serviceType": ["Chinesiologia clinica", "Personal training", "Allenamento online"]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="Letizia Mancini" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{fullTitle}</title>
+  </head>
+  <body class="font-body text-navy bg-white min-h-screen flex flex-col">
+    <Navbar />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

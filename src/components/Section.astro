@@ -1,0 +1,36 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  centered?: boolean;
+  bgColor?: 'white' | 'sage-light' | 'navy';
+}
+
+const { title, subtitle, centered = false, bgColor = 'white' } = Astro.props;
+
+const bgClasses = {
+  'white': 'bg-white',
+  'sage-light': 'bg-sage-light',
+  'navy': 'bg-navy text-white'
+};
+---
+
+<section class:list={["py-16 md:py-24", bgClasses[bgColor]]}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    {(title || subtitle) && (
+      <div class:list={["mb-12", centered && "text-center"]}>
+        {title && (
+          <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4">
+            {title}
+          </h2>
+        )}
+        {subtitle && (
+          <p class:list={["text-lg opacity-80 max-w-2xl", centered && "mx-auto"]}>
+            {subtitle}
+          </p>
+        )}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

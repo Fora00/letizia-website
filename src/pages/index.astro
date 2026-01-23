@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+
+const services = [
+  {
+    title: "Movimento adattato",
+    description: "Programmi di esercizio personalizzati per condizioni croniche stabilizzate.",
+    icon: "🏃"
+  },
+  {
+    title: "Disturbi alimentari",
+    description: "Supporto motorio per percorsi di recupero da disturbi del comportamento alimentare.",
+    icon: "🌱"
+  },
+  {
+    title: "Educazione al movimento",
+    description: "Promozione di uno stile di vita attivo e consapevole.",
+    icon: "📚"
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Letizia è una professionista seria e preparata. Mi ha aiutata a ritrovare fiducia nel mio corpo dopo anni di sedentarietà.",
+    author: "Serena P."
+  },
+  {
+    quote: "Grazie alla sua empatia e competenza, ho finalmente trovato un approccio al movimento che rispetta i miei limiti.",
+    author: "Simone M."
+  }
+];
+---
+
+<Layout title="Home">
+  <Hero
+    title="Letizia Mancini"
+    subtitle="Chinesiologa clinica e personal trainer in Trentino-Alto Adige. Ti accompagno in un percorso personalizzato verso il benessere fisico, anche online."
+    showCta={true}
+    ctaText="Inizia il tuo percorso"
+    ctaHref="/contatti"
+    imageSrc="/images/profile.webp"
+    imageAlt="Letizia Mancini - Chinesiologa"
+    backgroundSrc="/images/background.webp"
+  />
+
+  <Section title="I miei servizi" subtitle="Un approccio personalizzato per ogni esigenza" centered>
+    <div class="grid md:grid-cols-3 gap-6">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href="/servizi" class="text-accent font-semibold hover:underline">
+        Scopri tutti i servizi →
+      </a>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="Cosa dicono di me" centered>
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard {...testimonial} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href="/dicono-di-me" class="text-accent font-semibold hover:underline">
+        Leggi altre testimonianze →
+      </a>
+    </div>
+  </Section>
+
+  <Section centered>
+    <div class="bg-navy text-white rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="font-heading font-bold text-2xl md:text-3xl mb-4">
+        Pronta a iniziare?
+      </h2>
+      <p class="text-white/80 mb-8 max-w-xl mx-auto">
+        Contattami per una consulenza gratuita e scopri come posso aiutarti a raggiungere i tuoi obiettivi.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://calendly.com/letiziamancini-chinesiologa/prenota_gratis?share_attribution=send_from_calendly_et_card"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Prenota gratis
+        </a>
+        <a
+          href="/contatti"
+          class="inline-block bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-full hover:bg-white hover:text-navy transition-colors"
+        >
+          Contattami
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>
