@@ -23,12 +23,6 @@ const {
 ---
 
 <section class="relative py-16 md:py-24 bg-sage-light overflow-hidden">
-  {backgroundSrc && (
-    <div
-      class="absolute inset-0 opacity-30"
-      style={`background-image: url('${backgroundSrc}'); background-size: cover; background-position: left center;`}
-    />
-  )}
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="order-2 md:order-1">
@@ -50,17 +44,43 @@ const {
         )}
       </div>
       <div class="order-1 md:order-2 flex justify-center">
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            class="rounded-2xl shadow-xl max-w-sm w-full object-cover"
-          />
-        ) : (
-          <div class="w-72 h-96 bg-sage rounded-2xl shadow-xl flex items-center justify-center">
-            <span class="text-white/60 text-sm">Immagine profilo</span>
-          </div>
-        )}
+        <div class="relative">
+          {backgroundSrc && (
+            <>
+              {/* Mobile: background cut in half vertically */}
+              <div
+                class="absolute -inset-4 top-1/2 rounded-2xl overflow-hidden md:hidden"
+              >
+                <img
+                  src={backgroundSrc}
+                  alt=""
+                  class="w-full h-full object-cover opacity-50"
+                />
+              </div>
+              {/* Desktop: full background */}
+              <div
+                class="absolute -inset-8 rounded-2xl overflow-hidden hidden md:block"
+              >
+                <img
+                  src={backgroundSrc}
+                  alt=""
+                  class="w-full h-full object-cover opacity-50"
+                />
+              </div>
+            </>
+          )}
+          {imageSrc ? (
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              class="relative z-10 rounded-2xl max-w-sm w-full object-cover"
+            />
+          ) : (
+            <div class="relative z-10 w-72 h-96 bg-sage rounded-2xl flex items-center justify-center">
+              <span class="text-white/60 text-sm">Immagine profilo</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </div>
