@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import { social } from '../constants/socials';
 
-const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
 ---
 
 <Layout title="Contatti" description="Contattami per iniziare il tuo percorso di benessere">
@@ -28,7 +27,7 @@ const tallyFormId = import.meta.env.PUBLIC_TALLY_FORM_ID;
           </h2>
           <!-- Tally Form Embed -->
           <iframe
-            src={`https://tally.so/embed/${tallyFormId}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
+            src={`https://tally.so/embed/3yxDLp?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
             loading="lazy"
             width="100%"
             height="500"
