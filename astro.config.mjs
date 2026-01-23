@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://letiziamancini.it',
+  site: 'https://fora00.github.io',
+  base: '/letizia-website',
   output: 'static',
   integrations: [sitemap()],
   server: {
