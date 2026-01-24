@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const services = [
+  {
+    title: "Movimento adattato per condizioni croniche",
+    description: "Programmi di esercizio fisico personalizzati per persone con patologie croniche stabilizzate (diabete, ipertensione, patologie cardiovascolari, ecc.). L'attività viene calibrata sulle tue esigenze mediche e fisiche.",
+    icon: "💚"
+  },
+  {
+    title: "Supporto per disturbi alimentari",
+    description: "Accompagnamento motorio delicato e consapevole per chi sta affrontando un percorso di recupero da disturbi del comportamento alimentare, in collaborazione con l'équipe medica di riferimento.",
+    icon: "🌱"
+  },
+  {
+    title: "Gestione del dolore osteo-articolare",
+    description: "Esercizi mirati per alleviare dolori muscolari e articolari (mal di schiena, cervicalgia, dolori alle spalle, ecc.) attraverso il movimento corretto e il rinforzo muscolare.",
+    icon: "🦴"
+  },
+  {
+    title: "Gravidanza e post-parto",
+    description: "Esercizi sicuri e adattati per accompagnare ogni fase della maternità: dalla preparazione al parto al recupero post-partum.",
+    icon: "🤰"
+  },
+  {
+    title: "Terza età e anziani attivi",
+    description: "Programmi specifici per mantenere e migliorare la mobilità, l'equilibrio e l'autonomia. Prevenzione delle cadute e mantenimento della qualità di vita.",
+    icon: "🌳"
+  },
+  {
+    title: "Ricomposizione corporea",
+    description: "Percorsi per chi desidera perdere peso, aumentare la massa muscolare o semplicemente migliorare la propria forma fisica in modo sano, graduale e sostenibile nel tempo.",
+    icon: "⚡"
+  },
+  {
+    title: "Educazione al movimento",
+    description: "Percorsi educativi per imparare a muoversi in modo corretto e consapevole nella vita quotidiana. Imparerai a prevenire dolori e infortuni adottando uno stile di vita attivo.",
+    icon: "📚"
+  },
+  {
+    title: "Persone con disabilità",
+    description: "Attività motoria inclusiva e personalizzata per ogni tipo di abilità. Programmi adattati alle specifiche esigenze e capacità individuali.",
+    icon: "♿"
+  }
+];
+---
+
+<Layout title="I miei servizi" description="Scopri i servizi di chinesiologia clinica e personal training: movimento adattato, supporto DCA, dolore articolare, gravidanza e molto altro">
+  <Section>
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-6">
+        I miei servizi
+      </h1>
+      <p class="text-lg text-navy/80 dark:text-text-dark/80 leading-relaxed">
+        Come chinesiologa clinica, mi occupo di diverse aree di intervento.
+        Ogni percorso è costruito su misura per te, nel rispetto delle tue esigenze
+        e in collaborazione con eventuali figure mediche di riferimento.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" centered>
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
+        Non trovi quello che cerchi?
+      </h2>
+      <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed mb-8">
+        Ogni situazione è unica. Se hai dubbi o domande sul tuo caso specifico,
+        contattami per una consulenza gratuita. Insieme valuteremo il percorso
+        più adatto alle tue esigenze.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={`${base}/la-mia-proposta`}
+          class="inline-block bg-white dark:bg-sage-dark text-navy dark:text-text-dark font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white dark:hover:bg-accent-dark dark:hover:text-navy-dark transition-colors"
+        >
+          Scopri le modalità
+        </a>
+        <a
+          href={`${base}/contatti`}
+          class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+        >
+          Contattami
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>

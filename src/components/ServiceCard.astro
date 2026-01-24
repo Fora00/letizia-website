@@ -8,12 +8,12 @@ interface Props {
 const { title, description, icon } = Astro.props;
 ---
 
-<article class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow border border-sage/20">
+<article class="bg-white dark:bg-sage-dark rounded-2xl p-6 shadow-md hover:shadow-lg dark:shadow-none transition-all duration-200 border border-sage/20 dark:border-white/10">
   {icon && (
-    <div class="w-14 h-14 bg-sage-light rounded-xl flex items-center justify-center mb-4">
+    <div class="w-14 h-14 bg-sage-light dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
       <span class="text-2xl">{icon}</span>
     </div>
   )}
-  <h3 class="font-heading font-semibold text-xl text-navy mb-3">{title}</h3>
-  <p class="text-navy/70 leading-relaxed">{description}</p>
+  <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark mb-3">{title}</h3>
+  <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed">{description}</p>
 </article>

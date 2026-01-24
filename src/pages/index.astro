@@ -7,21 +7,39 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 
 const base = import.meta.env.BASE_URL;
 
+const formats = [
+  {
+    title: "Lezioni individuali",
+    description: "Sessioni one-to-one completamente personalizzate sulle tue esigenze e obiettivi.",
+    icon: "👤"
+  },
+  {
+    title: "Piccoli gruppi",
+    description: "Allenamenti in gruppi di 2-4 persone con esigenze simili. Attenzione e motivazione.",
+    icon: "👥"
+  },
+  {
+    title: "Lezioni di gruppo",
+    description: "Corsi collettivi per chi ama allenarsi in compagnia con energia condivisa.",
+    icon: "🏃"
+  }
+];
+
 const services = [
   {
     title: "Movimento adattato",
-    description: "Programmi di esercizio personalizzati per condizioni croniche stabilizzate.",
-    icon: "🏃"
+    description: "Per condizioni croniche stabilizzate come diabete, ipertensione, patologie cardiovascolari.",
+    icon: "💚"
   },
   {
-    title: "Disturbi alimentari",
-    description: "Supporto motorio per percorsi di recupero da disturbi del comportamento alimentare.",
+    title: "Supporto DCA",
+    description: "Accompagnamento motorio delicato per disturbi del comportamento alimentare.",
     icon: "🌱"
   },
   {
-    title: "Educazione al movimento",
-    description: "Promozione di uno stile di vita attivo e consapevole.",
-    icon: "📚"
+    title: "Dolore osteo-articolare",
+    description: "Esercizi mirati per mal di schiena, cervicalgia, dolori articolari.",
+    icon: "🦴"
   }
 ];
 
@@ -49,27 +67,40 @@ const testimonials = [
     backgroundSrc={`${base}/images/background.webp`}
   />
 
-  <Section title="I miei servizi" subtitle="Un approccio personalizzato per ogni esigenza" centered>
+  <Section title="Come posso aiutarti" subtitle="Scegli la modalità che fa per te" centered>
+    <div class="grid md:grid-cols-3 gap-6">
+      {formats.map((format) => (
+        <ServiceCard {...format} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href={`${base}/la-mia-proposta`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Scopri la mia proposta →
+      </a>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="Aree di intervento" subtitle="Qualunque sia la tua situazione, posso aiutarti" centered>
     <div class="grid md:grid-cols-3 gap-6">
       {services.map((service) => (
         <ServiceCard {...service} />
       ))}
     </div>
     <div class="text-center mt-8">
-      <a href={`${base}/servizi`} class="text-accent font-semibold hover:underline">
+      <a href={`${base}/mie-servizi`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
         Scopri tutti i servizi →
       </a>
     </div>
   </Section>
 
-  <Section bgColor="sage-light" title="Cosa dicono di me" centered>
+  <Section title="Cosa dicono di me" centered>
     <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
       {testimonials.map((testimonial) => (
         <TestimonialCard {...testimonial} />
       ))}
     </div>
     <div class="text-center mt-8">
-      <a href={`${base}/dicono-di-me`} class="text-accent font-semibold hover:underline">
+      <a href={`${base}/dicono-di-me`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
         Leggi altre testimonianze →
       </a>
     </div>

@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* Light mode colors */
   --color-navy: #000a2d;
   --color-sage: #b7cdb7;
   --color-accent: #056608;
   --color-sage-light: #e8f0e8;
+
+  /* Dark mode colors */
+  --color-navy-dark: #0a1628;
+  --color-sage-dark: #1a2f1a;
+  --color-text-dark: #e8f0e8;
+  --color-accent-dark: #4ade80;
+  --color-surface-dark: #0f1d2e;
 
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Open Sans", sans-serif;

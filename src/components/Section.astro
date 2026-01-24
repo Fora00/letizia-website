@@ -9,13 +9,13 @@ interface Props {
 const { title, subtitle, centered = false, bgColor = 'white' } = Astro.props;
 
 const bgClasses = {
-  'white': 'bg-white',
-  'sage-light': 'bg-sage-light',
-  'navy': 'bg-navy text-white'
+  'white': 'bg-white dark:bg-navy-dark',
+  'sage-light': 'bg-sage-light dark:bg-surface-dark',
+  'navy': 'bg-navy dark:bg-navy text-white'
 };
 ---
 
-<section class:list={["py-16 md:py-24", bgClasses[bgColor]]}>
+<section class:list={["py-16 md:py-24 transition-colors duration-200", bgClasses[bgColor]]}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     {(title || subtitle) && (
       <div class:list={["mb-12", centered && "text-center"]}>

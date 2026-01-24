@@ -4,8 +4,8 @@ const base = import.meta.env.BASE_URL;
 const leftNavItems = [
   { href: `${base}/`, label: 'Home', icon: 'home' },
   { href: `${base}/chi-sono`, label: 'Chi sono', icon: 'user' },
-  { href: `${base}/a-chi-mi-rivolgo`, label: 'A chi mi rivolgo', icon: 'users' },
-  { href: `${base}/servizi`, label: 'Servizi', icon: 'briefcase' },
+  { href: `${base}/mie-servizi`, label: 'Servizi', icon: 'heart' },
+  { href: `${base}/la-mia-proposta`, label: 'La mia proposta', icon: 'briefcase' },
   { href: `${base}/dicono-di-me`, label: 'Dicono di me', icon: 'chat' },
 ];
 
@@ -16,7 +16,7 @@ const allNavItems = [...leftNavItems, contactItem];
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-white shadow-sm sticky top-0 z-50">
+<header class="bg-white dark:bg-navy-dark shadow-sm dark:shadow-none dark:border-b dark:border-white/10 sticky top-0 z-50 transition-colors duration-200">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Left nav (desktop) -->
@@ -27,7 +27,7 @@ const currentPath = Astro.url.pathname;
               href={item.href}
               class:list={[
                 "flex items-center gap-1.5 font-medium text-sm hover:text-accent transition-colors",
-                currentPath === item.href ? "text-accent" : "text-navy"
+                currentPath === item.href ? "text-accent dark:text-accent-dark" : "text-navy dark:text-text-dark"
               ]}
             >
               {item.icon === 'home' && (
@@ -43,6 +43,11 @@ const currentPath = Astro.url.pathname;
               {item.icon === 'users' && (
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              )}
+              {item.icon === 'heart' && (
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               )}
               {item.icon === 'briefcase' && (
@@ -64,7 +69,7 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-lg hover:bg-sage-light transition-colors"
+        class="md:hidden p-2 rounded-lg hover:bg-sage-light dark:hover:bg-surface-dark transition-colors"
         aria-label="Menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,32 +77,66 @@ const currentPath = Astro.url.pathname;
         </svg>
       </button>
 
-      <!-- Right nav - Contatti (desktop) -->
-      <a
-        href={contactItem.href}
-        class:list={[
-          "hidden md:flex items-center gap-1.5 font-medium text-sm px-4 py-2 rounded-full transition-colors",
-          currentPath === contactItem.href
-            ? "bg-accent text-white"
-            : "bg-sage-light text-navy hover:bg-sage hover:text-white"
-        ]}
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-        {contactItem.label}
-      </a>
+      <!-- Right nav - Contatti + Dark mode toggle (desktop) -->
+      <div class="hidden md:flex items-center gap-3">
+        <button
+          id="theme-toggle-desktop"
+          class="p-2 rounded-lg hover:bg-sage-light dark:hover:bg-surface-dark transition-colors"
+          aria-label="Attiva/disattiva tema scuro"
+        >
+          <!-- Sun icon (shown in dark mode) -->
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        <a
+          href={contactItem.href}
+          class:list={[
+            "flex items-center gap-1.5 font-medium text-sm px-4 py-2 rounded-full transition-colors",
+            currentPath === contactItem.href
+              ? "bg-accent dark:bg-accent-dark text-white dark:text-navy-dark"
+              : "bg-sage-light dark:bg-sage-dark text-navy dark:text-text-dark hover:bg-sage hover:text-white dark:hover:bg-accent-dark dark:hover:text-navy-dark"
+          ]}
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          {contactItem.label}
+        </a>
+      </div>
     </div>
 
     <!-- Mobile nav -->
-    <ul id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+    <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+      <!-- Dark mode toggle (mobile) -->
+      <button
+        id="theme-toggle-mobile"
+        class="flex items-center gap-2 w-full py-2 px-4 rounded-lg font-medium hover:bg-sage-light dark:hover:bg-surface-dark transition-colors text-navy dark:text-text-dark"
+        aria-label="Attiva/disattiva tema scuro"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+        <span class="dark:hidden">Tema scuro</span>
+        <span class="hidden dark:inline">Tema chiaro</span>
+      </button>
+      <ul class="space-y-2">
       {allNavItems.map((item) => (
         <li>
           <a
             href={item.href}
             class:list={[
-              "flex items-center gap-2 py-2 px-4 rounded-lg font-medium hover:bg-sage-light transition-colors",
-              currentPath === item.href ? "text-accent bg-sage-light" : "text-navy"
+              "flex items-center gap-2 py-2 px-4 rounded-lg font-medium hover:bg-sage-light dark:hover:bg-surface-dark transition-colors",
+              currentPath === item.href ? "text-accent dark:text-accent-dark bg-sage-light dark:bg-surface-dark" : "text-navy dark:text-text-dark"
             ]}
           >
             {item.icon === 'home' && (
@@ -113,6 +152,11 @@ const currentPath = Astro.url.pathname;
             {item.icon === 'users' && (
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            )}
+            {item.icon === 'heart' && (
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
             )}
             {item.icon === 'briefcase' && (
@@ -134,7 +178,8 @@ const currentPath = Astro.url.pathname;
           </a>
         </li>
       ))}
-    </ul>
+      </ul>
+    </div>
   </nav>
 </header>
 
@@ -145,4 +190,13 @@ const currentPath = Astro.url.pathname;
   btn?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
   });
+
+  // Dark mode toggle functionality
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 </script>
