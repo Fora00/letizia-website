@@ -67,15 +67,34 @@ const testimonials = [
     backgroundSrc={`${base}/images/background.webp`}
   />
 
-  <Section title="Come posso aiutarti" subtitle="Scegli la modalità che fa per te" centered>
-    <div class="grid md:grid-cols-3 gap-6">
-      {formats.map((format) => (
-        <ServiceCard {...format} />
-      ))}
-    </div>
-    <div class="text-center mt-8">
-      <a href={`${base}/la-mia-proposta`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
-        Scopri la mia proposta →
+  <Section title="Chi sono" centered>
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg text-navy/80 dark:text-text-dark/80 leading-relaxed mb-8">
+        Sono <strong>Letizia Mancini</strong>, Dott.ssa in Scienze Motorie specializzata in Attività Fisica e Salute.
+        Da più di 5 anni aiuto persone di tutte le età a migliorare il proprio benessere fisico con un approccio personalizzato e rispettoso.
+      </p>
+      <ul class="flex flex-wrap justify-center gap-4 mb-8">
+        <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+          <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Laurea in Scienze Motorie
+        </li>
+        <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+          <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          European MSc in Health and Physical Activity
+        </li>
+        <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+          <svg class="w-4 h-4 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Specializzazione in Attività Fisica Adattata
+        </li>
+      </ul>
+      <a href={`${base}/chi-sono`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Scopri di più su di me →
       </a>
     </div>
   </Section>
@@ -93,7 +112,20 @@ const testimonials = [
     </div>
   </Section>
 
-  <Section title="Cosa dicono di me" centered>
+  <Section title="Come posso aiutarti" subtitle="Scegli la modalità che fa per te" centered>
+    <div class="grid md:grid-cols-3 gap-6">
+      {formats.map((format) => (
+        <ServiceCard {...format} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href={`${base}/la-mia-proposta`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Scopri la mia proposta →
+      </a>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="Cosa dicono di me" centered>
     <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
       {testimonials.map((testimonial) => (
         <TestimonialCard {...testimonial} />
