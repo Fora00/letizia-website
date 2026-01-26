@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = "Chinesiologa clinica e personal trainer in Trentino-Alto Adige e online",
+  description = "Chinesiologa Clinica e Personal Trainer in Trentino-Alto Adige e online. Contattatemi per informazioni sui servizi e programmi di allenamento personalizzati!",
   image = "/images/og-image.jpg"
 } = Astro.props;
 
@@ -97,16 +97,23 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
-    <link rel="apple-touch-icon" href={`${base}/favicon.png`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32x32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16x16.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
+    <meta name="theme-color" content="#1a365d" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{fullTitle}</title>
   </head>
   <body class="font-body text-navy bg-white dark:bg-navy-dark dark:text-text-dark min-h-screen flex flex-col transition-colors duration-200">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+      Vai al contenuto principale
+    </a>
     <Navbar />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
     <Footer />
