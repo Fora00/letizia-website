@@ -15,7 +15,8 @@ const {
   image = "/images/og-image.jpg"
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
+// Remove trailing slash from base to avoid double slashes in paths
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;

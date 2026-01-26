@@ -10,7 +10,7 @@ interface Props {
   backgroundSrc?: string;
 }
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const {
   title,

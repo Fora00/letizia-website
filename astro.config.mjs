@@ -4,10 +4,13 @@ import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
 
+// Detect GitHub Pages deployment
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://fora00.github.io',
-  base: '/letizia-website',
+  site: isGitHubPages ? 'https://fora00.github.io' : 'https://letiziamancini.it',
+  base: isGitHubPages ? '/letizia-website' : '',
   output: 'static',
   integrations: [sitemap()],
   server: {
