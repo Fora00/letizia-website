@@ -27,37 +27,20 @@ const formats = [
   }
 ];
 
-const services = [
+const targets : {icon: string, description: string}[] = [
   {
-    title: "Movimento adattato",
-    description: "Programmi per persone con patologie croniche stabilizzate (diabete, ipertensione, patologie cardiovascolari).",
-    icon: "💚"
+    description: "Cerchi un percorso costruito su misura, che tenga conto della tua storia e del tuo stile di vita per imparare a muoverti in sicurezza.",
+    icon: "🪡"
   },
   {
-    title: "Supporto DCA",
-    description: "Accompagnamento motorio delicato per chi affronta disturbi del comportamento alimentare.",
-    icon: "🌱"
+    description : "Vuoi migliorare forza, autonomia e qualità della vita e ritrovare energia.",
+    icon: "💪"
   },
   {
-    title: "Dolore osteo-articolare",
-    description: "Esercizi mirati per mal di schiena, cervicalgia, dolori articolari.",
-    icon: "🦴"
+    description : "Vuoi allenarti in uno spazio privato, lontano dal caos della palestra.",
+    icon: "🕵️"
   },
-  {
-    title: "Gravidanza e post-parto",
-    description: "Esercizi sicuri e adattati per ogni fase della maternità.",
-    icon: "🤰"
-  },
-  {
-    title: "Terza età",
-    description: "Programmi per mantenere mobilità, equilibrio e autonomia.",
-    icon: "🌳"
-  },
-  {
-    title: "Ricomposizione corporea",
-    description: "Percorsi per migliorare la forma fisica in modo sano e sostenibile.",
-    icon: "⚡"
-  }
+ 
 ];
 ---
 
@@ -100,22 +83,23 @@ const services = [
   <Section bgColor="sage-light">
     <div class="text-center mb-12">
       <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-4">
-      A chi mi rivolgo 
+     Sei nel posto giusto se... 
       </h2>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {services.map((service) => (
+      {targets.map((target) => (
         <article class="bg-white dark:bg-navy-dark rounded-xl p-5 hover:shadow-md dark:shadow-none transition-all duration-200">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">{service.icon}</span>
+          <div class="flex items-center flex-col h-full justify-center gap-3">
+            <div class="flex flex-row justify-center gap-3">
+
+            <span class="text-2xl self-center">{target.icon}</span>
             <div>
-              <h3 class="font-heading font-semibold text-navy dark:text-text-dark">
-                {service.title}
-              </h3>
-              <p class="text-sm text-navy/70 dark:text-text-dark/70">
-                {service.description}
+
+              <p class="text-sm text-navy/70 self-center dark:text-text-dark/70">
+                {target.description}
               </p>
+            </div>
             </div>
           </div>
         </article>

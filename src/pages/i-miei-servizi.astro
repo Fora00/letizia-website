@@ -8,12 +8,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const services = [
   {
     title: "Movimento adattato per condizioni croniche",
-    description: "Programmi di esercizio fisico personalizzati per persone con patologie croniche stabilizzate (diabete, ipertensione, patologie cardiovascolari, ecc.). L'attività viene calibrata sulle tue esigenze mediche e fisiche.",
+    description: "Programmi di esercizio fisico personalizzati per persone con patologie croniche stabilizzate (diabete, ipertensione, patologie cardiovascolari, ecc.).",
     icon: "💚"
   },
   {
-    title: "Supporto per disturbi alimentari",
-    description: "Accompagnamento motorio delicato e consapevole per chi sta affrontando un percorso di recupero da disturbi del comportamento alimentare, in collaborazione con l'équipe medica di riferimento.",
+    title: "Supporto per disturbi della nutrizione e dell'alimentazione",
+    description: "Prendere consapevolezza del proprio corpo e muoversi in un contesto sicuro, guidato e senza giudizio.",
     icon: "🌱"
   },
   {
@@ -27,7 +27,7 @@ const services = [
     icon: "🤰"
   },
   {
-    title: "Terza età e anziani attivi",
+    title: "Terza età",
     description: "Programmi specifici per mantenere e migliorare la mobilità, l'equilibrio e l'autonomia. Prevenzione delle cadute e mantenimento della qualità di vita.",
     icon: "🌳"
   },
@@ -36,16 +36,8 @@ const services = [
     description: "Percorsi per chi desidera perdere peso, aumentare la massa muscolare o semplicemente migliorare la propria forma fisica in modo sano, graduale e sostenibile nel tempo.",
     icon: "⚡"
   },
-  {
-    title: "Educazione al movimento",
-    description: "Percorsi educativi per imparare a muoversi in modo corretto e consapevole nella vita quotidiana. Imparerai a prevenire dolori e infortuni adottando uno stile di vita attivo.",
-    icon: "📚"
-  },
-  {
-    title: "Persone con disabilità",
-    description: "Attività motoria inclusiva e personalizzata per ogni tipo di abilità. Programmi adattati alle specifiche esigenze e capacità individuali.",
-    icon: "♿"
-  }
+
+
 ];
 ---
 
@@ -80,7 +72,7 @@ const services = [
           href={`${base}/la-mia-proposta`}
           class="inline-block bg-white dark:bg-sage-dark text-navy dark:text-text-dark font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white dark:hover:bg-accent-dark dark:hover:text-navy-dark transition-colors"
         >
-          Scopri le modalità
+          Scopri le proposte
         </a>
         <a
           href={`${base}/contatti`}
