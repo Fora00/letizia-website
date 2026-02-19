@@ -1,31 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
+import { social } from '../constants/socials';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const formats = [
   {
     title: "Lezioni individuali",
-    description: "Sessioni one-to-one completamente personalizzate sulle tue esigenze, obiettivi e ritmi. La massima attenzione dedicata solo a te.",
+    description: "Sessioni one-to-one completamente personalizzate sui tuoi bisogni, obiettivi e stile di vita.",
     icon: "👤",
     highlight: "Massima personalizzazione"
   },
   {
     title: "Piccoli gruppi",
-    description: "Allenamenti in gruppi di 2-4 persone con esigenze simili. Un ottimo equilibrio tra attenzione personalizzata e dinamiche di gruppo motivanti.",
+    description: "Allenamenti in piccoli gruppi con un ottimo equilibrio tra attenzione personalizzata e dinamiche di gruppo.",
     icon: "👥",
-    highlight: "2-4 persone"
+    highlight: "3-5 persone"
   },
+
   {
-    title: "Lezioni di gruppo",
-    description: "Corsi collettivi per chi ama allenarsi in compagnia. Energia condivisa, motivazione reciproca e un ambiente accogliente.",
-    icon: "🏃",
-    highlight: "Energia e motivazione"
-  },
-  {
-    title: "Consulenze online",
-    description: "Sessioni in videochiamata per chi è lontano o preferisce allenarsi da casa. Stessa qualità e attenzione, ovunque tu sia.",
+    title: "Coaching online",
+    description: "Sessioni in videochiamata e scheda di allenamento personalizzata per chi è lontano o preferisce allenarsi in autonomia.",
     icon: "💻",
     highlight: "Ovunque tu sia"
   }
@@ -71,17 +67,13 @@ const services = [
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-6">
         La mia proposta
       </h1>
-      <p class="text-lg text-navy/80 dark:text-text-dark/80 leading-relaxed">
-        Ogni persona è unica, e così dovrebbe essere il suo percorso.
-        Scegli la modalità che fa per te: dall'attenzione esclusiva delle lezioni individuali
-        all'energia contagiosa dei corsi di gruppo.
-      </p>
+
     </div>
 
     <!-- Service Formats -->
     <div class="grid md:grid-cols-2 gap-6 mb-16">
       {formats.map((format) => (
-        <article class="bg-white dark:bg-sage-dark rounded-2xl p-8 shadow-md dark:shadow-none hover:shadow-lg transition-all duration-200 border border-sage/20 dark:border-white/10">
+        <article class="bg-white col-span-2  dark:bg-sage-dark rounded-2xl p-8 shadow-md dark:shadow-none hover:shadow-lg transition-all duration-200 border border-sage/20 dark:border-white/10">
           <div class="flex items-start gap-4">
             <div class="w-16 h-16 bg-sage-light dark:bg-navy-dark rounded-xl flex items-center justify-center shrink-0">
               <span class="text-3xl">{format.icon}</span>
@@ -108,11 +100,8 @@ const services = [
   <Section bgColor="sage-light">
     <div class="text-center mb-12">
       <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-4">
-        Aree di intervento
+      A chi mi rivolgo 
       </h2>
-      <p class="text-navy/80 dark:text-text-dark/80 max-w-2xl mx-auto">
-        Qualunque sia la tua situazione, posso aiutarti a ritrovare il piacere di muoverti.
-      </p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -133,96 +122,55 @@ const services = [
       ))}
     </div>
     <div class="text-center mt-8">
-      <a href={`${base}/mie-servizi`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+      <a href={`${base}/i-miei-servizi`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
         Scopri tutti i servizi nel dettaglio →
       </a>
     </div>
   </Section>
 
-  <Section>
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
-          Come iniziare
-        </h2>
-        <ol class="space-y-6">
-          <li class="flex gap-4">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">1</span>
-            <div>
-              <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Contattami</h3>
-              <p class="text-navy/70 dark:text-text-dark/70">Raccontami la tua situazione e i tuoi obiettivi via form, email o prenota una call gratuita.</p>
-            </div>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">2</span>
-            <div>
-              <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Valutiamo insieme</h3>
-              <p class="text-navy/70 dark:text-text-dark/70">Ci conosciamo e scegliamo la modalità più adatta alle tue esigenze e disponibilità.</p>
-            </div>
-          </li>
-          <li class="flex gap-4">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">3</span>
-            <div>
-              <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Iniziamo il percorso</h3>
-              <p class="text-navy/70 dark:text-text-dark/70">Creo un programma su misura che evolverà con i tuoi progressi.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-      <div class="bg-white dark:bg-sage-dark rounded-2xl p-8 shadow-lg dark:shadow-none transition-colors duration-200">
-        <h3 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-4">
-          Dove trovarmi
-        </h3>
-        <ul class="space-y-4">
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-accent dark:text-accent-dark shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <div>
-              <strong class="text-navy dark:text-text-dark">Trento</strong>
-              <p class="text-sm text-navy/70 dark:text-text-dark/70">Via Brescia, 15</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-accent dark:text-accent-dark shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <div>
-              <strong class="text-navy dark:text-text-dark">Rovereto</strong>
-              <p class="text-sm text-navy/70 dark:text-text-dark/70">Su appuntamento</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-6 h-6 text-accent dark:text-accent-dark shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-            <div>
-              <strong class="text-navy dark:text-text-dark">Online</strong>
-              <p class="text-sm text-navy/70 dark:text-text-dark/70">Videochiamate ovunque tu sia</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </Section>
+ 
 
-  <Section bgColor="sage-light" centered>
-    <div class="max-w-2xl mx-auto">
-      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
-        Pronta a iniziare?
-      </h2>
-      <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed mb-8">
-        Contattami per una consulenza gratuita. Insieme troveremo
-        la soluzione perfetta per te.
-      </p>
-      <a
-        href={`${base}/contatti`}
-        class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
-      >
-        Contattami ora
-      </a>
-    </div>
-  </Section>
+    <Section>
+      <div class="grid  gap-12 items-center">
+        <div>
+          <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
+           Iniziamo?
+          </h2>
+          <ol class="space-y-6">
+            <li class="flex gap-4">
+              <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+              <div>
+                <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Contattami</h3>
+                <p class="text-navy/70 dark:text-text-dark/70">Raccontami la tua situazione e i tuoi obiettivi via form, email o prenota una call gratuita.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+              <div>
+                <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Vieni a conoscermi</h3>
+                <p class="text-navy/70 dark:text-text-dark/70">Sceglieremo insieme la modalità di allenamento più adatta alle tue esigenze e disponibilità.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+              <div>
+                <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Iniziamo il percorso</h3>
+                <p class="text-navy/70 dark:text-text-dark/70">Vieni ad allenarti con il programma su misura che evolverà con i tuoi progressi.</p>
+              </div>
+            </li>
+          </ol>
+                  <a
+          href={`${base}/contatti`}
+          class="inline-block mt-8 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+        >
+          Contattami ora
+        </a>
+        </div>
+  
+      </div>
+    </Section>
+  
+
+
+
 </Layout>

@@ -7,32 +7,28 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const testimonials = [
   {
-    quote: "Letizia è una professionista seria e preparata. Mi ha aiutata a ritrovare fiducia nel mio corpo dopo anni di sedentarietà. Il suo approccio gentile ma determinato mi ha motivata a non mollare mai.",
+    quote: 'Ottima professionista, empatica e con una spiccata capacità di ascolto e di interazione; nel mio caso è riuscita a trovare il percorso individuale più adatto alle mie esigenze.  Da consigliare.',
     author: "Serena P."
   },
   {
-    quote: "Grazie alla sua empatia e competenza, ho finalmente trovato un approccio al movimento che rispetta i miei limiti. Dopo un infortunio pensavo di non poter più fare attività fisica, mi ha dimostrato il contrario.",
+    quote: "Una professionista capace, in grado di trovare rapidamente il motivo del mio dolore alla spalla e prescrivermi un percorso di riabilitazione dal quale ho trovato - e sto trovando - grande giovamento. La consiglio caldamente a tutti!",
     author: "Simone M."
   },
   {
-    quote: "Cercavo qualcuno che capisse le mie esigenze particolari legate alla gravidanza. Letizia ha creato un programma perfetto per me, che mi ha accompagnata fino al parto e oltre. La consiglio a tutte le future mamme!",
+    quote: "A mio parere veramente brava , mi ha spiegato benissimo ogni tipo di esercizio che non capivo. È pure gentile e si vede che è una persona che conosce molto bene il suo ambito lavorativo. Io la consiglio molto anche perchè non ho mai conosciuto persone gentili e che spiegano bene come lei.", 
     author: "Sara G."
   },
   {
-    quote: "Con Letizia ho imparato che il movimento non deve essere una punizione ma un piacere. Ha completamente cambiato il mio rapporto con l'attività fisica. Ora mi alleno con gioia, non più con frustrazione.",
-    author: "Marco T."
-  },
+  quote : "La dottoressa Mancini si è dimostrata preparata e disponibile, in grado di consigliarmi e motivarmi in ogni passo del percorso intrapreso con lei! Non c’è altro da dire se non : “Super Consigliata!”",
+  author: "Francesco F"
+  } , 
   {
-    quote: "Professionista eccezionale. Segue mia madre di 75 anni con pazienza e competenza, adattando ogni esercizio alle sue possibilità. Da quando fa attività con Letizia, mamma è più energica e autonoma.",
-    author: "Laura B."
-  },
+    quote : "Riscontrato professionalità e disponibilità. I risultati ci sono stati subito dopo i primi incontri. Consigliato",
+    author: "Sabrina D.S."
+  }, 
   {
-    quote: "Ho iniziato il percorso online con molti dubbi, ma Letizia è riuscita a seguirmi perfettamente anche a distanza. Le videochiamate sono sempre puntuali e professionali, mi sento seguita come se fossi in studio.",
-    author: "Giulia R."
-  },
-  {
-    quote: "Molto competente, ha spiegato gli esercizi in modo chiaro, professionista gentile che dimostra profonda competenza nel campo.",
-    author: "Valentina D."
+    quote : `Professionista pazzesca, non c’è paragone con tutti e tutte le professioniste che ho incontrato prima di lei. Adatta a qualsiasi condizione, iper-professionale ma allo stesso tempo alla mano ed empatica.`,
+    author: "Massimo Z."
   }
 ];
 ---
@@ -43,10 +39,6 @@ const testimonials = [
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-6">
         Dicono di me
       </h1>
-      <p class="text-lg text-navy/80 dark:text-text-dark/80 leading-relaxed">
-        Le parole di chi ha già intrapreso un percorso con me.
-        Ogni testimonianza racconta una storia di cambiamento e crescita personale.
-      </p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -59,11 +51,10 @@ const testimonials = [
   <Section bgColor="sage-light" centered>
     <div class="max-w-2xl mx-auto">
       <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
-        Vuoi essere la prossima storia di successo?
+        Sono la professionista che fa al caso tuo?
       </h2>
       <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed mb-8">
-        Ogni percorso inizia con un primo passo.
-        Contattami per scoprire come posso aiutarti a raggiungere i tuoi obiettivi.
+        Vieni a conoscermi per scoprire come posso aiutarti a raggiungere i tuoi obiettivi.
       </p>
       <a
         href={`${base}/contatti`}
