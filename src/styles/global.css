@@ -19,3 +19,13 @@
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Open Sans", sans-serif;
 }
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

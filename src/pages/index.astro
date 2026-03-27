@@ -4,8 +4,15 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const stats = [
+  { value: "5+", label: "anni di esperienza" },
+  { value: "100+", label: "clienti seguiti" },
+  { value: "3", label: "specializzazioni" },
+];
 
 const formats = [
   {
@@ -53,6 +60,29 @@ const testimonials = [
     author: "Simone M."
   }
 ];
+
+const faqs = [
+  {
+    question: "Lavori anche online?",
+    answer: "Sì, offro sessioni online per chi non può raggiungermi di persona. Le lezioni a distanza sono efficaci quanto quelle in presenza e ti permettono di allenarti comodamente da casa."
+  },
+  {
+    question: "Per chi sono i tuoi servizi?",
+    answer: "I miei servizi sono pensati per persone di tutte le età e condizioni fisiche. Mi rivolgo in particolare a chi ha esigenze di salute specifiche, come patologie croniche, disturbi del comportamento alimentare o dolori osteoarticolari."
+  },
+  {
+    question: "Come prenoto una consulenza gratuita?",
+    answer: "Puoi prenotare direttamente tramite Calendly con il pulsante \u201cPrenota gratis\u201d, oppure contattarmi via email o attraverso il modulo nella pagina Contatti."
+  },
+  {
+    question: "Quanto durano le sessioni?",
+    answer: "Le sessioni individuali durano solitamente 50–60 minuti. Per i piccoli gruppi e le lezioni collettive la durata può variare in base al programma concordato."
+  },
+  {
+    question: "Lavori con persone che hanno condizioni mediche particolari?",
+    answer: "Sì, sono specializzata in Attività Fisica Adattata. Lavoro a stretto contatto con il tuo medico curante per strutturare un percorso sicuro ed efficace, rispettando le tue specifiche esigenze di salute."
+  },
+];
 ---
 
 <Layout title="Home">
@@ -65,6 +95,17 @@ const testimonials = [
     imageSrc={`${base}/images/profile.webp`}
     imageAlt="Ritratto della chinesiologa Letizia Mancini sorridente con maglietta blu"
   />
+
+  <Section bgColor="navy" animate={false}>
+    <div class="grid grid-cols-3 gap-8 text-center text-white">
+      {stats.map(({ value, label }) => (
+        <div>
+          <p class="font-heading font-bold text-3xl md:text-4xl text-sage mb-1">{value}</p>
+          <p class="text-sm md:text-base text-white/70">{label}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
 
   <Section title="Chi sono" centered>
     <div class="max-w-3xl mx-auto text-center">
@@ -135,6 +176,10 @@ const testimonials = [
         Leggi altre testimonianze →
       </a>
     </div>
+  </Section>
+
+  <Section title="Domande frequenti" centered>
+    <FaqAccordion faqs={faqs} />
   </Section>
 
   <Section centered>
