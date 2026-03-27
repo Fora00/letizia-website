@@ -7,7 +7,6 @@ interface Props {
   ctaHref?: string;
   imageSrc?: string;
   imageAlt?: string;
-  backgroundSrc?: string;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -20,47 +19,29 @@ const {
   ctaHref = "/contatti",
   imageSrc,
   imageAlt = "Letizia Mancini",
-  backgroundSrc
 } = Astro.props;
 ---
 
 <section class="relative bg-sage-light dark:bg-surface-dark overflow-hidden transition-colors duration-200">
-  {/* Desktop: background on left side, full height */}
-  {backgroundSrc && (
-    <div
-      class="absolute inset-y-0 left-0 w-1/2 overflow-hidden hidden md:block"
-    >
-      <img
-        src={backgroundSrc}
-        alt=""
-        class="w-full h-full object-cover opacity-20"
-      />
-    </div>
-  )}
-
-  {/* Desktop: profile image centered in right half, at bottom */}
-  <div class="absolute bottom-0 right-0 w-1/2 hidden md:flex justify-center z-20">
-    <a
-      href={`${base}/chi-sono`}
-      class="block group"
-    >
-      {imageSrc ? (
+  {/* Fixed profile image - always at bottom right of the page */}
+  {imageSrc && (
+    <div class="fixed bottom-0 right-0 z-50 pointer-events-none">
+      <a
+        href={`${base}/chi-sono`}
+        class="block group pointer-events-auto"
+      >
         <img
           src={imageSrc}
           alt={imageAlt}
-          class="h-80 w-auto object-cover rounded-t-2xl transition-transform group-hover:scale-105 origin-bottom"
+          class="h-48 sm:h-64 md:h-80 w-auto object-cover rounded-t-2xl transition-transform group-hover:scale-105 origin-bottom"
         />
-      ) : (
-        <div class="w-72 h-80 bg-sage dark:bg-sage-dark rounded-t-2xl flex items-center justify-center">
-          <span class="text-white/60 dark:text-text-dark/60 text-sm">Immagine profilo</span>
-        </div>
-      )}
-    </a>
-  </div>
+      </a>
+    </div>
+  )}
 
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="order-2 md:order-1">
+    <div class={imageSrc ? "grid md:grid-cols-2 gap-12" : ""}>
+      <div>
         <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-navy dark:text-text-dark mb-6 leading-tight">
           {title}
         </h1>
@@ -78,34 +59,8 @@ const {
           </a>
         )}
       </div>
-
-      {/* Mobile: profile image centered with background */}
-      <div class="order-1 md:order-2 flex justify-center md:hidden">
-        <a href={`${base}/chi-sono`} class="relative block group">
-          {backgroundSrc && (
-            <div
-              class="absolute -inset-4 top-1/2 rounded-2xl overflow-hidden"
-            >
-              <img
-                src={backgroundSrc}
-                alt=""
-                class="w-full h-full object-cover opacity-50"
-              />
-            </div>
-          )}
-          {imageSrc ? (
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              class="relative z-10 rounded-2xl max-w-sm w-full object-cover transition-transform group-hover:scale-105"
-            />
-          ) : (
-            <div class="relative z-10 w-72 h-96 bg-sage dark:bg-sage-dark rounded-2xl flex items-center justify-center">
-              <span class="text-white/60 dark:text-text-dark/60 text-sm">Immagine profilo</span>
-            </div>
-          )}
-        </a>
-      </div>
+      {/* Right column intentionally empty — fixed image fills this space visually */}
+      {imageSrc && <div />}
     </div>
   </div>
 </section>
