@@ -22,10 +22,10 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative bg-sage-light dark:bg-surface-dark overflow-hidden transition-colors duration-200">
+<section id="hero-section" class="relative bg-sage-light dark:bg-surface-dark overflow-hidden transition-colors duration-200">
   {/* Fixed profile image - always at bottom right of the page */}
   {imageSrc && (
-    <div class="fixed bottom-0 right-0 z-50 pointer-events-none">
+    <div id="fixed-profile" class="fixed bottom-0 right-0 z-50 pointer-events-none">
       <a
         href={`${base}/chi-sono`}
         class="block group pointer-events-auto"
@@ -64,3 +64,26 @@ const {
     </div>
   </div>
 </section>
+
+<style is:global>
+  @media (max-width: 639px) {
+    #fixed-profile.profile-hidden {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.getElementById('hero-section');
+  const fixed = document.getElementById('fixed-profile');
+
+  if (hero && fixed) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        fixed.classList.toggle('profile-hidden', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(hero);
+  }
+</script>
