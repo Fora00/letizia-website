@@ -23,4 +23,9 @@ const { title, description, icon, badge, href } = Astro.props;
   )}
   <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark mb-3">{title}</h3>
   <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed">{description}</p>
+  {href && (
+    <a href={href} class="mt-4 inline-block text-sm text-accent dark:text-accent-dark font-semibold hover:underline">
+      Scopri di più →
+    </a>
+  )}
 </article>

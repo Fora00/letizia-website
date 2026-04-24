@@ -1,0 +1,67 @@
+---
+const substackUrl = "https://tadamove.substack.com";
+
+interface Props {
+  showPostsLink?: boolean;
+}
+const { showPostsLink = false } = Astro.props;
+
+const ghBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const base = ghBase + '/' + Astro.url.pathname.split('/').filter(Boolean)[0];
+---
+
+<div class="max-w-xl mx-auto text-center">
+  <div class="inline-flex items-center gap-2 bg-sage/30 dark:bg-sage-dark/60 text-accent dark:text-accent-dark text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+    Newsletter
+  </div>
+
+  <h2 class="font-heading font-bold text-2xl md:text-3xl text-navy dark:text-text-dark mb-4">
+    Vuoi iscriverti alla newsletter?
+  </h2>
+  <p class="text-navy/70 dark:text-text-dark/70 mb-8 leading-relaxed">
+    Ogni settimana consigli pratici su movimento, salute e benessere — scritti con cura, senza spam.
+  </p>
+
+  <form
+    id="substack-form"
+    class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+    onsubmit="handleSubstackSubmit(event)"
+  >
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="La tua email"
+      class="flex-1 px-5 py-3 rounded-full border border-sage dark:border-sage-dark bg-white dark:bg-surface-dark text-navy dark:text-text-dark placeholder-navy/40 dark:placeholder-text-dark/40 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-dark"
+    />
+    <button
+      type="submit"
+      class="bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-7 py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
+    >
+      Iscriviti gratis
+    </button>
+  </form>
+
+  <p class="mt-4 text-xs text-navy/40 dark:text-text-dark/40">Gratis · Nessuno spam · Disdici quando vuoi</p>
+
+  {showPostsLink && (
+    <p class="mt-6 text-sm text-navy/60 dark:text-text-dark/60">
+      Curiosi di cosa scrivo?{' '}
+      <a href={`${base}/newsletter`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Leggi gli ultimi articoli →
+      </a>
+    </p>
+  )}
+</div>
+
+<script define:vars={{ substackUrl }}>
+  function handleSubstackSubmit(e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    window.open(`${substackUrl}/subscribe?email=${encodeURIComponent(email)}`, '_blank', 'noopener,noreferrer');
+  }
+  window.handleSubstackSubmit = handleSubstackSubmit;
+</script>

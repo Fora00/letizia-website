@@ -25,4 +25,9 @@ const { title, description, icon, meta, href } = Astro.props;
     )}
   </div>
   <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed">{description}</p>
+  {href && (
+    <a href={href} class="mt-4 inline-block text-sm text-accent dark:text-accent-dark font-semibold hover:underline">
+      Scopri di più →
+    </a>
+  )}
 </article>

@@ -4,7 +4,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const leftNavItems = [
   { href: `${base}/`, label: 'Home', icon: 'home' },
   { href: `${base}/chi-sono`, label: 'Chi sono', icon: 'user' },
-  { href: `${base}/cosa-offro`, label: 'Cosa offro', icon: 'briefcase' },
+  { href: `${base}/i-miei-servizi`, label: 'Servizi', icon: 'heart' },
+  { href: `${base}/la-mia-proposta`, label: 'Proposta', icon: 'briefcase' },
   { href: `${base}/dicono-di-me`, label: 'Dicono di me', icon: 'chat' },
 ];
 
@@ -20,6 +21,14 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Left nav (desktop) -->
       <ul class="hidden md:flex items-center gap-5">
+        <li>
+          <a href="/" class="flex items-center gap-1.5 font-medium text-sm text-navy/40 dark:text-text-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Versioni
+          </a>
+        </li>
         {leftNavItems.map((item) => (
           <li>
             <a
@@ -112,6 +121,14 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile nav -->
     <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
       <ul class="space-y-2">
+        <li>
+          <a href="/" class="flex items-center gap-2 py-2 px-4 rounded-lg font-medium text-navy/40 dark:text-text-dark/40 hover:bg-sage-light dark:hover:bg-surface-dark transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Versioni
+          </a>
+        </li>
       {allNavItems.map((item) => (
         <li>
           <a

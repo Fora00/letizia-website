@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import ServiceSpecializationCard from '../components/ServiceSpecializationCard.astro';
+import FormatCard from '../components/FormatCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const stats = [
+  {
+    value: "5+",
+    label: "anni di esperienza",
+    iconPath: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+  },
+  {
+    value: "100+",
+    label: "clienti seguiti",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+  },
+  {
+    value: "3",
+    label: "specializzazioni",
+    iconPath: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+  },
+];
+
+const formats = [
+  {
+    title: "Lezioni individuali",
+    description: "Sessioni one-to-one completamente personalizzate sulle tue esigenze e obiettivi.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>`,
+    meta: "1 persona",
+    href: `${base}/la-mia-proposta`
+  },
+  {
+    title: "Piccoli gruppi",
+    description: "Allenamenti in gruppi di 2-4 persone con esigenze simili. Attenzione e motivazione.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
+    meta: "2–4 persone",
+    href: `${base}/la-mia-proposta`
+  },
+  {
+    title: "Lezioni di gruppo",
+    description: "Corsi collettivi per chi ama allenarsi in compagnia con energia condivisa.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`,
+    meta: "5+ persone",
+    href: `${base}/la-mia-proposta`
+  }
+];
+
+const services = [
+  {
+    title: "Movimento adattato",
+    description: "Per condizioni croniche stabilizzate come diabete, ipertensione, patologie cardiovascolari.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>`,
+    badge: "Patologie croniche",
+    href: `${base}/i-miei-servizi`
+  },
+  {
+    title: "Supporto DCA",
+    description: "Accompagnamento motorio delicato per disturbi del comportamento alimentare.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
+    badge: "Approccio delicato",
+    href: `${base}/i-miei-servizi`
+  },
+  {
+    title: "Dolore osteo-articolare",
+    description: "Esercizi mirati per mal di schiena, cervicalgia, dolori articolari.",
+    icon: `<svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+    badge: "Riabilitazione",
+    href: `${base}/i-miei-servizi`
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Letizia è una professionista seria e preparata. Mi ha aiutata a ritrovare fiducia nel mio corpo dopo anni di sedentarietà.",
+    author: "Serena P.",
+    stars: 5,
+    context: "Movimento adattato per patologia cronica"
+  },
+  {
+    quote: "Grazie alla sua empatia e competenza, ho finalmente trovato un approccio al movimento che rispetta i miei limiti.",
+    author: "Simone M.",
+    stars: 5,
+    context: "Riabilitazione spalla"
+  }
+];
+
+const faqs = [
+  {
+    question: "Lavori anche online?",
+    answer: "Sì, offro sessioni online per chi non può raggiungermi di persona. Le lezioni a distanza sono efficaci quanto quelle in presenza e ti permettono di allenarti comodamente da casa."
+  },
+  {
+    question: "Per chi sono i tuoi servizi?",
+    answer: "I miei servizi sono pensati per persone di tutte le età e condizioni fisiche. Mi rivolgo in particolare a chi ha esigenze di salute specifiche, come patologie croniche, disturbi del comportamento alimentare o dolori osteoarticolari."
+  },
+  {
+    question: "Come prenoto una consulenza gratuita?",
+    answer: "Puoi prenotare direttamente tramite Calendly con il pulsante \"Prenota gratis\", oppure contattarmi via email o attraverso il modulo nella pagina Contatti."
+  },
+  {
+    question: "Quanto durano le sessioni?",
+    answer: "Le sessioni individuali durano solitamente 50–60 minuti. Per i piccoli gruppi e le lezioni collettive la durata può variare in base al programma concordato."
+  },
+  {
+    question: "Lavori con persone che hanno condizioni mediche particolari?",
+    answer: "Sì, sono specializzata in Attività Fisica Adattata. Lavoro a stretto contatto con il tuo medico curante per strutturare un percorso sicuro ed efficace, rispettando le tue specifiche esigenze di salute."
+  },
+];
+---
+
+<Layout title="Home">
+  <Hero
+    title="Letizia Mancini"
+    subtitle="Chinesiologa clinica e personal trainer in Trentino-Alto Adige. Ti accompagno in un percorso personalizzato verso il benessere fisico, anche online."
+    showCta={true}
+    ctaText="Inizia il tuo percorso"
+    ctaHref={`${base}/contatti`}
+    imageSrc={`${base}/images/profile.webp`}
+    imageAlt="Ritratto della chinesiologa Letizia Mancini sorridente con maglietta blu"
+  />
+
+  <Section bgColor="navy">
+    <div class="grid grid-cols-3 gap-8 text-center text-white">
+      {stats.map(({ value, label, iconPath }) => (
+        <div>
+          <div class="flex justify-center mb-2">
+            <svg class="w-7 h-7 text-sage/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={iconPath} />
+            </svg>
+          </div>
+          <p class="font-heading font-bold text-3xl md:text-4xl text-sage mb-1">{value}</p>
+          <p class="text-sm md:text-base text-white/70">{label}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section title="Chi sono">
+    <div class="grid md:grid-cols-2 gap-12 items-start max-w-4xl mx-auto">
+      <div class="flex justify-center">
+        <img
+          src={`${base}/images/profile.webp`}
+          alt="Ritratto della chinesiologa Letizia Mancini sorridente con maglietta blu"
+          class="w-72 rounded-2xl shadow-xl"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <p class="text-lg text-navy/80 dark:text-text-dark/80 leading-relaxed mb-8">
+          Sono <strong>Letizia Mancini</strong>, Dott.ssa in Scienze Motorie specializzata in Attività Fisica e Salute.
+          Da più di 5 anni aiuto persone di tutte le età a migliorare il proprio benessere fisico con un approccio personalizzato e rispettoso.
+        </p>
+        <ul class="flex flex-wrap gap-4 mb-8">
+          <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+            <svg class="w-4 h-4 text-accent dark:text-accent-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+            </svg>
+            Laurea in Scienze Motorie
+          </li>
+          <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+            <svg class="w-4 h-4 text-accent dark:text-accent-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            European MSc in Health and Physical Activity
+          </li>
+          <li class="flex items-center gap-2 bg-sage-light dark:bg-sage-dark px-4 py-2 rounded-full text-sm text-navy dark:text-text-dark">
+            <svg class="w-4 h-4 text-accent dark:text-accent-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            Specializzazione in Attività Fisica Adattata
+          </li>
+        </ul>
+        <a href={`${base}/chi-sono`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+          Scopri di più su di me →
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="Aree di intervento" subtitle="Qualunque sia la tua situazione, posso aiutarti" centered>
+    <div class="grid md:grid-cols-3 gap-6">
+      {services.map((service) => (
+        <ServiceSpecializationCard {...service} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href={`${base}/i-miei-servizi`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Scopri tutti i servizi →
+      </a>
+    </div>
+  </Section>
+
+  <Section title="Come posso aiutarti" subtitle="Scegli la modalità che fa per te" centered>
+    <div class="grid md:grid-cols-3 gap-6">
+      {formats.map((format) => (
+        <FormatCard {...format} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href={`${base}/la-mia-proposta`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Scopri la mia proposta →
+      </a>
+    </div>
+  </Section>
+
+  <Section bgColor="sage-light" title="Cosa dicono di me" centered>
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard {...testimonial} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href={`${base}/dicono-di-me`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Leggi altre testimonianze →
+      </a>
+    </div>
+  </Section>
+
+  <Section title="Domande frequenti" centered>
+    <FaqAccordion faqs={faqs} />
+  </Section>
+
+  <Section centered>
+    <div class="bg-navy text-white rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="font-heading font-bold text-2xl md:text-3xl mb-2">
+        Il tuo primo passo verso il benessere
+      </h2>
+      <p class="text-sm text-sage uppercase tracking-wide mb-6">5+ anni di esperienza · 100+ clienti soddisfatti</p>
+      <p class="text-white/80 mb-4 max-w-xl mx-auto">
+        Prenota una consulenza gratuita e scopri il percorso più adatto a te.
+      </p>
+      <p class="text-sm text-white/50 mb-8">30 minuti · Nessun impegno · Video o in presenza</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://calendly.com/letiziamancini-chinesiologa/prenota_gratis?share_attribution=send_from_calendly_et_card"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Prenota gratis
+        </a>
+        <a
+          href={`${base}/contatti`}
+          class="inline-block bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-full hover:bg-white hover:text-navy transition-colors"
+        >
+          Contattami
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>

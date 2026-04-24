@@ -1,16 +1,9 @@
----
-const versions = [
-  { num: 1, label: 'Servizi e Proposta separati' },
-  { num: 2, label: 'Cosa offro unificato' },
-];
----
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seleziona una versione</title>
+  <title>Versioni del sito</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -25,7 +18,7 @@ const versions = [
       gap: 2rem;
       padding: 2rem;
     }
-    h1 { font-size: 0.875rem; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase; }
+    h1 { font-size: 1.5rem; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.875rem; }
     .versions { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
     a {
       display: flex;
@@ -42,18 +35,22 @@ const versions = [
     }
     a:hover { background: #334155; border-color: #6ee7b7; }
     .num { font-size: 3rem; font-weight: 700; color: #6ee7b7; }
-    .label { font-size: 0.875rem; color: #94a3b8; text-align: center; max-width: 10rem; }
+    .label { font-size: 0.875rem; color: #94a3b8; }
   </style>
 </head>
 <body>
   <h1>Seleziona una versione</h1>
-  <div class="versions">
-    {versions.map(v => (
-      <a href={`/${v.num}/`}>
-        <span class="num">{v.num}</span>
-        <span class="label">{v.label}</span>
-      </a>
-    ))}
-  </div>
+  <div class="versions" id="versions"></div>
+  <script>
+    const versions = [1, 2];
+    const base = window.location.pathname.replace(/\/$/, '');
+    const container = document.getElementById('versions');
+    versions.forEach(v => {
+      const a = document.createElement('a');
+      a.href = `${base}/${v}/`;
+      a.innerHTML = `<span class="num">${v}</span><span class="label">Versione ${v}</span>`;
+      container.appendChild(a);
+    });
+  </script>
 </body>
 </html>
