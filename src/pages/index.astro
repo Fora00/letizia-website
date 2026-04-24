@@ -1,5 +1,6 @@
 ---
-const gitHubPages = import.meta.env.GITHUB_ACTIONS === 'true';
+const gitHubPages = process.env.GITHUB_ACTIONS === 'true';
+
 const ghBase = gitHubPages ? 'https://fora00.github.io/letizia-website' : 'https://letiziamancini.it';
 const versions = [
   { num: 1, label: 'Servizi e Proposta separati' },
