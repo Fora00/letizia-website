@@ -8,7 +8,8 @@ import TestimonialCard from '../../components/TestimonialCard.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import SubstackSignup from '../../components/v2/SubstackSignup.astro';
 
-const ghBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
+const ghBase =  isGitHubPages ? 'https://fora00.github.io/letizia-website' : 'https://letiziamancini.it';
 const base = ghBase + '/' + Astro.url.pathname.split('/').filter(Boolean)[0];
 
 const stats = [
