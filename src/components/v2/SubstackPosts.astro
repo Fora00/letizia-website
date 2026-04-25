@@ -50,6 +50,9 @@ let posts: Post[] = [];
 
 try {
   const res = await fetch(FEED_URL);
+  if (!res.ok) {
+    console.error(`[SubstackPosts] Feed fetch failed: ${res.status} ${res.statusText}`);
+  } else {
   const xml = await res.text();
   const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, limit);
 
@@ -72,8 +75,9 @@ try {
 
     return { title, link, description, date, image };
   });
-} catch (_) {
-  // Feed unavailable at build time — section hidden
+  }
+} catch (err) {
+  console.error(`[SubstackPosts] Feed fetch error:`, err);
 }
 ---
 

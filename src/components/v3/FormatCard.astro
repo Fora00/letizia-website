@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  meta?: string;
+  href?: string;
+}
+
+const { title, description, icon, meta, href } = Astro.props;
+---
+
+<article class="bg-white dark:bg-sage-dark rounded-2xl p-6 shadow-md dark:shadow-none transition-all duration-200 border border-sage/20 dark:border-white/10 border-t-4 border-t-accent hover:-translate-y-1 hover:shadow-lg">
+  {icon && (
+    <div class="w-14 h-14 bg-sage-light dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
+      <Fragment set:html={icon} />
+    </div>
+  )}
+  <div class="flex items-center gap-2 mb-3">
+    <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark">{title}</h3>
+    {meta && (
+      <span class="bg-sage-light dark:bg-navy-dark text-navy/60 dark:text-text-dark/60 text-xs px-2 py-0.5 rounded-full shrink-0">
+        {meta}
+      </span>
+    )}
+  </div>
+  <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed">{description}</p>
+</article>
