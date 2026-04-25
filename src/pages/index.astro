@@ -3,6 +3,7 @@ const versions = [
   { num: 1, label: 'Servizi e Proposta separati' },
   { num: 2, label: 'Cosa offro unificato' },
 ];
+console.log(import.meta.env.BASE_URL);
 ---
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@ const versions = [
   <h1>Seleziona una versione</h1>
   <div class="versions">
     {versions.map(v => (
-      <a href={`${import.meta.env.BASE_URL}${v.num}/`}>
+      <a href={`${import.meta.env.BASE_URL}${v.num}`}>
         <span class="num">{v.num}</span>
         <span class="label">{v.label}</span>
       </a>
