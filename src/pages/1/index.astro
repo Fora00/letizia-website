@@ -7,9 +7,8 @@ import FormatCard from '../../components/v1/FormatCard.astro';
 import TestimonialCard from '../../components/TestimonialCard.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 
-const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
-const ghBase =  isGitHubPages ? 'https://fora00.github.io/letizia-website' : 'https://letiziamancini.it';
-const base = ghBase + '/' + Astro.url.pathname.split('/').filter(Boolean)[0];
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
 
 const stats = [
   {
@@ -123,7 +122,7 @@ const faqs = [
     showCta={true}
     ctaText="Inizia il tuo percorso"
     ctaHref={`${base}/contatti`}
-    imageSrc={`${ghBase}/images/profile.webp`}
+    imageSrc={`${import.meta.env.BASE_URL}images/profile.webp`}
     imageAlt="Ritratto della chinesiologa Letizia Mancini sorridente con maglietta blu"
   />
 
@@ -147,7 +146,7 @@ const faqs = [
     <div class="grid md:grid-cols-2 gap-12 items-start max-w-4xl mx-auto">
       <div class="flex justify-center">
         <img
-          src={`${ghBase}/images/profile.webp`}
+          src={`${import.meta.env.BASE_URL}images/profile.webp`}
           alt="Ritratto della chinesiologa Letizia Mancini sorridente con maglietta blu"
           class="w-72 rounded-2xl shadow-xl"
           loading="lazy"

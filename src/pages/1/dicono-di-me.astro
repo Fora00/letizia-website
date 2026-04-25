@@ -3,9 +3,8 @@ import Layout from '../../layouts/LayoutV1.astro';
 import Section from '../../components/Section.astro';
 import TestimonialCard from '../../components/TestimonialCard.astro';
 
-const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
-const ghBase =  isGitHubPages ? 'https://fora00.github.io/letizia-website' : 'https://letiziamancini.it';
-const base = ghBase + '/' + Astro.url.pathname.split('/').filter(Boolean)[0];
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
 
 const testimonials = [
   {
