@@ -49,7 +49,9 @@ interface Post {
 let posts: Post[] = [];
 
 try {
-  const res = await fetch(FEED_URL);
+  const res = await fetch(FEED_URL, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; AstroSSG/1.0; +https://github.com/Fora00/letizia-website)' }
+  });
   if (!res.ok) {
     console.error(`[SubstackPosts] Feed fetch failed: ${res.status} ${res.statusText}`);
   } else {
