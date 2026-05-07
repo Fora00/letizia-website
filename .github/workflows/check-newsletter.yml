@@ -1,0 +1,41 @@
+name: Check for new newsletter posts
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # every hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for new posts
+        id: check
+        run: |
+          LATEST=$(curl -s https://tadamove.substack.com/feed \
+            | grep -o '<guid[^>]*>[^<]*</guid>' \
+            | head -1 \
+            | sed 's/<[^>]*>//g')
+          STORED=$(cat .last-post-guid 2>/dev/null || echo "")
+          echo "latest=$LATEST"
+          echo "stored=$STORED"
+          if [ -n "$LATEST" ] && [ "$LATEST" != "$STORED" ]; then
+            echo "$LATEST" > .last-post-guid
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push new post marker
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .last-post-guid
+          git commit -m "chore: new newsletter post detected"
+          git push

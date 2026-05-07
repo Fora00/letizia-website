@@ -3,6 +3,8 @@ import Layout from '../../layouts/LayoutV4.astro';
 import Section from '../../components/v4/Section.astro';
 import { social } from '../../constants/socials';
 
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
 ---
 
 <Layout title="Contatti" description="Contattami per iniziare il tuo percorso di benessere">
@@ -69,6 +71,31 @@ import { social } from '../../constants/socials';
               </p>
             </div>
             <svg class="w-6 h-6 ml-auto group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Newsletter -->
+        <a
+          href={`${base}/newsletter`}
+          class="block bg-sage-light dark:bg-sage-dark rounded-2xl p-6 shadow-md dark:shadow-none hover:shadow-lg transition-shadow group"
+        >
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 bg-sage/30 dark:bg-white/10 rounded-full flex items-center justify-center shrink-0">
+              <svg class="w-7 h-7 text-navy dark:text-text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark mb-1">
+                Newsletter
+              </h3>
+              <p class="text-navy/70 dark:text-text-dark/70 text-sm">
+                Idee e consigli su movimento e benessere, ogni settimana
+              </p>
+            </div>
+            <svg class="w-6 h-6 ml-auto text-navy/40 dark:text-text-dark/40 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </div>
