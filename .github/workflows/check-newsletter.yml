@@ -14,28 +14,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check for new posts
-        id: check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch latest posts
+        id: fetch
+        run: node scripts/fetch-posts.mjs
+        continue-on-error: true
+
+      - name: Check for changes
+        id: diff
         run: |
-          LATEST=$(curl -s https://tadamove.substack.com/feed \
-            | grep -o '<guid[^>]*>[^<]*</guid>' \
-            | head -1 \
-            | sed 's/<[^>]*>//g')
-          STORED=$(cat .last-post-guid 2>/dev/null || echo "")
-          echo "latest=$LATEST"
-          echo "stored=$STORED"
-          if [ -n "$LATEST" ] && [ "$LATEST" != "$STORED" ]; then
-            echo "$LATEST" > .last-post-guid
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
+          if git diff --quiet src/data/newsletter-posts.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Commit and push new post marker
-        if: steps.check.outputs.changed == 'true'
+      - name: Commit and push updated posts
+        if: steps.fetch.outcome == 'success' && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .last-post-guid
-          git commit -m "chore: new newsletter post detected"
+          git add src/data/newsletter-posts.json
+          git commit -m "chore: update newsletter posts"
           git push
