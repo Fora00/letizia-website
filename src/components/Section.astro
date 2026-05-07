@@ -5,9 +5,10 @@ interface Props {
   centered?: boolean;
   bgColor?: 'white' | 'sage-light' | 'navy';
   animate?: boolean;
+  extraClasses?: string;
 }
 
-const { title, subtitle, centered = false, bgColor = 'white', animate = true } = Astro.props;
+const { title, subtitle, centered = false, bgColor = 'white', animate = true  , extraClasses} = Astro.props;
 
 const bgClasses = {
   'white': 'bg-white dark:bg-navy-dark',
@@ -16,7 +17,7 @@ const bgClasses = {
 };
 ---
 
-<section class:list={["py-8 transition-colors duration-200", bgClasses[bgColor], animate && "fade-in-up"]}>
+<section class:list={["py-8 transition-colors duration-200", bgClasses[bgColor], animate && "fade-in-up" , extraClasses]}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     {(title || subtitle) && (
       <div class:list={["mb-12", centered && "text-center"]}>
