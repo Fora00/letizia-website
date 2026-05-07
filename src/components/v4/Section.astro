@@ -1,0 +1,53 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  centered?: boolean;
+  bgColor?: 'white' | 'sage-light' | 'navy';
+  animate?: boolean;
+  class?: string;
+  style?: string;
+  id?: string;
+}
+
+const {
+  title,
+  subtitle,
+  centered = false,
+  bgColor = 'white',
+  animate = true,
+  class: className,
+  style,
+  id,
+} = Astro.props;
+
+const bgClasses = {
+  'white': 'bg-white dark:bg-navy-dark',
+  'sage-light': 'bg-sage-light dark:bg-surface-dark',
+  'navy': 'bg-navy dark:bg-navy text-white',
+};
+---
+
+<section
+  id={id}
+  class:list={["py-8 transition-colors duration-200", bgClasses[bgColor], animate && "fade-in-up", className]}
+  style={style}
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    {(title || subtitle) && (
+      <div class:list={["mb-12", centered && "text-center"]}>
+        {title && (
+          <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4">
+            {title}
+          </h2>
+        )}
+        {subtitle && (
+          <p class:list={["text-lg opacity-80 max-w-2xl", centered && "mx-auto"]}>
+            {subtitle}
+          </p>
+        )}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

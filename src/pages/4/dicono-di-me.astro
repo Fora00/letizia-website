@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/LayoutV4.astro';
-import Section from '../../components/Section.astro';
+import Section from '../../components/v4/Section.astro';
 
 const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
 const base = `${import.meta.env.BASE_URL}${version}`;
