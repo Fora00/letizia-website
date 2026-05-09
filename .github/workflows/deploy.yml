@@ -30,6 +30,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Fetch newsletter posts
+        run: node scripts/fetch-posts.mjs
+        continue-on-error: true
+
       - name: Build Astro site
         run: npm run build
 
