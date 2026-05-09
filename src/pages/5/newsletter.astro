@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/LayoutV5.astro';
+import Section from '../../components/v5/Section.astro';
+import SubstackPosts from '../../components/v2/SubstackPosts.astro';
+import SubstackSignup from '../../components/v2/SubstackSignup.astro';
+
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
+---
+
+<Layout
+  title="Newsletter"
+  description="Idee, consigli e riflessioni su movimento, salute e benessere. Leggi gli ultimi articoli dalla newsletter di Letizia Mancini."
+>
+  <!-- Page header -->
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        Newsletter
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        Dalla newsletter
+      </h1>
+      <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
+        Idee, consigli e riflessioni su movimento, salute e benessere — ogni settimana nella tua casella di posta.
+      </p>
+    </div>
+  </section>
+
+  <!-- Posts -->
+  <Section title="Ultimi articoli" centered>
+    <SubstackPosts limit={9} showAllLink={true} />
+  </Section>
+
+  <!-- Subscribe CTA -->
+  <Section bgColor="sage-light" centered>
+    <SubstackSignup />
+  </Section>
+</Layout>

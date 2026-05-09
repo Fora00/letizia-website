@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/LayoutV5.astro';
+import Section from '../../components/v5/Section.astro';
+
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
+
+const formation = [
+  {
+    iconPath: "M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222",
+    title: "Laurea in Scienze Motorie",
+    sub: 'Università degli Studi di Roma "Foro Italico"'
+  },
+  {
+    iconPath: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "European MSc Health and Physical Activity",
+    sub: "Percorso di studi internazionale"
+  },
+  {
+    iconPath: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
+    title: "Specialista dell'esercizio fisico",
+    sub: "Attestato di qualità AISE"
+  },
+  {
+    iconPath: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+    title: "Ginnastica Ipopressiva",
+    sub: "Metodo Caufriez"
+  }
+];
+---
+
+<Layout title="Chi sono" description="Scopri chi sono e il mio approccio alla chinesiologia e al personal training">
+  <!-- Page header -->
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        Chi sono
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        Letizia Mancini
+      </h1>
+      <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
+        Chinesiologa clinica e specialista dell'esercizio fisico per la salute.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <Section>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-4 text-navy/80 dark:text-text-dark/80 leading-relaxed">
+        <p>
+          Sono <strong>Letizia Mancini</strong>, laureata in Attività Fisica e Salute e specializzata in Esercizio Fisico Adattato, ovvero programmi di allenamento studiati per chi ha esigenze specifiche.
+        </p>
+        <p>
+          Durante il percorso di studi ho approfondito, in Italia e all'estero, la formazione clinica in ambito preventivo e adattato (AMPA) confrontandomi con le più prestigiose realtà presenti in Europa nel panorama delle Scienze Motorie.
+        </p>
+        <p>
+          Sono in continua formazione e tra le ultime certificazioni spiccano Ginnastica Ipopressiva con Marcel Caufriez, Auto Rieducazione Posturale Dinamica con BodyCode System e numerosi corsi di formazione su condizioni speciali fisiologiche e patologiche (BPCO, DNA, Post-Partum) erogate da AISE e altri enti.
+        </p>
+        <p>
+          Da sempre sportiva, ho iniziato fin da giovane a mettere in pratica il mio bagaglio teorico, prima su me stessa poi lavorando per aiutare altre persone ad acquisire maggiore consapevolezza delle proprie capacità.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img
+          src={`${import.meta.env.BASE_URL}images/about-v4.jpg`}
+          alt="Letizia Mancini chinesiologa sorridente seduta in palestra"
+          class="w-80 h-auto max-h-[32rem] object-cover rounded-2xl shadow-xl"
+        />
+      </div>
+    </div>
+  </Section>
+
+  <!-- Formazione -->
+  <Section bgColor="sage-light" title="La mia formazione" centered>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      {formation.map((item) => (
+        <div class="bg-white dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200">
+          <div class="w-14 h-14 bg-accent/10 dark:bg-accent-dark/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.iconPath} />
+            </svg>
+          </div>
+          <h3 class="font-heading font-semibold text-navy dark:text-text-dark mb-2">{item.title}</h3>
+          <p class="text-sm text-navy/70 dark:text-text-dark/70">{item.sub}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Approccio -->
+  <Section>
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-6">
+        Il mio approccio
+      </h2>
+      <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed">
+        Credo fermamente che il movimento debba essere accessibile a tutti.
+        Il mio obiettivo è aiutarti a riscoprire il piacere di muoverti,
+        nel rispetto del tuo corpo e delle tue possibilità.
+        Insieme costruiremo un percorso che si adatta a te.
+      </p>
+    </div>
+  </Section>
+
+  <!-- CTA finale -->
+  <Section bgColor="sage-light" centered>
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-4">
+        Pronta ad iniziare insieme?
+      </h2>
+      <p class="text-navy/80 dark:text-text-dark/80 mb-8 leading-relaxed">
+        Vieni a conoscermi per scoprire come posso aiutarti a raggiungere i tuoi obiettivi.
+      </p>
+      <a
+        href={`${base}/contatti`}
+        class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+      >
+        Inizia il tuo percorso
+      </a>
+    </div>
+  </Section>
+</Layout>

@@ -1,0 +1,242 @@
+---
+import Layout from '../../layouts/LayoutV5.astro';
+import Section from '../../components/v5/Section.astro';
+
+const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
+const base = `${import.meta.env.BASE_URL}${version}`;
+
+const services = [
+  {
+    title: "Movimento adattato per condizioni croniche",
+    description: "Programmi di esercizio fisico personalizzati per persone con patologie croniche stabilizzate (diabete, ipertensione, patologie cardiovascolari, ecc.).",
+    iconPath: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+  },
+  {
+    title: "Supporto per disturbi della nutrizione e dell'alimentazione",
+    description: "Prendere consapevolezza del proprio corpo e muoversi in un contesto sicuro, guidato e senza giudizio.",
+    iconPath: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+  },
+  {
+    title: "Gestione del dolore osteo-articolare",
+    description: "Esercizi mirati per alleviare dolori muscolari e articolari (mal di schiena, cervicalgia, dolori alle spalle, ecc.) attraverso il movimento corretto e il rinforzo muscolare.",
+    iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  },
+  {
+    title: "Gravidanza e post-parto",
+    description: "Esercizi sicuri e adattati per accompagnare ogni fase della maternità: dalla preparazione al parto al recupero post-partum.",
+    iconPath: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+  },
+  {
+    title: "Terza età",
+    description: "Programmi specifici per mantenere e migliorare la mobilità, l'equilibrio e l'autonomia. Prevenzione delle cadute e mantenimento della qualità di vita.",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+  },
+  {
+    title: "Ricomposizione corporea",
+    description: "Percorsi per chi desidera perdere peso, aumentare la massa muscolare o semplicemente migliorare la propria forma fisica in modo sano, graduale e sostenibile nel tempo.",
+    iconPath: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+  },
+];
+
+const formats = [
+  {
+    title: "Lezioni individuali",
+    description: "Sessioni one-to-one completamente personalizzate sui tuoi bisogni, obiettivi e stile di vita.",
+    iconPath: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
+    highlight: "Massima personalizzazione",
+    price: "€65",
+    priceDetail: "lezione singola",
+    packages: "4 lezioni €200 · 8 lezioni €370 · 12 lezioni €550",
+    packagesNote: "pacchetti da usare entro 2–4 mesi"
+  },
+  {
+    title: "Piccoli gruppi",
+    description: "Allenamenti in piccoli gruppi con un ottimo equilibrio tra attenzione personalizzata e dinamiche di gruppo.",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    highlight: "3-5 persone",
+    price: "€75",
+    priceDetail: "al mese (4 lezioni)",
+    packages: "gruppi di 3–5 persone",
+    packagesNote: "rinnovo mensile flessibile"
+  },
+  {
+    title: "Coaching",
+    description: "Sessioni in videochiamata e scheda di allenamento personalizzata per chi è lontano o preferisce allenarsi in autonomia.",
+    iconPath: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    highlight: "Ovunque tu sia",
+    price: "€300",
+    priceDetail: "semestrale (4 visite + scheda)",
+    packages: "€800 annuale",
+    packagesNote: "10 visite + scheda personalizzata"
+  }
+];
+
+const targets = [
+  {
+    description: "Cerchi un percorso costruito su misura, che tenga conto della tua storia e del tuo stile di vita per imparare a muoverti in sicurezza.",
+    iconPath: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+  },
+  {
+    description: "Vuoi migliorare forza, autonomia e qualità della vita e ritrovare energia.",
+    iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  },
+  {
+    description: "Vuoi allenarti in uno spazio privato, lontano dal caos della palestra.",
+    iconPath: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+  },
+];
+---
+
+<Layout title="Cosa offro" description="Scopri i servizi di chinesiologia clinica, i formati di allenamento e come posso aiutarti">
+  <!-- Page header -->
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        Servizi
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        Cosa offro
+      </h1>
+      <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
+        Programmi personalizzati per ogni esigenza: dal movimento adattato alla ricomposizione corporea.
+      </p>
+    </div>
+  </section>
+
+  <!-- Servizi -->
+  <Section>
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <article class="bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-all duration-200">
+          <div class="w-14 h-14 bg-white dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconPath} />
+            </svg>
+          </div>
+          <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark mb-3">{service.title}</h3>
+          <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed">{service.description}</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Formati — su sfondo immagine -->
+  <Section
+    centered
+    class="relative overflow-hidden"
+    style={`background-image: url('${import.meta.env.BASE_URL}images/cosa-offro.jpg'); background-size: cover; background-position: center 30%;`}
+  >
+    <div class="absolute inset-0 bg-navy/75 -z-0"></div>
+    <div class="relative z-10">
+      <div class="mb-10 text-center">
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-3">Come lavoro</h2>
+        <p class="text-white/70 text-lg max-w-xl mx-auto">Scegli il formato più adatto al tuo stile di vita.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {formats.map((format) => (
+          <article class="bg-white/95 dark:bg-navy-dark/90 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 border border-white/20 flex flex-col backdrop-blur-sm">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-14 h-14 bg-sage-light dark:bg-surface-dark rounded-xl flex items-center justify-center shrink-0">
+                <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={format.iconPath} />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-col gap-1 mb-1">
+                  <h3 class="font-heading font-semibold text-lg text-navy dark:text-text-dark">
+                    {format.title}
+                  </h3>
+                  <span class="self-start text-xs font-medium bg-accent/10 dark:bg-accent-dark/20 text-accent dark:text-accent-dark px-2 py-0.5 rounded-lg border-0 border-accent/30 dark:border-accent-dark/30">
+                    {format.highlight}
+                  </span>
+                </div>
+                <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed text-sm">
+                  {format.description}
+                </p>
+              </div>
+            </div>
+            <div class="mt-auto pt-4 border-t border-sage/20 dark:border-white/10">
+              <div class="flex items-baseline gap-2 mb-1">
+                <span class="font-heading font-bold text-2xl text-accent dark:text-accent-dark">{format.price}</span>
+                <span class="text-sm text-navy/60 dark:text-text-dark/60">{format.priceDetail}</span>
+              </div>
+              <p class="text-sm font-medium text-navy/80 dark:text-text-dark/80">{format.packages}</p>
+              <p class="text-xs text-navy/50 dark:text-text-dark/50 mt-0.5">{format.packagesNote}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Sei nel posto giusto se... -->
+  <Section bgColor="sage-light">
+    <div class="text-center mb-10">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-3">
+        Sei nel posto giusto se...
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {targets.map((target) => (
+        <article class="bg-white dark:bg-navy-dark rounded-xl p-6 hover:shadow-md transition-all duration-200">
+          <svg class="w-6 h-6 text-accent dark:text-accent-dark mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={target.iconPath} />
+          </svg>
+          <p class="text-navy/70 dark:text-text-dark/70 leading-relaxed text-sm">
+            {target.description}
+          </p>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Come iniziare -->
+  <Section>
+    <div class="max-w-2xl">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-8">
+        Iniziamo?
+      </h2>
+      <ol class="space-y-6">
+        <li class="flex gap-4">
+          <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+          <div>
+            <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Contattami</h3>
+            <p class="text-navy/70 dark:text-text-dark/70">Raccontami la tua situazione e i tuoi obiettivi via form, email o prenota una call gratuita.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+          <div>
+            <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Vieni a conoscermi</h3>
+            <p class="text-navy/70 dark:text-text-dark/70">Sceglieremo insieme la modalità di allenamento più adatta alle tue esigenze e disponibilità.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+          <div>
+            <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Iniziamo il percorso</h3>
+            <p class="text-navy/70 dark:text-text-dark/70">Vieni ad allenarti con il programma su misura che evolverà con i tuoi progressi.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </Section>
+
+  <!-- CTA finale -->
+  <Section bgColor="sage-light" centered>
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-4">
+        Pronta a muoverti?
+      </h2>
+      <p class="text-navy/80 dark:text-text-dark/80 mb-8 leading-relaxed">
+        Contattami per scoprire quale percorso è più adatto a te.
+      </p>
+      <a
+        href={`${base}/contatti`}
+        class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+      >
+        Inizia il tuo percorso
+      </a>
+    </div>
+  </Section>
+</Layout>
