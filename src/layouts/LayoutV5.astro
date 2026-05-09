@@ -59,13 +59,11 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="it" class="scroll-smooth">
+<html lang="it" class="v5 scroll-smooth">
   <head>
     <script is:inline>
       (function() {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (stored === 'dark' || (!stored && prefersDark)) {
+        if (localStorage.getItem('theme') !== 'light') {
           document.documentElement.classList.add('dark');
         }
       })();
@@ -91,8 +89,8 @@ const jsonLd = {
     <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16x16.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
     <link rel="manifest" href={`${base}/site.webmanifest`} />
-    <meta name="theme-color" content="#1a365d" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0d2d4f" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07192d" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />

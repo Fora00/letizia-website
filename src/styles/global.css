@@ -20,6 +20,21 @@
   --font-body: "Open Sans", sans-serif;
 }
 
+/* ── v5 palette: deep blue + vivid green ────────────────── */
+html.v5 {
+  --color-navy:       #0f2c52;
+  --color-sage:       #48bb78;
+  --color-accent:     #0ea557;
+  --color-sage-light: #f0f6ff;
+}
+html.v5.dark {
+  --color-navy-dark:    #07192d;
+  --color-sage-dark:    #1a5223;
+  --color-text-dark:    #e2f0f9;
+  --color-accent-dark:  #34d058;
+  --color-surface-dark: #0d2340;
+}
+
 .fade-in-up {
   opacity: 0;
   transform: translateY(24px);
