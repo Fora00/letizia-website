@@ -4,17 +4,17 @@
 
 @theme {
   /* Light mode colors */
-  --color-navy: #1e0c32;
-  --color-sage: #4aaa50;
-  --color-accent: #8c3d8c;
-  --color-sage-light: #eef6ee;
+  --color-navy: #000a2d;
+  --color-sage: #b7cdb7;
+  --color-accent: #056608;
+  --color-sage-light: #e8f0e8;
 
   /* Dark mode colors */
-  --color-navy-dark: #110820;
-  --color-sage-dark: #2e7a30;
-  --color-text-dark: #f0e5f8;
-  --color-accent-dark: #cc88d4;
-  --color-surface-dark: #261a4a;
+  --color-navy-dark: #0a1628;
+  --color-sage-dark: #1a2f1a;
+  --color-text-dark: #e8f0e8;
+  --color-accent-dark: #4ade80;
+  --color-surface-dark: #0f1d2e;
 
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Open Sans", sans-serif;
