@@ -130,17 +130,28 @@ const faqs = [
       #fixed-profile.profile-hidden { display: none; }
       #hero-section { background-position: center top !important; }
     }
+    #fixed-profile.footer-in-view { display: none; }
   </style>
 
   <script>
     const hero = document.getElementById('hero-section');
     const fixed = document.getElementById('fixed-profile');
+    const footer = document.querySelector('footer');
+
     if (hero && fixed) {
-      const observer = new IntersectionObserver(
+      const heroObserver = new IntersectionObserver(
         ([entry]) => { fixed.classList.toggle('profile-hidden', !entry.isIntersecting); },
         { threshold: 0 }
       );
-      observer.observe(hero);
+      heroObserver.observe(hero);
+    }
+
+    if (footer && fixed) {
+      const footerObserver = new IntersectionObserver(
+        ([entry]) => { fixed.classList.toggle('footer-in-view', entry.isIntersecting); },
+        { threshold: 0 }
+      );
+      footerObserver.observe(footer);
     }
   </script>
 
