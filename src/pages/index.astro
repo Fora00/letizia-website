@@ -52,21 +52,6 @@ const services = [
   }
 ];
 
-const previewTestimonials = [
-  {
-    quote: 'Ottima professionista, empatica e con una spiccata capacità di ascolto e di interazione; nel mio caso è riuscita a trovare il percorso individuale più adatto alle mie esigenze. Da consigliare.',
-    author: "Serena P."
-  },
-  {
-    quote: "Una professionista capace, in grado di trovare rapidamente il motivo del mio dolore alla spalla e prescrivermi un percorso di riabilitazione dal quale ho trovato grande giovamento. La consiglio caldamente!",
-    author: "Simone M."
-  },
-  {
-    quote: "Professionista pazzesca, non c'è paragone con tutte le professioniste che ho incontrato prima di lei. Iper-professionale ma allo stesso tempo alla mano ed empatica.",
-    author: "Massimo Z."
-  }
-];
-
 const faqs = [
   {
     question: "Per chi sono i tuoi servizi?",
@@ -112,6 +97,8 @@ const faqSchema = {
     class="relative overflow-hidden min-h-[280px] md:min-h-[480px] max-h-[340px] md:max-h-[560px]"
     style={`background-image: url('${heroImg.src}'); background-size: cover; background-position: right 0%;`}
   >
+    <!-- Mobile: dark overlay for text legibility -->
+    <div class="absolute inset-0 block md:hidden" style="background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0) 100%);"></div>
     <!-- Desktop (light): gradient fade left-to-right -->
     <div class="absolute inset-0 hidden md:block dark:hidden" style="background: linear-gradient(to right, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 75%);"></div>
     <!-- Desktop (dark): gradient fade left-to-right -->
@@ -218,31 +205,6 @@ const faqSchema = {
     <div class="text-center mt-8">
       <a href={`${base}/cosa-offro`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
         Scopri tutti i servizi →
-      </a>
-    </div>
-  </Section>
-
-  <!-- Dicono di me (preview) -->
-  <Section bgColor="sage-light" title="Dicono di me" subtitle="Le parole di chi ha già intrapreso un percorso con me" centered>
-    <div class="grid md:grid-cols-3 gap-6">
-      {previewTestimonials.map((t, i) => (
-        <article class="fade-in-up bg-white dark:bg-navy-dark rounded-2xl p-6 shadow-sm border border-sage/20 dark:border-white/10 flex flex-col" style={`transition-delay: ${i * 100}ms`}>
-          <!-- Small quote icon -->
-          <svg class="w-5 h-5 text-sage dark:text-sage/50 mb-3 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.79 1.23-1.42 2.1-1.89L9.293 6c-.86.45-1.63 1.12-2.31 2.01-.68.89-1.18 1.9-1.5 3.01-.32 1.11-.34 2.21-.07 3.3.27 1.09.77 2 1.5 2.73.73.73 1.66 1.1 2.79 1.1.97 0 1.75-.33 2.35-1 .6-.67.9-1.5.9-2.49zm7.57 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.69-1.327-.817-.56-.128-1.07-.137-1.54-.028-.16-.95.1-1.95.78-3 .53-.79 1.23-1.42 2.1-1.89l-.817-2.11c-.86.45-1.63 1.12-2.31 2.01-.68.89-1.18 1.9-1.5 3.01-.32 1.11-.34 2.21-.07 3.3.27 1.09.77 2 1.5 2.73.73.73 1.66 1.1 2.79 1.1.97 0 1.75-.33 2.35-1 .6-.67.9-1.5.9-2.49z"/>
-          </svg>
-          <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed text-sm mb-4 flex-1">
-            {t.quote}
-          </p>
-          <p class="font-heading font-semibold text-accent dark:text-accent-dark text-sm">
-            &mdash; {t.author}
-          </p>
-        </article>
-      ))}
-    </div>
-    <div class="text-center mt-8">
-      <a href={`${base}/dicono-di-me`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
-        Leggi tutte le testimonianze →
       </a>
     </div>
   </Section>
