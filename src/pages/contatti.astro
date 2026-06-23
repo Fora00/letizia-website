@@ -1,10 +1,9 @@
 ---
-import Layout from '../../layouts/LayoutV5.astro';
-import Section from '../../components/v5/Section.astro';
-import { social } from '../../constants/socials';
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+import { social } from '../constants/socials';
 
-const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
-const base = `${import.meta.env.BASE_URL}${version}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout title="Contatti" description="Contattami per iniziare il tuo percorso di benessere">

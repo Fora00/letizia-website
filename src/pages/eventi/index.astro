@@ -1,11 +1,10 @@
 ---
-import Layout from '../../../layouts/LayoutV5.astro';
-import Section from '../../../components/v5/Section.astro';
-import SubstackSignup from '../../../components/v2/SubstackSignup.astro';
-import { events } from '../../../data/events';
+import Layout from '../../layouts/LayoutV5.astro';
+import Section from '../../components/v5/Section.astro';
+import SubstackSignup from '../../components/v2/SubstackSignup.astro';
+import { events } from '../../data/events';
 
-const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
-const base = `${import.meta.env.BASE_URL}${version}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const pinPaths = [
   "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z",

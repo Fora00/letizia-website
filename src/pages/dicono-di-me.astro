@@ -1,9 +1,8 @@
 ---
-import Layout from '../../layouts/LayoutV5.astro';
-import Section from '../../components/v5/Section.astro';
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
 
-const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
-const base = `${import.meta.env.BASE_URL}${version}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const testimonials = [
   {

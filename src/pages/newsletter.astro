@@ -1,11 +1,8 @@
 ---
-import Layout from '../../layouts/LayoutV5.astro';
-import Section from '../../components/v5/Section.astro';
-import SubstackPosts from '../../components/v2/SubstackPosts.astro';
-import SubstackSignup from '../../components/v2/SubstackSignup.astro';
-
-const version = Astro.url.pathname.split('/').find(s => /^\d+$/.test(s)) ?? '';
-const base = `${import.meta.env.BASE_URL}${version}`;
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+import SubstackPosts from '../components/v2/SubstackPosts.astro';
+import SubstackSignup from '../components/v2/SubstackSignup.astro';
 ---
 
 <Layout
