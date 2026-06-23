@@ -6,8 +6,8 @@ const { faqs } = Astro.props;
 ---
 
 <div class="max-w-3xl mx-auto divide-y divide-navy/10 dark:divide-text-dark/10">
-  {faqs.map(({ question, answer }) => (
-    <details class="group py-5">
+  {faqs.map(({ question, answer }, i) => (
+    <details class="fade-in-up group py-5" style={`transition-delay: ${i * 80}ms`}>
       <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-navy dark:text-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
         <span>{question}</span>
         <svg
@@ -25,3 +25,13 @@ const { faqs } = Astro.props;
     </details>
   ))}
 </div>
+
+<style>
+  details[open] > p {
+    animation: faq-slide-in 0.3s ease forwards;
+  }
+  @keyframes faq-slide-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

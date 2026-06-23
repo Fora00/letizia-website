@@ -1,0 +1,35 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 z-50 bg-navy dark:bg-navy-dark border-t border-white/10 shadow-lg"
+  role="dialog"
+  aria-label="Informativa cookie"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center gap-4">
+    <p class="flex-1 text-sm text-white/80 leading-relaxed">
+      Questo sito usa cookie tecnici necessari al suo funzionamento. I servizi di terze parti (Calendly, Tally, Substack) potrebbero impostare cookie propri quando interagisci con loro.
+      <a href={`${base}/privacy`} class="underline opacity-70 hover:opacity-100 ml-1">Informativa completa</a>
+    </p>
+    <button
+      id="cookie-accept"
+      class="shrink-0 bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-6 py-2.5 rounded-full text-sm hover:opacity-90 transition-opacity"
+    >
+      Ho capito
+    </button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  if (localStorage.getItem('cookie-ok')) {
+    banner?.remove();
+  } else {
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem('cookie-ok', '1');
+      banner?.remove();
+    });
+  }
+</script>

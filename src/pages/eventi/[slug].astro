@@ -11,6 +11,43 @@ const { slug } = Astro.params;
 const event = events.find((e) => e.slug === slug)!;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
+
+const monthMap: Record<string, string> = {
+  'Gennaio': '01', 'Febbraio': '02', 'Marzo': '03', 'Aprile': '04',
+  'Maggio': '05', 'Giugno': '06', 'Luglio': '07', 'Agosto': '08',
+  'Settembre': '09', 'Ottobre': '10', 'Novembre': '11', 'Dicembre': '12',
+};
+const [monthIt, year] = event.date.split(' ');
+const startDate = `${year}-${monthMap[monthIt] ?? '01'}`;
+const city = event.location.split(' · ')[0];
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": event.title,
+  "description": event.fullDescription,
+  "startDate": startDate,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": event.locationType === 'online'
+    ? "https://schema.org/OnlineEventAttendanceMode"
+    : "https://schema.org/OfflineEventAttendanceMode",
+  "location": event.locationType === 'online'
+    ? { "@type": "VirtualLocation", "url": siteUrl }
+    : {
+        "@type": "Place",
+        "name": city,
+        "address": { "@type": "PostalAddress", "addressLocality": city, "addressCountry": "IT" }
+      },
+  "organizer": { "@type": "Person", "name": "Letizia Mancini", "url": siteUrl },
+  "offers": {
+    "@type": "Offer",
+    "name": event.title,
+    "description": event.price,
+    "availability": "https://schema.org/PreOrder",
+    "url": `${siteUrl}/eventi/${event.slug}/`
+  }
+};
 
 const pinPaths = [
   "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z",
@@ -23,6 +60,7 @@ const iconPaths = event.locationType === 'online' ? videoPaths : pinPaths;
 ---
 
 <Layout title={event.title} description={event.description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,7 +160,7 @@ const iconPaths = event.locationType === 'online' ? videoPaths : pinPaths;
       <!-- Right: pricing card + CTA -->
       <div class="space-y-4">
         <!-- Pricing card -->
-        <div class="bg-sage-light dark:bg-surface-dark rounded-2xl p-6 transition-colors duration-200 sticky top-24">
+        <div id="pricing-card" class="bg-sage-light dark:bg-surface-dark rounded-2xl p-6 transition-all duration-300 sticky top-24">
           <span class="inline-block bg-navy/10 dark:bg-white/10 text-navy/60 dark:text-text-dark/60 text-xs font-semibold px-3 py-1 rounded-full mb-4">
             Prossimamente
           </span>
@@ -163,4 +201,16 @@ const iconPaths = event.locationType === 'online' ? videoPaths : pinPaths;
       </div>
     </div>
   </Section>
+<script>
+  const card = document.getElementById('pricing-card');
+  const sentinel = document.createElement('div');
+  if (card?.parentElement) {
+    card.parentElement.insertBefore(sentinel, card);
+    const observer = new IntersectionObserver(
+      ([entry]) => { card.classList.toggle('shadow-xl', !entry.isIntersecting); },
+      { rootMargin: '-96px 0px 0px 0px' }
+    );
+    observer.observe(sentinel);
+  }
+</script>
 </Layout>

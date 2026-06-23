@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+---
+
+<Layout
+  title="Privacy Policy & Cookie Policy"
+  description="Informativa sulla privacy e sull'uso dei cookie del sito letiziamancini.it. Scopri come vengono trattati i tuoi dati."
+>
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        Privacy
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        Privacy Policy & Cookie Policy
+      </h1>
+      <p class="text-navy/60 dark:text-text-dark/60 text-sm">
+        Ultimo aggiornamento: giugno 2026
+      </p>
+    </div>
+  </section>
+
+  <Section animate={false}>
+    <div class="max-w-3xl mx-auto space-y-10 text-navy/80 dark:text-text-dark/80 leading-relaxed">
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">Titolare del trattamento</h2>
+        <p>
+          <strong>Letizia Mancini</strong><br />
+          Chinesiologa Clinica e Personal Trainer — P.IVA 17459551002<br />
+          Email: <a href="mailto:letiziamancini.chinesiologa@gmail.com" class="text-accent dark:text-accent-dark hover:underline">letiziamancini.chinesiologa@gmail.com</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">Dati raccolti e finalità</h2>
+        <p class="mb-3">Questo sito non raccoglie dati personali direttamente sui propri server. I servizi di terze parti integrati trattano i tuoi dati secondo le rispettive politiche:</p>
+        <ul class="space-y-3 list-none">
+          <li class="flex gap-3">
+            <span class="text-accent dark:text-accent-dark font-bold shrink-0">→</span>
+            <span><strong>Tally</strong> (form di contatto) — raccoglie nome, email e messaggio. Consulta la <a href="https://tally.so/help/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark hover:underline">Privacy Policy di Tally</a>.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-accent dark:text-accent-dark font-bold shrink-0">→</span>
+            <span><strong>Calendly</strong> (prenotazione consulenza) — raccoglie nome ed email per gestire la prenotazione. Consulta la <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark hover:underline">Privacy Policy di Calendly</a>.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-accent dark:text-accent-dark font-bold shrink-0">→</span>
+            <span><strong>Substack</strong> (newsletter) — raccoglie l'email per l'iscrizione alla newsletter <a href="https://tadamove.substack.com" target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark hover:underline">tadamove.substack.com</a>. Puoi disiscriverti in qualsiasi momento dal link in ogni email. Consulta la <a href="https://substack.com/privacy" target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark hover:underline">Privacy Policy di Substack</a>.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">Cookie e storage locale</h2>
+        <p class="mb-4">Questo sito utilizza esclusivamente storage tecnico locale nel tuo browser — nessun cookie di profilazione o tracciamento.</p>
+        <div class="overflow-x-auto rounded-xl border border-navy/10 dark:border-text-dark/10">
+          <table class="w-full text-sm">
+            <thead class="bg-sage-light dark:bg-surface-dark">
+              <tr>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">Chiave</th>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">Tipo</th>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">Scopo</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-navy/10 dark:divide-text-dark/10">
+              <tr>
+                <td class="px-4 py-3 font-mono text-xs">theme</td>
+                <td class="px-4 py-3">localStorage</td>
+                <td class="px-4 py-3">Salva la preferenza tema chiaro/scuro</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-mono text-xs">cookie-ok</td>
+                <td class="px-4 py-3">localStorage</td>
+                <td class="px-4 py-3">Registra la presa visione dell'informativa cookie</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-sm">Questi dati rimangono nel tuo browser e non vengono mai trasmessi a server esterni. Puoi eliminarli in qualsiasi momento dalle impostazioni del browser.</p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">Cookie di terze parti</h2>
+        <p>Quando interagisci con i widget di Calendly, Tally o Substack incorporati in questo sito, tali servizi potrebbero impostare i propri cookie secondo le rispettive politiche. L'interazione con questi servizi è facoltativa.</p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">I tuoi diritti (GDPR)</h2>
+        <p class="mb-3">Ai sensi del Regolamento UE 2016/679 (GDPR) hai il diritto di:</p>
+        <ul class="space-y-1.5 list-none">
+          {[
+            'accedere ai tuoi dati personali',
+            'richiederne la rettifica o la cancellazione',
+            'opporti o limitare il trattamento',
+            'richiedere la portabilità dei dati',
+            'presentare reclamo al Garante per la Protezione dei Dati Personali',
+          ].map(right => (
+            <li class="flex gap-2">
+              <span class="text-accent dark:text-accent-dark shrink-0">✓</span>
+              <span>{right}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">Per esercitare questi diritti scrivimi a <a href="mailto:letiziamancini.chinesiologa@gmail.com" class="text-accent dark:text-accent-dark hover:underline">letiziamancini.chinesiologa@gmail.com</a>.</p>
+      </div>
+
+    </div>
+  </Section>
+</Layout>

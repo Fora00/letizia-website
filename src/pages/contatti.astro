@@ -6,7 +6,7 @@ import { social } from '../constants/socials';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<Layout title="Contatti" description="Contattami per iniziare il tuo percorso di benessere">
+<Layout title="Contatti — Prenota una Consulenza Gratuita" description="Prenota una consulenza gratuita di 30 minuti con Letizia Mancini, chinesiologa clinica a Trento e Rovereto. Scrivimi o scegli un orario su Calendly.">
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,10 +153,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <form
             id="contatti-newsletter-form"
             class="flex flex-col gap-2"
-            onsubmit="handleContattiNewsletterSubmit(event)"
           >
+            <label for="contatti-newsletter-email" class="sr-only">La tua email</label>
             <input
               type="email"
+              id="contatti-newsletter-email"
               name="email"
               required
               placeholder="La tua email"
@@ -184,11 +185,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <script>
   const substackUrl = "https://tadamove.substack.com";
-  function handleContattiNewsletterSubmit(e: Event) {
+  document.getElementById('contatti-newsletter-form')?.addEventListener('submit', (e: Event) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const email = (form.elements.namedItem('email') as HTMLInputElement).value;
     window.open(`${substackUrl}/subscribe?email=${encodeURIComponent(email)}`, '_blank', 'noopener,noreferrer');
-  }
-  (window as any).handleContattiNewsletterSubmit = handleContattiNewsletterSubmit;
+  });
 </script>

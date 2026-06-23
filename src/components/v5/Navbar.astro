@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoImgSrc from '../../assets/images/logo-lm-dark.png';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const leftNavItems = [
@@ -22,7 +25,7 @@ const currentPath = Astro.url.pathname;
       <ul class="hidden md:flex items-center gap-5">
         <!-- LM Logo -->
         <li class="flex items-center">
-          <img src={`${import.meta.env.BASE_URL}images/logo-lm-dark.png`} alt="Logo LM" class="h-6 w-auto" />
+          <Image src={logoImgSrc} alt="Logo LM" width={200} height={143} class="h-6 w-auto" />
         </li>
         {leftNavItems.map((item) => (
           <li>
@@ -63,7 +66,9 @@ const currentPath = Astro.url.pathname;
       <button
         id="mobile-menu-btn"
         class="md:hidden p-2 rounded-lg text-white/80 dark:text-text-dark hover:bg-white/10 dark:hover:bg-surface-dark transition-colors"
-        aria-label="Menu"
+        aria-label="Apri menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -72,7 +77,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- Mobile logo (center) -->
       <div class="md:hidden absolute left-1/2 -translate-x-1/2">
-        <img src={`${import.meta.env.BASE_URL}images/logo-lm-dark.png`} alt="Logo LM" class="h-6 w-auto" />
+        <Image src={logoImgSrc} alt="Logo LM" width={200} height={143} class="h-6 w-auto" />
       </div>
 
       <!-- Right nav — Contatti + Dark mode toggle (desktop) -->
@@ -94,7 +99,8 @@ const currentPath = Astro.url.pathname;
         <button
           id="theme-toggle-desktop"
           class="p-2 rounded-lg text-white/80 dark:text-text-dark hover:bg-white/10 dark:hover:bg-surface-dark transition-colors"
-          aria-label="Attiva/disattiva tema scuro"
+          aria-label="Passa al tema chiaro"
+          aria-pressed="false"
         >
           <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -154,7 +160,8 @@ const currentPath = Astro.url.pathname;
         <button
           id="theme-toggle-mobile"
           class="p-2 rounded-lg text-white/80 dark:text-text-dark hover:bg-white/10 dark:hover:bg-surface-dark transition-colors"
-          aria-label="Attiva/disattiva tema scuro"
+          aria-label="Passa al tema chiaro"
+          aria-pressed="false"
         >
           <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -169,18 +176,33 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const btn = document.getElementById('mobile-menu-btn');
+  const btn = document.getElementById('mobile-menu-btn') as HTMLButtonElement | null;
   const menu = document.getElementById('mobile-menu');
 
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    const isNowOpen = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isNowOpen));
+    btn.setAttribute('aria-label', isNowOpen ? 'Chiudi menu' : 'Apri menu');
   });
+
+  function updateThemeState(isDark: boolean) {
+    const label = isDark ? 'Passa al tema chiaro' : 'Passa al tema scuro';
+    ['theme-toggle-desktop', 'theme-toggle-mobile'].forEach(id => {
+      const el = document.getElementById(id);
+      el?.setAttribute('aria-pressed', String(isDark));
+      el?.setAttribute('aria-label', label);
+    });
+  }
 
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeState(isDark);
   }
 
   document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
   document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // Set initial aria state based on current theme
+  updateThemeState(document.documentElement.classList.contains('dark'));
 </script>

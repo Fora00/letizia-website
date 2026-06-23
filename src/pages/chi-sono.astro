@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
+import { Image } from 'astro:assets';
+import aboutImgSrc from '../assets/images/about-v4.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -28,7 +30,7 @@ const formation = [
 ];
 ---
 
-<Layout title="Chi sono" description="Scopri chi sono e il mio approccio alla chinesiologia e al personal training">
+<Layout title="Chi sono — Chinesiologa Clinica a Trento e Rovereto" description="Scopri chi è Letizia Mancini: chinesiologa clinica e personal trainer specializzata in Attività Fisica Adattata, con studio a Trento e Rovereto.">
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +49,7 @@ const formation = [
   <!-- Bio -->
   <Section>
     <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-4 text-navy/80 dark:text-text-dark/80 leading-relaxed">
+      <div class="fade-in-up space-y-4 text-navy/80 dark:text-text-dark/80 leading-relaxed">
         <p>
           Sono <strong>Letizia Mancini</strong>, laureata in Attività Fisica e Salute e specializzata in Esercizio Fisico Adattato, ovvero programmi di allenamento studiati per chi ha esigenze specifiche.
         </p>
@@ -61,10 +63,13 @@ const formation = [
           Da sempre sportiva, ho iniziato fin da giovane a mettere in pratica il mio bagaglio teorico, prima su me stessa poi lavorando per aiutare altre persone ad acquisire maggiore consapevolezza delle proprie capacità.
         </p>
       </div>
-      <div class="flex justify-center">
-        <img
-          src={`${import.meta.env.BASE_URL}images/about-v4.jpg`}
+      <div class="fade-in-up flex justify-center" style="transition-delay: 150ms">
+        <Image
+          src={aboutImgSrc}
           alt="Letizia Mancini chinesiologa sorridente seduta in palestra"
+          width={640}
+          height={800}
+          loading="lazy"
           class="w-80 h-auto max-h-[32rem] object-cover rounded-2xl shadow-xl"
         />
       </div>
@@ -74,8 +79,8 @@ const formation = [
   <!-- Formazione -->
   <Section bgColor="sage-light" title="La mia formazione" centered>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-      {formation.map((item) => (
-        <div class="bg-white dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200">
+      {formation.map((item, i) => (
+        <div class="fade-in-up bg-white dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200" style={`transition-delay: ${i * 80}ms`}>
           <div class="w-14 h-14 bg-accent/10 dark:bg-accent-dark/20 rounded-xl flex items-center justify-center mx-auto mb-4">
             <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.iconPath} />

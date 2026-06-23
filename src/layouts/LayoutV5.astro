@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/v5/Navbar.astro';
 import Footer from '../components/v5/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 
 interface Props {
@@ -22,6 +23,30 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
 const fullTitle = `${title} | Letizia Mancini`;
 
+const segmentLabels: Record<string, string> = {
+  'chi-sono': 'Chi sono',
+  'cosa-offro': 'Cosa offro',
+  'contatti': 'Contatti',
+  'dicono-di-me': 'Dicono di me',
+  'newsletter': 'Newsletter',
+  'eventi': 'Workshop & Corsi',
+};
+const cleanPath = base ? Astro.url.pathname.slice(base.length) : Astro.url.pathname;
+const segments = cleanPath.split('/').filter(Boolean);
+const breadcrumbSchema = segments.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+    ...segments.map((seg, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": segmentLabels[seg] ?? seg.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+      "item": `${siteUrl}/${segments.slice(0, i + 1).join('/')}/`
+    }))
+  ]
+} : null;
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -39,20 +64,49 @@ const jsonLd = {
       "name": "Letizia Mancini",
       "jobTitle": "Chinesiologa clinica e Personal Trainer",
       "url": siteUrl,
-      "sameAs": []
+      "email": "letiziamancini.chinesiologa@gmail.com",
+      "sameAs": [
+        "https://www.instagram.com/letiziamancini_chinesiologa",
+        "https://www.facebook.com/profile.php?id=61555750393500",
+        "https://www.linkedin.com/in/letizia-mancini-8a6163242"
+      ]
     },
     {
       "@type": "LocalBusiness",
       "@id": `${siteUrl}/#business`,
-      "name": "Letizia Mancini - Personal Trainer",
+      "name": "Letizia Mancini — Chinesiologa Clinica",
       "description": "Servizi di chinesiologia clinica e personal training in Trentino-Alto Adige e online",
       "url": siteUrl,
+      "email": "letiziamancini.chinesiologa@gmail.com",
       "priceRange": "€€",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Brescia, 15",
+          "addressLocality": "Trento",
+          "addressRegion": "TN",
+          "addressCountry": "IT"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Brione, 39",
+          "addressLocality": "Rovereto",
+          "addressRegion": "TN",
+          "addressCountry": "IT"
+        }
+      ],
       "areaServed": [
+        { "@type": "Place", "name": "Trento" },
+        { "@type": "Place", "name": "Rovereto" },
         { "@type": "Place", "name": "Trentino-Alto Adige" },
         { "@type": "Place", "name": "Online" }
       ],
-      "serviceType": ["Chinesiologia clinica", "Personal training", "Allenamento online"]
+      "serviceType": ["Chinesiologia clinica", "Attività Fisica Adattata", "Personal training", "Allenamento online"],
+      "sameAs": [
+        "https://www.instagram.com/letiziamancini_chinesiologa",
+        "https://www.facebook.com/profile.php?id=61555750393500",
+        "https://www.linkedin.com/in/letizia-mancini-8a6163242"
+      ]
     }
   ]
 };
@@ -85,16 +139,22 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32x32.png`} />
     <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16x16.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
     <link rel="manifest" href={`${base}/site.webmanifest`} />
     <meta name="theme-color" content="#0d2d4f" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#07192d" media="(prefers-color-scheme: dark)" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="dns-prefetch" href="https://calendly.com" />
+    <link rel="dns-prefetch" href="https://tally.so" />
+    <link rel="dns-prefetch" href="https://tadamove.substack.com" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
+      <script defer data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" is:inline></script>
+    )}
     <title>{fullTitle}</title>
+    <slot name="head" />
   </head>
   <body class="font-body text-navy bg-white dark:bg-navy-dark dark:text-text-dark min-h-screen flex flex-col transition-colors duration-200">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
@@ -113,6 +173,23 @@ const jsonLd = {
         { threshold: 0.1 }
       );
       document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+      const btt = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (btt) btt.style.display = window.scrollY > 400 ? 'flex' : 'none';
+      }, { passive: true });
+      btt?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
+    <CookieBanner />
+    <button
+      id="back-to-top"
+      class="fixed bottom-8 left-5 z-40 w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy rounded-full shadow-lg hover:opacity-90 transition-opacity items-center justify-center"
+      style="display: none"
+      aria-label="Torna in cima"
+    >
+      <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
   </body>
 </html>

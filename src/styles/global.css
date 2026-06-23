@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/montserrat";
+@import "@fontsource-variable/open-sans";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -16,8 +18,8 @@
   --color-accent-dark: #4ade80;
   --color-surface-dark: #0f1d2e;
 
-  --font-heading: "Montserrat", sans-serif;
-  --font-body: "Open Sans", sans-serif;
+  --font-heading: "Montserrat Variable", sans-serif;
+  --font-body: "Open Sans Variable", sans-serif;
 }
 
 /* ── v5 palette: deep blue + vivid green ────────────────── */

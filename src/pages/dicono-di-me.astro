@@ -4,6 +4,8 @@ import Section from '../components/v5/Section.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
+
 const testimonials = [
   {
     quote: 'Ottima professionista, empatica e con una spiccata capacità di ascolto e di interazione; nel mio caso è riuscita a trovare il percorso individuale più adatto alle mie esigenze. Da consigliare.',
@@ -30,9 +32,30 @@ const testimonials = [
     author: "Massimo Z."
   }
 ];
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteUrl}/#business`,
+  "name": "Letizia Mancini — Chinesiologa Clinica",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": String(testimonials.length),
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": testimonials.map(({ quote, author }) => ({
+    "@type": "Review",
+    "author": { "@type": "Person", "name": author },
+    "reviewBody": quote,
+    "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+  }))
+};
 ---
 
-<Layout title="Dicono di me" description="Leggi le testimonianze di chi ha già scelto i miei servizi">
+<Layout title="Dicono di me — Testimonianze e Recensioni" description="Leggi le recensioni di chi ha già scelto i servizi di Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +75,14 @@ const testimonials = [
   <Section>
     <div class="masonry-grid">
       {testimonials.map((testimonial) => (
-        <article class="masonry-item bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-shadow duration-200">
+        <article aria-label={`Testimonianza di ${testimonial.author}`} class="masonry-item bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-shadow duration-200">
+          <div class="flex gap-0.5 mb-3" aria-label="5 stelle su 5">
+            {Array.from({ length: 5 }).map(() => (
+              <svg class="w-4 h-4 fill-[#facc15]" viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
           <div class="font-heading text-6xl leading-none text-sage dark:text-sage/40 select-none mb-2" aria-hidden="true">
             &ldquo;
           </div>
