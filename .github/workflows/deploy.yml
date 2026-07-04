@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Weekly rebuild (Mon 06:00 UTC) so newsletter posts and past-event
+    # filtering stay fresh without manual pushes
+    - cron: '0 6 * * 1'
 
 permissions:
   contents: read
@@ -33,6 +37,9 @@ jobs:
       - name: Fetch newsletter posts
         run: node scripts/fetch-posts.mjs
         continue-on-error: true
+
+      - name: Type check
+        run: npx astro check
 
       - name: Build Astro site
         run: npm run build

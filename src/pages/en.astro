@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const services = [
+  {
+    title: "Adapted physical activity",
+    description: "Personalised exercise programmes for people living with stable chronic conditions such as diabetes, hypertension or cardiovascular disease, designed together with your doctor.",
+  },
+  {
+    title: "Movement & eating disorders",
+    description: "A safe, pressure-free approach to rebuilding a healthy relationship with movement, in coordination with your care team.",
+  },
+  {
+    title: "Joint pain & mobility",
+    description: "Progressive training to reduce osteoarticular pain and move with more confidence in everyday life.",
+  },
+  {
+    title: "Body recomposition",
+    description: "Gradual, sustainable training for weight loss or muscle gain — no crash programmes, no before/after pressure.",
+  },
+];
+---
+
+<Layout
+  title="English-speaking Clinical Kinesiologist & Personal Trainer in Trento"
+  description="Letizia Mancini is a clinical kinesiologist and personal trainer in Trento and Rovereto, Italy. Sessions available in English, in person or online. Free 30-minute consultation."
+  lang="en"
+>
+  <!-- Header -->
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        English
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        English-speaking Clinical Kinesiologist in Trento &amp; Rovereto
+      </h1>
+      <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
+        I'm Letizia Mancini, a clinical kinesiologist and personal trainer. I hold a European
+        Master of Science in Health and Physical Activity and I specialise in adapted physical
+        activity for people with health conditions. I work with clients in English — in my
+        studios in Trento (Via Brescia 15) and Rovereto (Via Brione 39), or online.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <Section bgColor="white" title="How I can help" centered>
+    <div class="grid md:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <div class="bg-sage-light dark:bg-surface-dark rounded-2xl p-6">
+          <h3 class="font-heading font-semibold text-lg text-navy dark:text-text-dark mb-2">
+            {service.title}
+          </h3>
+          <p class="text-navy/70 dark:text-text-dark/70 text-sm leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- How it works -->
+  <Section bgColor="sage-light" title="How it works" centered>
+    <ol class="max-w-2xl mx-auto space-y-4 text-left">
+      <li class="flex gap-4">
+        <span class="shrink-0 w-8 h-8 rounded-full bg-accent dark:bg-accent-dark text-white dark:text-navy font-bold flex items-center justify-center" aria-hidden="true">1</span>
+        <p class="text-navy/80 dark:text-text-dark/80"><strong class="text-navy dark:text-text-dark">Free 30-minute consultation</strong> — online or in person, no commitment. We talk about your goals, health history and what you need.</p>
+      </li>
+      <li class="flex gap-4">
+        <span class="shrink-0 w-8 h-8 rounded-full bg-accent dark:bg-accent-dark text-white dark:text-navy font-bold flex items-center justify-center" aria-hidden="true">2</span>
+        <p class="text-navy/80 dark:text-text-dark/80"><strong class="text-navy dark:text-text-dark">Assessment</strong> — movement evaluation and, where relevant, coordination with your doctor.</p>
+      </li>
+      <li class="flex gap-4">
+        <span class="shrink-0 w-8 h-8 rounded-full bg-accent dark:bg-accent-dark text-white dark:text-navy font-bold flex items-center justify-center" aria-hidden="true">3</span>
+        <p class="text-navy/80 dark:text-text-dark/80"><strong class="text-navy dark:text-text-dark">Tailored programme</strong> — one-to-one sessions, small groups or online coaching, at your pace.</p>
+      </li>
+      <li class="flex gap-4">
+        <span class="shrink-0 w-8 h-8 rounded-full bg-accent dark:bg-accent-dark text-white dark:text-navy font-bold flex items-center justify-center" aria-hidden="true">4</span>
+        <p class="text-navy/80 dark:text-text-dark/80"><strong class="text-navy dark:text-text-dark">Regular check-ins</strong> — we adjust the programme as your body and life change.</p>
+      </li>
+    </ol>
+  </Section>
+
+  <!-- CTA -->
+  <Section centered>
+    <div class="bg-navy text-white rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="font-heading font-bold text-2xl md:text-3xl mb-2">
+        Let's talk — in English
+      </h2>
+      <p class="text-white/80 mb-4 max-w-xl mx-auto">
+        Book a free 30-minute consultation, or write me an email. I usually reply within a couple of days.
+      </p>
+      <p class="text-sm text-white/70 mb-8">30 minutes · No commitment · Video call or in person</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://calendly.com/letiziamancini-chinesiologa/prenota_gratis?share_attribution=send_from_calendly_et_card"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="plausible-event-name=prenota-consulenza inline-block bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
+        >
+          Book a free consultation
+        </a>
+        <a
+          href="mailto:letiziamancini.chinesiologa@gmail.com"
+          class="inline-block bg-transparent border-2 border-white text-white font-semibold px-8 py-4 rounded-full hover:bg-white hover:text-navy transition-colors"
+        >
+          Email me
+        </a>
+      </div>
+      <p class="mt-8 text-sm text-white/60">
+        Preferisci l'italiano? <a href={`${base}/`} class="underline hover:text-white">Vai al sito in italiano</a>
+      </p>
+    </div>
+  </Section>
+</Layout>

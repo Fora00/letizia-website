@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/LayoutV5.astro';
 import Section from '../../components/v5/Section.astro';
-import { events } from '../../data/events';
+import { events, isPastEvent } from '../../data/events';
 
 export function getStaticPaths() {
   return events.map((event) => ({ params: { slug: event.slug } }));
@@ -13,13 +13,9 @@ const event = events.find((e) => e.slug === slug)!;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 
-const monthMap: Record<string, string> = {
-  'Gennaio': '01', 'Febbraio': '02', 'Marzo': '03', 'Aprile': '04',
-  'Maggio': '05', 'Giugno': '06', 'Luglio': '07', 'Agosto': '08',
-  'Settembre': '09', 'Ottobre': '10', 'Novembre': '11', 'Dicembre': '12',
-};
-const [monthIt, year] = event.date.split(' ');
-const startDate = `${year}-${monthMap[monthIt] ?? '01'}`;
+const startDate = event.dateISO;
+const isPast = isPastEvent(event);
+const priceValue = event.price.match(/\d+/)?.[0];
 const city = event.location.split(' · ')[0];
 
 const eventSchema = {
@@ -43,8 +39,8 @@ const eventSchema = {
   "offers": {
     "@type": "Offer",
     "name": event.title,
-    "description": event.price,
-    "availability": "https://schema.org/PreOrder",
+    ...(priceValue ? { "price": priceValue, "priceCurrency": "EUR" } : {}),
+    "availability": isPast ? "https://schema.org/SoldOut" : "https://schema.org/PreOrder",
     "url": `${siteUrl}/eventi/${event.slug}/`
   }
 };
@@ -162,7 +158,7 @@ const iconPaths = event.locationType === 'online' ? videoPaths : pinPaths;
         <!-- Pricing card -->
         <div id="pricing-card" class="bg-sage-light dark:bg-surface-dark rounded-2xl p-6 transition-all duration-300 sticky top-24">
           <span class="inline-block bg-navy/10 dark:bg-white/10 text-navy/60 dark:text-text-dark/60 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-            Prossimamente
+            {isPast ? 'Concluso' : 'Prossimamente'}
           </span>
           <p class="font-heading font-bold text-3xl text-navy dark:text-text-dark mb-1">{event.price}</p>
           <p class="text-sm text-navy/60 dark:text-text-dark/60 mb-6">{event.duration}</p>
@@ -188,15 +184,37 @@ const iconPaths = event.locationType === 'online' ? videoPaths : pinPaths;
             </li>
           </ul>
 
-          <a
-            href={`${base}/contatti`}
-            class="block w-full text-center bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
-          >
-            Contattami per iscriverti
-          </a>
-          <p class="mt-3 text-xs text-center text-navy/50 dark:text-text-dark/50">
-            Le iscrizioni apriranno presto
-          </p>
+          {isPast ? (
+            <>
+              <p class="text-sm text-navy/70 dark:text-text-dark/70 mb-4">
+                Questo evento si è già svolto. Iscriviti alla newsletter per sapere quando verranno annunciate le prossime date.
+              </p>
+              <a
+                href={`${base}/newsletter`}
+                class="block w-full text-center bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+              >
+                Iscriviti alla newsletter
+              </a>
+              <a
+                href={`${base}/eventi`}
+                class="mt-3 block text-center text-sm font-semibold text-accent dark:text-accent-dark hover:underline"
+              >
+                Vedi i prossimi eventi
+              </a>
+            </>
+          ) : (
+            <>
+              <a
+                href={`${base}/contatti`}
+                class="block w-full text-center bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+              >
+                Contattami per iscriverti
+              </a>
+              <p class="mt-3 text-xs text-center text-navy/50 dark:text-text-dark/50">
+                Le iscrizioni apriranno presto
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>

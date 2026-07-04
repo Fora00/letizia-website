@@ -15,6 +15,7 @@ const { faqs } = Astro.props;
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
@@ -27,11 +28,13 @@ const { faqs } = Astro.props;
 </div>
 
 <style>
-  details[open] > p {
-    animation: faq-slide-in 0.3s ease forwards;
-  }
-  @keyframes faq-slide-in {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: no-preference) {
+    details[open] > p {
+      animation: faq-slide-in 0.3s ease forwards;
+    }
+    @keyframes faq-slide-in {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   }
 </style>

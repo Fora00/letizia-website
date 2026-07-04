@@ -7,7 +7,7 @@ import SubstackSignup from '../components/v2/SubstackSignup.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<Layout title="Contatti — Prenota una Consulenza Gratuita" description="Prenota una consulenza gratuita di 30 minuti con Letizia Mancini, chinesiologa clinica a Trento e Rovereto. Scrivimi o scegli un orario su Calendly.">
+<Layout title="Contatti — Chinesiologa a Trento e Rovereto | Consulenza Gratuita" description="Prenota una consulenza gratuita di 30 minuti con Letizia Mancini, chinesiologa clinica a Trento e Rovereto. Scrivimi o scegli un orario su Calendly.">
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,13 +40,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             frameborder="0"
             marginheight="0"
             marginwidth="0"
-            title="Contact Form"
+            title="Modulo di contatto"
             class="rounded-lg"
+            style="min-height:400px"
           ></iframe>
           <noscript>
             <p class="text-navy/70 dark:text-text-dark/70">
               Per utilizzare il form di contatto, abilita JavaScript nel tuo browser.
-              In alternativa, scrivimi a <a href="mailto:info@letiziamancini.it" class="text-accent dark:text-accent-dark hover:underline">info@letiziamancini.it</a>
+              In alternativa, scrivimi a <a href={`mailto:${social.mail}`} class="text-accent dark:text-accent-dark hover:underline">{social.mail}</a>
             </p>
           </noscript>
         </div>
@@ -59,11 +60,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           href="https://calendly.com/letiziamancini-chinesiologa/prenota_gratis?share_attribution=send_from_calendly_et_card"
           target="_blank"
           rel="noopener noreferrer"
-          class="block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-2xl p-6 shadow-md dark:shadow-none hover:bg-navy dark:hover:bg-text-dark transition-colors group"
+          class="plausible-event-name=prenota-consulenza block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-2xl p-6 shadow-md dark:shadow-none hover:bg-navy dark:hover:bg-text-dark transition-colors group"
         >
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 bg-white/20 dark:bg-navy-dark/15 rounded-xl flex items-center justify-center shrink-0">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
@@ -75,7 +76,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 Scegli il giorno e l'orario che preferisci
               </p>
             </div>
-            <svg class="w-5 h-5 ml-auto group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 ml-auto group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </div>
@@ -89,7 +90,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
               <div class="w-9 h-9 bg-white dark:bg-navy-dark rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -102,7 +103,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             </li>
             <li class="flex items-start gap-3">
               <div class="w-9 h-9 bg-white dark:bg-navy-dark rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -114,19 +115,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             </li>
             <li class="flex items-start gap-3">
               <div class="w-9 h-9 bg-white dark:bg-navy-dark rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <div>
+              <a href="https://www.google.com/maps/search/?api=1&query=Via+Brione+39,+Rovereto+TN" target="_blank" rel="noopener noreferrer">
                 <p class="font-medium text-navy dark:text-text-dark text-sm">Rovereto</p>
                 <p class="text-navy/70 dark:text-text-dark/70 text-sm">Via Brione, 39 — su appuntamento</p>
-              </div>
+              </a>
             </li>
             <li class="flex items-start gap-3">
               <div class="w-9 h-9 bg-white dark:bg-navy-dark rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -137,21 +138,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+  </Section>
+
   <!-- Newsletter signup -->
   <Section bgColor="sage-light" centered>
     <SubstackSignup showPostsLink={true} />
   </Section>
-      </div>
-    </div>
-  </Section>
 </Layout>
-
-<script>
-  const substackUrl = "https://tadamove.substack.com";
-  document.getElementById('contatti-newsletter-form')?.addEventListener('submit', (e: Event) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    window.open(`${substackUrl}/subscribe?email=${encodeURIComponent(email)}`, '_blank', 'noopener,noreferrer');
-  });
-</script>

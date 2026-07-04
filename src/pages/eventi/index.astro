@@ -2,9 +2,12 @@
 import Layout from '../../layouts/LayoutV5.astro';
 import Section from '../../components/v5/Section.astro';
 import SubstackSignup from '../../components/v2/SubstackSignup.astro';
-import { events } from '../../data/events';
+import { events, isPastEvent } from '../../data/events';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const upcoming = events.filter((e) => !isPastEvent(e));
+const past = events.filter(isPastEvent);
 
 const pinPaths = [
   "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z",
@@ -23,18 +26,25 @@ const videoPaths = [
         Eventi
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
-        Workshop & Newsletter
+        Workshop e Corsi di Movimento
       </h1>
       <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
-        Corsi e workshop dal vivo o online per approfondire il movimento — e una newsletter settimanale per rimanere aggiornata.
+        Corsi e workshop a Trento, Rovereto e online per approfondire il movimento — e una newsletter settimanale per rimanere aggiornata.
       </p>
     </div>
   </section>
 
   <!-- Workshop & Corsi -->
   <Section title="Workshop & Corsi" subtitle="Prossimi appuntamenti in programma. Iscriviti alla newsletter per non perdere le date." bgColor="white">
+    {upcoming.length === 0 && (
+      <p class="text-center text-navy/70 dark:text-text-dark/70 max-w-xl mx-auto">
+        Al momento non ci sono eventi in programma. Iscriviti alla
+        <a href={`${base}/newsletter`} class="text-accent dark:text-accent-dark font-semibold hover:underline">newsletter</a>
+        per sapere quando verranno annunciate le prossime date.
+      </p>
+    )}
     <div class="grid md:grid-cols-3 gap-6">
-      {events.map((event, i) => (
+      {upcoming.map((event, i) => (
         <a
           href={`${base}/eventi/${event.slug}`}
           class="fade-in-up group relative bg-sage-light dark:bg-surface-dark rounded-2xl p-6 flex flex-col gap-4 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
@@ -83,6 +93,31 @@ const videoPaths = [
         </a>
       ))}
     </div>
+
+    {past.length > 0 && (
+      <div class="mt-12">
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-6 text-center">
+          Eventi passati
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {past.map((event) => (
+            <a
+              href={`${base}/eventi/${event.slug}`}
+              class="group relative bg-sage-light dark:bg-surface-dark rounded-2xl p-6 flex flex-col gap-3 opacity-70 hover:opacity-100 transition-opacity duration-200"
+            >
+              <span class="absolute top-4 right-4 bg-navy/10 dark:bg-white/10 text-navy/60 dark:text-text-dark/60 text-xs font-semibold px-3 py-1 rounded-full">
+                Concluso
+              </span>
+              <span class="text-sm font-semibold text-navy/60 dark:text-text-dark/60">{event.date}</span>
+              <h3 class="font-heading font-bold text-lg text-navy dark:text-text-dark leading-snug pr-20">
+                {event.title}
+              </h3>
+              <p class="text-sm text-navy/60 dark:text-text-dark/60">{event.location}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
   </Section>
 
   <!-- Notify CTA -->

@@ -4,8 +4,8 @@ import Section from '../components/v5/Section.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
 import SubstackSignup from '../components/v2/SubstackSignup.astro';
 import { Image, getImage } from 'astro:assets';
-import profileImgSrc from '../assets/images/profile.webp';
-import heroImgSrc from '../assets/images/vertical-weight.jpg';
+import profileImgSrc from '../assets/images/letizia-mancini-ritratto.webp';
+import heroImgSrc from '../assets/images/allenamento-personalizzato-pesi.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const heroImg = await getImage({ src: heroImgSrc, format: 'webp', width: 1400, quality: 80 });
@@ -74,7 +74,7 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Chinesiologa Clinica e Personal Trainer in Trentino"
+  title="Chinesiologa Clinica e Personal Trainer a Trento e Rovereto"
   description="Letizia Mancini — Chinesiologa clinica e personal trainer a Trento e Rovereto. Percorsi personalizzati per patologie croniche, DCA, dolore articolare. Anche online."
 >
   <Fragment slot="head">
@@ -99,9 +99,12 @@ const faqSchema = {
       <div class="max-w-xl">
         <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white md:text-navy dark:text-text-dark mb-4 md:mb-6 leading-tight [text-shadow:0_1px_6px_rgba(0,0,0,0.45)] md:[text-shadow:none]">
           Letizia Mancini
+          <span class="block text-lg md:text-2xl lg:text-3xl font-semibold mt-2 text-white/95 md:text-navy/80 dark:text-text-dark/90">
+            Chinesiologa clinica a Trento e Rovereto
+          </span>
         </h1>
         <p class="text-base md:text-xl text-white/90 md:text-navy/75 dark:text-text-dark/80 mb-5 md:mb-8 leading-relaxed [text-shadow:0_1px_4px_rgba(0,0,0,0.4)] md:[text-shadow:none]">
-Specialista dell'esercizio fisico per la salute.  Allenamenti cuciti su misura per tutte le esigenze.
+          Specialista dell'esercizio fisico per la salute. Ricevo nei miei studi di Trento e Rovereto e seguo clienti online, con allenamenti cuciti su misura per ogni esigenza.
         </p>
         <a
           href={`${base}/contatti`}
@@ -162,7 +165,7 @@ Specialista dell'esercizio fisico per la salute.  Allenamenti cuciti su misura p
       {stats.map(({ value, label, iconPath }) => (
         <div>
           <div class="flex justify-center mb-2">
-            <svg class="w-6 h-6 text-accent/50 dark:text-accent-dark/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-accent/50 dark:text-accent-dark/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={iconPath} />
             </svg>
           </div>
@@ -174,11 +177,11 @@ Specialista dell'esercizio fisico per la salute.  Allenamenti cuciti su misura p
   </Section>
 
   <!-- Aree di intervento -->
-  <Section bgColor="white" title="Cosa offro" subtitle="Qualunque sia la tua situazione, posso aiutarti." centered>
+  <Section bgColor="white" title="Cosa offro" subtitle="Chinesiologia clinica e personal training per patologie croniche, disturbi alimentari, dolori articolari e forma fisica — a Trento, Rovereto e online." centered>
     <div class="grid md:grid-cols-2 gap-6">
       {services.map((service, i) => (
         <a href={service.href} class="fade-in-up group block bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-all duration-200" style={`transition-delay: ${i * 100}ms`}>
-          <svg class="w-6 h-6 text-accent dark:text-accent-dark mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 text-accent dark:text-accent-dark mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconPath} />
           </svg>
           <span class="text-xs font-semibold text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/20 px-2 py-0.5 rounded-full">
@@ -209,15 +212,15 @@ Specialista dell'esercizio fisico per la salute.  Allenamenti cuciti su misura p
       <p class="text-white/80 mb-4 max-w-xl mx-auto">
         Prenota una consulenza gratuita e scopri il percorso più adatto a te.
       </p>
-      <p class="text-sm text-white/50 mb-8">30 minuti · Nessun impegno · Video o in presenza</p>
+      <p class="text-sm text-white/70 mb-8">30 minuti · Nessun impegno · Video o in presenza</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="https://calendly.com/letiziamancini-chinesiologa/prenota_gratis?share_attribution=send_from_calendly_et_card"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
+          class="plausible-event-name=prenota-consulenza inline-flex items-center justify-center gap-2 bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           Prenota gratis

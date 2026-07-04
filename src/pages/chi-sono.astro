@@ -2,7 +2,7 @@
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
 import { Image } from 'astro:assets';
-import aboutImgSrc from '../assets/images/about-v4.jpg';
+import aboutImgSrc from '../assets/images/letizia-mancini-chinesiologa-studio.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -42,10 +42,10 @@ const formation = [
         Chi sono
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
-        Letizia Mancini
+        Chi è Letizia Mancini
       </h1>
       <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
-        Chinesiologa AMPA e specialista dell'esercizio fisico per la salute.
+        Chinesiologa AMPA e specialista dell'esercizio fisico per la salute, a Trento e Rovereto.
       </p>
     </div>
   </section>
@@ -55,7 +55,7 @@ const formation = [
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="fade-in-up space-y-4 text-navy/80 dark:text-text-dark/80 leading-relaxed">
         <p>
-          Sono <strong>Letizia</strong>, chinesiologa specializzata in Attività Fisica e Salute con un percorso internazionale. Romana di origine, ho scoperto il Trentino durante la ricerca per la mia tesi a Rovereto — e me ne sono innamorata, tanto da trasferirmi qui e avviare la mia attività.
+          Sono <strong>Letizia</strong>, chinesiologa specializzata in Attività Fisica e Salute con un percorso internazionale. Romana di origine, ho scoperto il Trentino durante la ricerca per la mia tesi a Rovereto — e me ne sono innamorata, tanto da trasferirmi qui e avviare la mia attività. Oggi ricevo su appuntamento nei miei studi di <strong>Trento (Via Brescia 15)</strong> e <strong>Rovereto (Via Brione 39)</strong>, e seguo clienti anche online.
         </p>
         <p>
           Ho conseguito la Laurea in Scienze Motorie e l'European MSc in Health and Physical Activity, approfondendo la formazione clinica in Italia e all'estero nel campo dell'attività fisica adattata (AMPA). Sono in continua formazione: tra le ultime certificazioni, Ginnastica Ipopressiva con Marcel Caufriez, Auto Rieducazione Posturale Dinamica con BodyCode System, Medicina Predittiva e Regolazione Funzionale con Open Academy of Medicine e numerosi corsi su condizioni fisiologiche e patologiche speciali.
@@ -86,7 +86,7 @@ const formation = [
       {formation.map((item, i) => (
         <div class="fade-in-up bg-white dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200 flex flex-col" style={`transition-delay: ${i * 80}ms`}>
           <div class="w-14 h-14 bg-accent/10 dark:bg-accent-dark/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.iconPath} />
             </svg>
           </div>
@@ -111,6 +111,9 @@ const formation = [
         Il mio obiettivo è aiutarti a riscoprire il piacere di muoverti,
         nel rispetto del tuo corpo e delle tue possibilità.
         Insieme costruiremo un percorso che si adatta a te.
+      </p>
+      <p class="text-navy/80 dark:text-text-dark/80 leading-relaxed mt-4">
+        Scopri <a href={`${base}/cosa-offro`} class="text-accent dark:text-accent-dark font-semibold hover:underline">i miei percorsi di chinesiologia clinica e personal training</a> oppure leggi <a href={`${base}/dicono-di-me`} class="text-accent dark:text-accent-dark font-semibold hover:underline">le testimonianze di chi si allena con me</a>.
       </p>
     </div>
   </Section>

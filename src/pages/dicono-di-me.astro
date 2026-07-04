@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
+import { social } from '../constants/socials';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 
 const testimonials = [
   {
@@ -33,29 +32,12 @@ const testimonials = [
   }
 ];
 
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${siteUrl}/#business`,
-  "name": "Letizia Mancini — Chinesiologa Clinica",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": String(testimonials.length),
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "review": testimonials.map(({ quote, author }) => ({
-    "@type": "Review",
-    "author": { "@type": "Person", "name": author },
-    "reviewBody": quote,
-    "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-  }))
-};
+// Nota SEO: niente AggregateRating/Review self-serving in JSON-LD — Google ignora (e può
+// penalizzare) le recensioni auto-pubblicate su LocalBusiness. Le testimonianze restano in
+// HTML e rimandano alla scheda Google come fonte.
 ---
 
-<Layout title="Dicono di me — Testimonianze e Recensioni" description="Leggi le recensioni di chi ha già scelto i servizi di Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto.">
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+<Layout title="Recensioni — Letizia Mancini, Chinesiologa a Trento" description="Leggi le recensioni di chi ha già scelto i servizi di Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto.">
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,6 +78,13 @@ const reviewSchema = {
       ))}
     </div>
 
+    <p class="text-center mt-8 text-sm text-navy/60 dark:text-text-dark/60">
+      Queste testimonianze provengono dalle recensioni lasciate dai miei clienti.
+      <a href={social.maps} target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        Leggile sulla scheda Google →
+      </a>
+    </p>
+
     <style>
       .masonry-grid {
         columns: 1;
@@ -123,13 +112,13 @@ const reviewSchema = {
         Sei la prossima?
       </h2>
       <p class="text-navy/80 dark:text-text-dark/80 mb-8 leading-relaxed">
-        Vieni a conoscermi per scoprire come posso aiutarti a raggiungere i tuoi obiettivi.
+        Dai un'occhiata a <a href={`${base}/cosa-offro`} class="text-accent dark:text-accent-dark font-semibold hover:underline">i percorsi che offro a Trento, Rovereto e online</a>, oppure vieni a conoscermi con una consulenza gratuita.
       </p>
       <a
         href={`${base}/contatti`}
         class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
       >
-        Inizia il tuo percorso
+        Prenota una consulenza gratuita
       </a>
     </div>
   </Section>

@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center gap-4">
     <p class="flex-1 text-sm text-white/80 leading-relaxed">
-      Questo sito usa cookie tecnici necessari al suo funzionamento. I servizi di terze parti (Calendly, Tally, Substack) potrebbero impostare cookie propri quando interagisci con loro.
+      Questo sito non usa cookie di profilazione: salva solo preferenze tecniche (come il tema) sul tuo dispositivo. I servizi di terze parti (Calendly, Tally, Substack) potrebbero impostare cookie propri quando interagisci con loro.
       <a href={`${base}/privacy`} class="underline opacity-70 hover:opacity-100 ml-1">Informativa completa</a>
     </p>
     <button
@@ -26,10 +26,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const banner = document.getElementById('cookie-banner');
   if (localStorage.getItem('cookie-ok')) {
     banner?.remove();
-  } else {
+  } else if (banner) {
+    // Reserve space so the banner never hides page content or the
+    // back-to-top button on small viewports
+    const pad = () => {
+      document.body.style.paddingBottom = `${banner.offsetHeight}px`;
+    };
+    pad();
+    window.addEventListener('resize', pad);
     document.getElementById('cookie-accept')?.addEventListener('click', () => {
       localStorage.setItem('cookie-ok', '1');
-      banner?.remove();
+      window.removeEventListener('resize', pad);
+      document.body.style.paddingBottom = '';
+      banner.remove();
     });
   }
 </script>

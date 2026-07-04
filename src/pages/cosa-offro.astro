@@ -2,10 +2,11 @@
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
 import { getImage } from 'astro:assets';
-import cosaOffroImgSrc from '../assets/images/cosa-offro.jpg';
+import cosaOffroImgSrc from '../assets/images/personal-training-trento-rovereto.jpg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const cosaOffroImg = await getImage({ src: cosaOffroImgSrc, format: 'webp', width: 1400, quality: 80 });
+const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 
 const services = [
   {
@@ -25,7 +26,7 @@ const services = [
   },
   {
     title: "Gestione dello stress",
-    description: "Programmi specifici per per migliorare la salute del sistema nervoso autonomo e la risposta allo stress nel quotidiano.",
+    description: "Programmi specifici per migliorare la salute del sistema nervoso autonomo e la risposta allo stress nel quotidiano.",
     iconPath: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
   },
   {
@@ -53,7 +54,7 @@ const formats = [
   },
   {
     title: "Piccoli gruppi",
-    description: "La soluzione per chi cerca equlibrio tra attenzione personalizzata e dinamiche di gruppo.",
+    description: "La soluzione per chi cerca equilibrio tra attenzione personalizzata e dinamiche di gruppo.",
     iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
     highlight: "3-5 persone",
     price: "€80",
@@ -85,9 +86,72 @@ const targets = [
     iconPath: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
   },
 ];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${siteUrl}/cosa-offro/#service`,
+  "name": "Chinesiologia clinica e personal training",
+  "serviceType": services.map((s) => s.title),
+  "provider": { "@id": `${siteUrl}/#business` },
+  "areaServed": [
+    { "@type": "Place", "name": "Trento" },
+    { "@type": "Place", "name": "Rovereto" },
+    { "@type": "Place", "name": "Online" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Formati di allenamento",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Lezione individuale singola",
+        "price": 55,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pacchetto 4 lezioni individuali",
+        "price": 190,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pacchetto 8 lezioni individuali",
+        "price": 370,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pacchetto 12 lezioni individuali",
+        "price": 520,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Piccoli gruppi (3–5 persone), 4 lezioni al mese",
+        "price": 80,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Coaching online semestrale (4 visite + scheda)",
+        "price": 350,
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Coaching online annuale (8 visite + scheda)",
+        "price": 600,
+        "priceCurrency": "EUR"
+      }
+    ]
+  }
+};
 ---
 
-<Layout title="Cosa offro — Chinesiologia Clinica e Personal Training" description="Percorsi personalizzati per patologie croniche, DCA, dolore osteo-articolare, gravidanza e terza età. Lezioni individuali, piccoli gruppi e coaching online.">
+<Layout title="Servizi di Chinesiologia e Personal Training a Trento e Rovereto" description="Percorsi personalizzati a Trento e Rovereto per patologie croniche, DCA e dolore osteo-articolare. Lezioni individuali, piccoli gruppi e coaching online.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,17 +162,18 @@ const targets = [
         Cosa offro
       </h1>
       <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
-Qualunque sia la tua situazione, posso aiutarti.     </p>
+        Chinesiologia clinica e personal training a Trento, Rovereto e online: percorsi per patologie croniche, disturbi alimentari, dolori articolari e forma fisica.
+      </p>
     </div>
   </section>
 
   <!-- Servizi -->
-  <Section>
+  <Section title="I miei servizi">
     <div class="grid md:grid-cols-2 gap-6">
       {services.map((service, i) => (
         <article class="fade-in-up bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-all duration-200" style={`transition-delay: ${i * 80}ms`}>
           <div class="w-14 h-14 bg-white dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
-            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconPath} />
             </svg>
           </div>
@@ -136,7 +201,7 @@ Qualunque sia la tua situazione, posso aiutarti.     </p>
           <article class="fade-in-up bg-white/95 dark:bg-navy-dark/90 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 border border-white/20 flex flex-col backdrop-blur-sm" style={`transition-delay: ${i * 100}ms`}>
             <div class="flex items-start gap-4 mb-4">
               <div class="w-14 h-14 bg-sage-light dark:bg-surface-dark rounded-xl flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={format.iconPath} />
                 </svg>
               </div>
@@ -177,7 +242,7 @@ Qualunque sia la tua situazione, posso aiutarti.     </p>
         {targets.map((target, i) => (
           <li class="fade-in-up flex items-start gap-5" style={`transition-delay: ${i * 100}ms`}>
             <span class="w-7 h-7 rounded-full bg-accent dark:bg-accent-dark flex items-center justify-center shrink-0 mt-0.5">
-              <svg class="w-3.5 h-3.5 text-white dark:text-navy-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 text-white dark:text-navy-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
               </svg>
             </span>
@@ -185,6 +250,9 @@ Qualunque sia la tua situazione, posso aiutarti.     </p>
           </li>
         ))}
       </ul>
+      <p class="mt-10 text-navy/70 dark:text-text-dark/70 leading-relaxed">
+        Vuoi saperne di più? Leggi <a href={`${base}/chi-sono`} class="text-accent dark:text-accent-dark font-semibold hover:underline">chi sono e come lavoro</a> oppure <a href={`${base}/dicono-di-me`} class="text-accent dark:text-accent-dark font-semibold hover:underline">le testimonianze di chi ha già iniziato un percorso</a>.
+      </p>
     </div>
   </Section>
 

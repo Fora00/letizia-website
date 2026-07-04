@@ -1,6 +1,7 @@
 export interface Event {
   slug: string;
   date: string;
+  dateISO: string; // ISO start date; last day of the month when no exact day is known
   title: string;
   shortTitle: string;
   location: string;
@@ -17,6 +18,7 @@ export interface Event {
 export const events: Event[] = [
   {
     slug: "workshop-muoversi-senza-dolore",
+    dateISO: "2026-06-30",
     date: "Giugno 2026",
     title: "Workshop: Muoversi senza dolore",
     shortTitle: "Muoversi senza dolore",
@@ -38,6 +40,7 @@ export const events: Event[] = [
   },
   {
     slug: "corso-benessere-in-movimento",
+    dateISO: "2026-07-31",
     date: "Luglio 2026",
     title: "Corso: Benessere in movimento",
     shortTitle: "Benessere in movimento",
@@ -58,6 +61,7 @@ export const events: Event[] = [
   },
   {
     slug: "mini-corso-corpo-e-mente",
+    dateISO: "2026-09-30",
     date: "Settembre 2026",
     title: "Mini-corso: Corpo e Mente",
     shortTitle: "Corpo e Mente",
@@ -76,3 +80,7 @@ export const events: Event[] = [
     tags: ["Benessere", "Stress", "Gruppi"],
   },
 ];
+
+export function isPastEvent(event: Event): boolean {
+  return new Date(event.dateISO) < new Date(new Date().toDateString());
+}

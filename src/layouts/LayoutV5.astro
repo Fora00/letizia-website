@@ -3,22 +3,30 @@ import '../styles/global.css';
 import Navbar from '../components/v5/Navbar.astro';
 import Footer from '../components/v5/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
-
+import { social } from '../constants/socials';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
+  lang?: string;
 }
 
 const {
   title,
-  description = "Chinesiologa Clinica e Personal Trainer in Trentino-Alto Adige e online. Contattatemi per informazioni sui servizi e programmi di allenamento personalizzati!",
-  image = "/images/og-image.jpg"
+  description = "Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto, anche online. Contattami per un percorso di allenamento personalizzato.",
+  image = "/images/og-image.jpg",
+  noindex = false,
+  lang = "it"
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
+// Temporary GitHub Pages deployment: keep it out of search indexes so all
+// SEO equity starts clean on letiziamancini.it. Flips off automatically once
+// the build targets the real domain.
+const isTempDomain = siteUrl.includes('fora00.github.io');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = new URL(image, siteUrl).href;
 const fullTitle = `${title} | Letizia Mancini`;
@@ -30,6 +38,7 @@ const segmentLabels: Record<string, string> = {
   'dicono-di-me': 'Dicono di me',
   'newsletter': 'Newsletter',
   'eventi': 'Workshop & Corsi',
+  'en': 'English',
 };
 const cleanPath = base ? Astro.url.pathname.slice(base.length) : Astro.url.pathname;
 const segments = cleanPath.split('/').filter(Boolean);
@@ -65,6 +74,22 @@ const jsonLd = {
       "jobTitle": "Chinesiologa clinica e Personal Trainer",
       "url": siteUrl,
       "email": "letiziamancini.chinesiologa@gmail.com",
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Università degli Studi di Roma \"Foro Italico\"" }
+      ],
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "name": "Laurea in Scienze Motorie", "educationalLevel": "Laurea" },
+        { "@type": "EducationalOccupationalCredential", "name": "European Master of Science in Health and Physical Activity", "educationalLevel": "Laurea magistrale" },
+        { "@type": "EducationalOccupationalCredential", "name": "Ginnastica Ipopressiva — Metodo Caufriez" },
+        { "@type": "EducationalOccupationalCredential", "name": "Medicina Predittiva e Regolazione Funzionale — Open Academy of Medicine" }
+      ],
+      "knowsAbout": [
+        "Chinesiologia clinica",
+        "Attività Fisica Adattata",
+        "Esercizio fisico per patologie croniche",
+        "Movimento e disturbi del comportamento alimentare",
+        "Ginnastica ipopressiva"
+      ],
       "sameAs": [
         "https://www.instagram.com/letiziamancini_chinesiologa",
         "https://www.facebook.com/profile.php?id=61555750393500",
@@ -78,6 +103,7 @@ const jsonLd = {
       "description": "Servizi di chinesiologia clinica e personal training in Trentino-Alto Adige e online",
       "url": siteUrl,
       "email": "letiziamancini.chinesiologa@gmail.com",
+      "hasMap": social.maps,
       "priceRange": "€€",
       "address": [
         {
@@ -113,18 +139,19 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="it" class="v5 scroll-smooth">
+<html lang={lang} class="v5 scroll-smooth">
   <head>
     <script is:inline>
       (function() {
-        if (localStorage.getItem('theme') !== 'light') {
-          document.documentElement.classList.add('dark');
-        }
+        var stored = localStorage.getItem('theme');
+        var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) document.documentElement.classList.add('dark');
       })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {(noindex || isTempDomain) && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -140,6 +167,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32x32.png`} />
     <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon-16x16.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
@@ -151,7 +179,7 @@ const jsonLd = {
     <link rel="dns-prefetch" href="https://tadamove.substack.com" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
-      <script defer data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" is:inline></script>
+      <script defer data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.tagged-events.outbound-links.js" is:inline></script>
     )}
     <title>{fullTitle}</title>
     <slot name="head" />

@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# letiziamancini.it
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Sito di Letizia Mancini — chinesiologa clinica e personal trainer a Trento e Rovereto.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Static site: **Astro 5 + Tailwind CSS 4** (via `@tailwindcss/vite`), deployed to GitHub Pages
+by `.github/workflows/deploy.yml` (push to `main`, manual, or weekly cron — the cron keeps
+newsletter posts and past-event filtering fresh).
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command | Action |
+| --- | --- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Dev server on `localhost:3000` (LAN-exposed via `--host`) |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview the build |
+| `npm run fetch-posts` | Refresh `src/data/newsletter-posts.json` from the Substack RSS feed |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Structure
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `src/layouts/LayoutV5.astro` — head/meta/JSON-LD (Person, LocalBusiness, breadcrumbs), theme init, skip-link
+- `src/pages/` — one `.astro` file per page (Italian slugs); `eventi/[slug].astro` builds from `src/data/events.ts`
+- `src/components/v5/` — current Navbar/Footer/Section; `v2/` Substack components still in use
+- `src/data/events.ts` — events with `dateISO`; past events are filtered/labeled at build time
+- `src/styles/global.css` — Tailwind theme tokens (v5 palette), focus/motion a11y rules
+- `public/llms.txt` — entity summary for AI search engines
+- `Opus-will-do.md` — **living roadmap + values constraints. Read it before making changes.**
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Note
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Letizia's positioning rejects aggressive marketing (no urgency, popups, dark patterns).
+Every change must pass the values filter at the top of `Opus-will-do.md`.
