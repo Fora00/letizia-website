@@ -24,9 +24,9 @@ newsletter posts and past-event filtering fresh).
 - `src/data/events.ts` — events with `dateISO`; past events are filtered/labeled at build time
 - `src/styles/global.css` — Tailwind theme tokens (v5 palette), focus/motion a11y rules
 - `public/llms.txt` — entity summary for AI search engines
-- `Opus-will-do.md` — **living roadmap + values constraints. Read it before making changes.**
+- `ROADMAP.md` — **living roadmap + values constraints. Read it before making changes.**
 
 ## Note
 
 Letizia's positioning rejects aggressive marketing (no urgency, popups, dark patterns).
-Every change must pass the values filter at the top of `Opus-will-do.md`.
+Every change must pass the values filter at the top of `ROADMAP.md`.

@@ -1,4 +1,4 @@
-# Opus-will-do.md — Roadmap & handoff for letiziamancini.it
+# ROADMAP.md — Roadmap & handoff for letiziamancini.it
 
 > Any model/session picks up from here. Work top-to-bottom inside a section, check boxes
 > as you go, keep this file updated. Be token-frugal: delegate mechanical edits to Haiku,
@@ -52,6 +52,33 @@ Ordered by expected value:
       work — the trust-network channel she actually wants.
 - [ ] **Per-page OG images** (Astro + satori) — nicer WhatsApp shares.
 - [ ] **Testimonials**: keep real quotes only, never incentivized.
+- [ ] **vCard download button** on contatti — unlike the rejected `.ics` idea, contact
+      info (name/phone/address/email) is exact and known today, so there's no guessed-data
+      risk. Pairs well with the phone-number decision below.
+- [ ] **German-language mini-page** (mirrors the /en one-pager) — Trentino borders
+      Alto Adige/Südtirol, cross-border German-speaking traffic. Caveat: Letizia doesn't
+      speak German, so (a) the inquiry funnel must route German visitors to Italian/English
+      contact, not promise German-language sessions, and (b) any translation needs a
+      professional review pass since she can't self-verify accuracy the way she can for EN.
+- [ ] **Free downloadable educational PDF guides** — e.g. "Cosa portare al primo incontro",
+      "Muoversi in sicurezza in gravidanza". Handed out at first consult / linked from the
+      pillar pages once those exist. No email-wall or gate — stays inside the trust-first
+      values filter (not a typical lead-magnet funnel) while reinforcing the same E-E-A-T
+      signal the glossary/pillar pages build.
+
+## OPEN — technical/maintenance (2026-07-05)
+
+- [ ] **Dependabot/Renovate config** — dependency bumps (Astro, etc.) have been manual
+      `npm update` passes so far; automate PRs so the npm-audit chase doesn't require a
+      dedicated session each time.
+- [ ] **Lighthouse/a11y CI gate** — the a11y/SEO/perf audits to date were manual Haiku
+      passes; add a CI check (`lighthouse-ci` or `pa11y`) so regressions on future edits
+      are caught automatically instead of needing another full audit.
+- [ ] **Image sitemap entries** — the studio/asset photos aren't currently represented in
+      sitemap-index.xml; adding `<image:image>` entries helps Google Images surface them
+      for local search ("studio chinesiologia Trento" etc.).
+- [ ] **RSS/Atom feed** — ties to the planned on-domain newsletter archive (above); cheap
+      to add once that page exists, gives non-Substack subscribers a way to follow.
 
 ## OPEN — off-site (Francesco/Letizia, not repo work)
 
@@ -70,6 +97,10 @@ Ordered by expected value:
 Full step-by-step lives in the vault: `Personal/What/Website/Letizia/deployment-guide.md`.
 Decided plan (2026-07-04): Aruba registrar → Cloudflare DNS → GitHub Pages custom domain
 (Cloudflare Pages rejected as needless friction; proxy gives edge headers if ever needed).
+
+**Status (2026-07-05): still Aruba-only** — Cloudflare delegation hasn't happened yet.
+Don't propose Cloudflare-specific work (edge headers, WAF, caching rules, etc.) until the
+NS delegation step below is actually done — it's not live infrastructure yet.
 
 - [ ] Aruba: delegate NS to Cloudflare; Cloudflare DNS: 4× A + 4× AAAA on apex to GH
       Pages IPs + `www CNAME fora00.github.io` (DNS-only until GH cert is provisioned).
