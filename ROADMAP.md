@@ -4,7 +4,7 @@
 > as you go, keep this file updated. Be token-frugal: delegate mechanical edits to Haiku,
 > verify with `npm run check` + `npm run build`.
 
-## Status at a glance (2026-07-04)
+## Status at a glance (2026-10-23)
 
 **All self-serve repo work is DONE.** Build green (13 pages), `astro check` 0 errors,
 CI type-checks before deploy, weekly rebuild cron keeps newsletter + event filtering fresh.
@@ -16,13 +16,19 @@ noindexed until the move to letiziamancini.it (auto-detects origin, flips itself
 Canonical email: letiziamancini.chinesiologa@gmail.com. Sedi: Trento Via Brescia 15,
 Rovereto Via Brione 39.
 
+**Scope changes (2026-10-23):** the events section is hidden (pages parked in
+`src/pages/_eventi/`, data kept in `src/data/events.ts`; rename the folder to `eventi` and
+re-add the nav/footer/404/llms links to bring it back) and the German page was removed.
+The first consult is no longer advertised as free ("gratuita" dropped site-wide).
+Git: tag `v1` = site before this round (local only), branch `versione-base` = parked copy.
+
 ---
 
 ## Values filter (non-negotiable — every change passes this)
 
 - NO conventional/aggressive marketing: no fake urgency, countdowns, interrupting popups,
   "lose X kg fast" copy, dark patterns, exit-intent traps.
-- Client acquisition = trust: education (newsletter, workshops), transparency (free 30-min
+- Client acquisition = trust: education (newsletter, workshops), transparency (30-min
   consult, "nessun impegno"), health-first inclusive language (chronic conditions, DCA,
   older adults).
 - Tone: caring, professional, plain Italian. Quotable factual sentences (good for GEO too).
@@ -46,12 +52,13 @@ Ordered by expected value:
 - [ ] **"Dove ricevo" studio blocks** — photo, parking/transit, maps link for BOTH sedi
       (assets exist in letizia_asset/). Local SEO + lowers the barrier for anxious
       first-timers.
-- [ ] **On-domain newsletter archive** — short summaries per Substack post, canonical
+- [x] **On-domain newsletter archive** (shipped: /newsletter + rss.xml) — short summaries per Substack post, canonical
       link out.
 - [ ] **"Per i professionisti" page** (medici, dietisti, psicoterapeuti): how referrals
       work — the trust-network channel she actually wants.
-- [ ] **Per-page OG images** (Astro + satori) — nicer WhatsApp shares.
-- [ ] **Testimonials**: keep real quotes only, never incentivized.
+- [x] **Per-page OG images** (Astro + satori; shipped, see og-pages.ts) — nicer WhatsApp shares.
+- [x] **Testimonials**: keep real quotes only, never incentivized. (2026-10-23: all 24
+      Google reviews with text imported into src/data/reviews.json; page has search/stars/sort.)
 - [ ] **vCard download button** on contatti — unlike the rejected `.ics` idea, contact
       info (name/phone/address/email) is exact and known today, so there's no guessed-data
       risk. Pairs well with the phone-number decision below.
@@ -63,16 +70,16 @@ Ordered by expected value:
 
 ## OPEN — technical/maintenance (2026-07-05)
 
-- [ ] **Dependabot/Renovate config** — dependency bumps (Astro, etc.) have been manual
+- [x] **Dependabot/Renovate config** (.github/dependabot.yml) — dependency bumps (Astro, etc.) have been manual
       `npm update` passes so far; automate PRs so the npm-audit chase doesn't require a
       dedicated session each time.
-- [ ] **Lighthouse/a11y CI gate** — the a11y/SEO/perf audits to date were manual Haiku
+- [x] **Lighthouse/a11y CI gate** (pa11y-ci runs in deploy.yml; no Lighthouse) — the a11y/SEO/perf audits to date were manual Haiku
       passes; add a CI check (`lighthouse-ci` or `pa11y`) so regressions on future edits
       are caught automatically instead of needing another full audit.
-- [ ] **Image sitemap entries** — the studio/asset photos aren't currently represented in
+- [x] **Image sitemap entries** (sitemap-images.xml.ts) — the studio/asset photos aren't currently represented in
       sitemap-index.xml; adding `<image:image>` entries helps Google Images surface them
       for local search ("studio chinesiologia Trento" etc.).
-- [ ] **RSS/Atom feed** — ties to the planned on-domain newsletter archive (above); cheap
+- [x] **RSS/Atom feed** (rss.xml.ts) — ties to the planned on-domain newsletter archive (above); cheap
       to add once that page exists, gives non-Substack subscribers a way to follow.
 
 ## OPEN — off-site (Francesco/Letizia, not repo work)
@@ -83,7 +90,7 @@ Ordered by expected value:
 - [ ] Plausible dashboard: create goal "prenota-consulenza" (site already tags the CTAs).
 - [ ] Consistent NAP on Instagram/LinkedIn bios; Substack About/footer links back to
       letiziamancini.it.
-- [ ] Gentle, non-incentivized Google-review asks.
+- [ ] Gentle, non-incentivized Google-review asks. (27 reviews, all 5 stars as of 2026-10-23.)
 - [ ] Ask Letizia: publish phone number? (LocalBusiness `telephone` + possible WhatsApp
       link are ready to add once she OKs.)
 
@@ -138,6 +145,21 @@ Gotchas learned the hard way:
 ---
 
 ## DONE — changelog (newest first; details in git history)
+
+**2026-10-23 (content & scope round):**
+- Events section hidden (`src/pages/_eventi/`, underscore = not routed); links removed from
+  Navbar/Footer/404/llms.txt, OG cards dropped. German page deleted (nav, footer, en link,
+  layout/og entries).
+- cosa-offro: Coaching now before Piccoli gruppi; small groups are 2–8 people, price
+  "Su richiesta" (no price in Offer JSON-LD).
+- dicono-di-me: reviews rendered from `src/data/reviews.json` (24 real Google reviews,
+  5★, dates approximate → only the year is shown) with text search, star filter and
+  sorting (recent/oldest/high/low). Refresh by hand: open the Maps listing logged in, run
+  a console scraper, paste into the JSON (headless/logged-out Maps only shows 3 reviews;
+  Business Profile API needs Google approval — not pursued).
+- Home CTA reduced to a single "Contattami" button (with icon); FAQ on booking updated.
+- Footer "Link utili" in two columns.
+- "Gratuita/free" removed from contatti, en, cosa-offro, llms.txt.
 
 **2026-07-04 (round 3 — final audit & polish):**
 - Astro 5.16.15 → 5.18.2 (`npm update`), check + build green. The 2 remaining npm-audit
