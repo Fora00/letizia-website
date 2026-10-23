@@ -10,7 +10,11 @@ export const GET: APIRoute = ({ site }) => {
 
   const lines = ['User-agent: *', 'Allow: /'];
   if (!isTempDomain) {
-    lines.push('', `Sitemap: ${origin}${base}/sitemap-index.xml`);
+    lines.push(
+      '',
+      `Sitemap: ${origin}${base}/sitemap-index.xml`,
+      `Sitemap: ${origin}${base}/sitemap-images.xml`
+    );
   }
 
   return new Response(lines.join('\n') + '\n', {

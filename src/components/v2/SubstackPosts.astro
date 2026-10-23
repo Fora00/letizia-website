@@ -4,12 +4,13 @@ import allPosts from '../../data/newsletter-posts.json';
 const SUBSTACK_URL = "https://tadamove.substack.com";
 
 interface Props {
+  /** How many posts to show; omit `limit` on archive pages to show them all */
   limit?: number;
   showAllLink?: boolean;
 }
-const { limit = 3, showAllLink = false } = Astro.props;
+const { limit, showAllLink = false } = Astro.props;
 
-const posts = allPosts.slice(0, limit);
+const posts = limit == null ? allPosts : allPosts.slice(0, limit);
 ---
 
 {posts.length > 0 && (

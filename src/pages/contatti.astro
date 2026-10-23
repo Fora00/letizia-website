@@ -1,10 +1,25 @@
 ---
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
+import { Image } from 'astro:assets';
+import studioImgSrc from '../assets/images/studio-chinesiologia-allenamento.jpg';
 import { social } from '../constants/socials';
 import SubstackSignup from '../components/v2/SubstackSignup.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const sedi = [
+  {
+    city: 'Trento',
+    address: 'Via Brescia, 15',
+    mapsUrl: social.maps,
+  },
+  {
+    city: 'Rovereto',
+    address: 'Via Brione, 39',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Via+Brione+39,+Rovereto+TN',
+  },
+];
 ---
 
 <Layout title="Contatti — Chinesiologa a Trento e Rovereto | Consulenza Gratuita" description="Prenota una consulenza gratuita di 30 minuti con Letizia Mancini, chinesiologa clinica a Trento e Rovereto. Scrivimi o scegli un orario su Calendly.">
@@ -137,13 +152,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               </div>
             </li>
           </ul>
+          <a
+            href={`${base}/letizia-mancini.vcf`}
+            download="letizia-mancini.vcf"
+            class="mt-6 inline-flex items-center gap-2 bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-accent hover:text-white dark:hover:bg-accent-dark dark:hover:text-navy-dark transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Salva il contatto in rubrica
+          </a>
         </div>
       </div>
     </div>
   </Section>
 
+  <!-- Dove ricevo -->
+  <Section
+    bgColor="sage-light"
+    title="Dove ricevo"
+    subtitle="Ricevo su appuntamento in due studi privati, a Trento e a Rovereto. Le sessioni online si svolgono in videochiamata."
+  >
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      {sedi.map((sede) => (
+        <div class="bg-white dark:bg-navy-dark rounded-2xl p-6 flex flex-col gap-3 transition-colors duration-200">
+          <h3 class="font-heading font-semibold text-xl text-navy dark:text-text-dark">
+            {sede.city}
+          </h3>
+          <p class="text-navy/70 dark:text-text-dark/70">
+            {sede.address} — su appuntamento
+          </p>
+          <a
+            href={sede.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-accent dark:text-accent-dark font-semibold text-sm hover:underline mt-auto"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Apri in Google Maps
+            <span class="sr-only">(si apre in una nuova finestra)</span>
+          </a>
+        </div>
+      ))}
+    </div>
+    <figure class="rounded-2xl overflow-hidden">
+      <Image
+        src={studioImgSrc}
+        alt="Letizia Mancini segue un esercizio a corpo libero sul tappetino in studio"
+        width={1200}
+        format="webp"
+        quality={80}
+        class="w-full h-64 md:h-80 object-cover object-top"
+        loading="lazy"
+      />
+    </figure>
+  </Section>
+
   <!-- Newsletter signup -->
-  <Section bgColor="sage-light" centered>
+  <Section centered>
     <SubstackSignup showPostsLink={true} />
   </Section>
 </Layout>

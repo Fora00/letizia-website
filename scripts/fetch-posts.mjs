@@ -38,7 +38,9 @@ if (!res.ok) {
 }
 
 const xml = await res.text();
-const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 9);
+// Keep every item the feed exposes (Substack serves the ~20 most recent):
+// /newsletter renders the full on-domain archive and rss.xml re-syndicates it.
+const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
 
 const posts = items.map(([, body]) => {
   const title = decodeEntities(extractTag(body, 'title'));
@@ -52,7 +54,8 @@ const posts = items.map(([, body]) => {
   const date = pubDate
     ? new Date(pubDate).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })
     : '';
-  return { title, link, description, date, image };
+  const dateISO = pubDate ? new Date(pubDate).toISOString() : '';
+  return { title, link, description, date, dateISO, image };
 });
 
 writeFileSync(OUT, JSON.stringify(posts, null, 2));

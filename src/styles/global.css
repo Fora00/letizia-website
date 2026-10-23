@@ -26,7 +26,8 @@
 html.v5 {
   --color-navy:       #0f2c52;
   --color-sage:       #48bb78;
-  --color-accent:     #0ea557;
+  /* ≥4.5:1 on both white and sage-light (WCAG AA, pa11y-gated in CI) */
+  --color-accent:     #067f41;
   --color-sage-light: #f0f6ff;
 }
 html.v5.dark {

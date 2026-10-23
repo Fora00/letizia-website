@@ -4,6 +4,7 @@ import Navbar from '../components/v5/Navbar.astro';
 import Footer from '../components/v5/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import { social } from '../constants/socials';
+import { ogPages } from '../data/og-pages';
 
 interface Props {
   title: string;
@@ -16,7 +17,7 @@ interface Props {
 const {
   title,
   description = "Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto, anche online. Contattami per un percorso di allenamento personalizzato.",
-  image = "/images/og-image.jpg",
+  image,
   noindex = false,
   lang = "it"
 } = Astro.props;
@@ -28,7 +29,6 @@ const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 // the build targets the real domain.
 const isTempDomain = siteUrl.includes('fora00.github.io');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
-const ogImageUrl = new URL(image, siteUrl).href;
 const fullTitle = `${title} | Letizia Mancini`;
 
 const segmentLabels: Record<string, string> = {
@@ -39,9 +39,16 @@ const segmentLabels: Record<string, string> = {
   'newsletter': 'Newsletter',
   'eventi': 'Workshop & Corsi',
   'en': 'English',
+  'de': 'Deutsch',
 };
 const cleanPath = base ? Astro.url.pathname.slice(base.length) : Astro.url.pathname;
 const segments = cleanPath.split('/').filter(Boolean);
+
+// Per-page OG card generated at build time (see pages/og/[slug].png.ts);
+// an explicit `image` prop wins, unknown paths fall back to the shared image.
+const ogSlug = segments.join('-') || 'home';
+const resolvedImage = image ?? (ogSlug in ogPages ? `${base}/og/${ogSlug}.png` : `${base}/images/og-image.jpg`);
+const ogImageUrl = new URL(resolvedImage, siteUrl).href;
 const breadcrumbSchema = segments.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -158,7 +165,7 @@ const jsonLd = {
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="it_IT" />
+    <meta property="og:locale" content={{ it: 'it_IT', en: 'en_GB', de: 'de_DE' }[lang] ?? 'it_IT'} />
     <meta property="og:site_name" content="Letizia Mancini" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalUrl} />
@@ -178,6 +185,7 @@ const jsonLd = {
     <link rel="dns-prefetch" href="https://tally.so" />
     <link rel="dns-prefetch" href="https://tadamove.substack.com" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Letizia Mancini — Newsletter" href={`${base}/rss.xml`} />
     {import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
       <script defer data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.tagged-events.outbound-links.js" is:inline></script>
     )}
