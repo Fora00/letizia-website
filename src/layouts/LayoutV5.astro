@@ -37,9 +37,7 @@ const segmentLabels: Record<string, string> = {
   'contatti': 'Contatti',
   'dicono-di-me': 'Dicono di me',
   'newsletter': 'Newsletter',
-  'eventi': 'Workshop & Corsi',
   'en': 'English',
-  'de': 'Deutsch',
 };
 const cleanPath = base ? Astro.url.pathname.slice(base.length) : Astro.url.pathname;
 const segments = cleanPath.split('/').filter(Boolean);
@@ -165,7 +163,7 @@ const jsonLd = {
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content={{ it: 'it_IT', en: 'en_GB', de: 'de_DE' }[lang] ?? 'it_IT'} />
+    <meta property="og:locale" content={{ it: 'it_IT', en: 'en_GB' }[lang] ?? 'it_IT'} />
     <meta property="og:site_name" content="Letizia Mancini" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalUrl} />

@@ -19,7 +19,7 @@ newsletter posts and past-event filtering fresh).
 ## Structure
 
 - `src/layouts/LayoutV5.astro` — head/meta/JSON-LD (Person, LocalBusiness, breadcrumbs), theme init, skip-link
-- `src/pages/` — one `.astro` file per page (Italian slugs); `eventi/[slug].astro` builds from `src/data/events.ts`
+- `src/pages/` — one `.astro` file per page (Italian slugs); `_eventi/` (hidden, underscore = not routed) builds from `src/data/events.ts`
 - `src/components/v5/` — current Navbar/Footer/Section; `v2/` Substack components still in use
 - `src/data/events.ts` — events with `dateISO`; past events are filtered/labeled at build time
 - `src/styles/global.css` — Tailwind theme tokens (v5 palette), focus/motion a11y rules
