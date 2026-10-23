@@ -2,35 +2,13 @@
 import Layout from '../layouts/LayoutV5.astro';
 import Section from '../components/v5/Section.astro';
 import { social } from '../constants/socials';
+import reviewsData from '../data/reviews.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fmtDate = (d: string) => new Date(d).getFullYear();
 
-const testimonials = [
-  {
-    quote: 'Ottima professionista, empatica e con una spiccata capacità di ascolto e di interazione; nel mio caso è riuscita a trovare il percorso individuale più adatto alle mie esigenze. Da consigliare.',
-    author: "Serena P."
-  },
-  {
-    quote: "Una professionista capace, in grado di trovare rapidamente il motivo del mio dolore alla spalla e prescrivermi un percorso di riabilitazione dal quale ho trovato — e sto trovando — grande giovamento. La consiglio caldamente a tutti!",
-    author: "Simone M."
-  },
-  {
-    quote: "A mio parere veramente brava, mi ha spiegato benissimo ogni tipo di esercizio che non capivo. È pure gentile e si vede che è una persona che conosce molto bene il suo ambito lavorativo. Io la consiglio molto anche perché non ho mai conosciuto persone gentili e che spiegano bene come lei.",
-    author: "Sara G."
-  },
-  {
-    quote: "La dottoressa Mancini si è dimostrata preparata e disponibile, in grado di consigliarmi e motivarmi in ogni passo del percorso intrapreso con lei! Non c'è altro da dire se non: \"Super Consigliata!\"",
-    author: "Francesco F."
-  },
-  {
-    quote: "Riscontrato professionalità e disponibilità. I risultati ci sono stati subito dopo i primi incontri. Consigliato.",
-    author: "Sabrina D.S."
-  },
-  {
-    quote: "Professionista pazzesca, non c'è paragone con tutti e tutte le professioniste che ho incontrato prima di lei. Adatta a qualsiasi condizione, iper-professionale ma allo stesso tempo alla mano ed empatica.",
-    author: "Massimo Z."
-  }
-];
+const reviews = reviewsData as { author: string; rating: number; text: string; date: string | null }[];
+
 
 // Nota SEO: niente AggregateRating/Review self-serving in JSON-LD — Google ignora (e può
 // penalizzare) le recensioni auto-pubblicate su LocalBusiness. Le testimonianze restano in
@@ -55,35 +33,95 @@ const testimonials = [
 
   <!-- Masonry testimonials -->
   <Section>
-    <div class="masonry-grid">
-      {testimonials.map((testimonial) => (
-        <article aria-label={`Testimonianza di ${testimonial.author}`} class="masonry-item bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-shadow duration-200">
-          <div class="flex gap-0.5 mb-3" aria-label="5 stelle su 5">
-            {Array.from({ length: 5 }).map(() => (
-              <svg class="w-4 h-4 fill-[#facc15]" viewBox="0 0 20 20" aria-hidden="true">
+    <div class="flex flex-col sm:flex-row gap-3 mb-8" role="search">
+      <label class="sr-only" for="review-search">Cerca nelle recensioni</label>
+      <input id="review-search" type="search" placeholder="Cerca nelle recensioni…" class="flex-1 rounded-full border border-navy/15 dark:border-text-dark/20 bg-white dark:bg-surface-dark text-navy dark:text-text-dark px-5 py-2.5 text-sm" />
+      <label class="sr-only" for="review-rating">Filtra per stelle</label>
+      <select id="review-rating" class="rounded-full border border-navy/15 dark:border-text-dark/20 bg-white dark:bg-surface-dark text-navy dark:text-text-dark px-5 py-2.5 text-sm">
+        <option value="0">Tutte le stelle</option>
+        {[5, 4, 3, 2, 1].map((n) => <option value={n}>{n} {n === 1 ? 'stella' : 'stelle'}</option>)}
+      </select>
+      <label class="sr-only" for="review-sort">Ordina per</label>
+      <select id="review-sort" class="rounded-full border border-navy/15 dark:border-text-dark/20 bg-white dark:bg-surface-dark text-navy dark:text-text-dark px-5 py-2.5 text-sm">
+        <option value="recent">Più recenti</option>
+        <option value="oldest">Meno recenti</option>
+        <option value="high">Voto più alto</option>
+        <option value="low">Voto più basso</option>
+      </select>
+    </div>
+    <p id="review-count" class="text-sm text-navy/60 dark:text-text-dark/60 mb-4" aria-live="polite"></p>
+
+    <div class="masonry-grid" id="review-grid">
+      {reviews.map((review, i) => (
+        <article
+          aria-label={`Recensione di ${review.author}`}
+          data-rating={review.rating}
+          data-date={review.date ?? ''}
+          data-index={i}
+          data-text={`${review.author} ${review.text}`.toLowerCase()}
+          class="masonry-item bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-shadow duration-200"
+        >
+          <div class="flex gap-0.5 mb-3" aria-label={`${review.rating} stelle su 5`}>
+            {Array.from({ length: 5 }).map((_, n) => (
+              <svg class:list={['w-4 h-4', n < review.rating ? 'fill-[#facc15]' : 'fill-navy/15 dark:fill-text-dark/20']} viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
             ))}
           </div>
-          <svg class="w-9 h-9 fill-sage dark:fill-sage/40 mb-3 rotate-180" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9.983 3v7.391C9.983 16.095 6.252 19.961 1 21l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849H0V3h9.983zM24 3v7.391C24 16.095 20.252 19.962 15 21l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849H14V3h10z" />
-          </svg>
           <p class="text-navy/85 dark:text-text-dark/85 leading-relaxed text-base mb-5">
-            {testimonial.quote}
+            {review.text}
           </p>
           <p class="font-heading font-semibold text-accent dark:text-accent-dark">
-            &mdash; {testimonial.author}
+            &mdash; {review.author}
           </p>
+          {review.date && <p class="text-xs text-navy/50 dark:text-text-dark/50 mt-1">{fmtDate(review.date)}</p>}
         </article>
       ))}
     </div>
+    <p id="review-empty" class="text-center text-navy/60 dark:text-text-dark/60 py-8" hidden>Nessuna recensione corrisponde alla ricerca.</p>
 
     <p class="text-center mt-8 text-sm text-navy/60 dark:text-text-dark/60">
-      Queste testimonianze provengono dalle recensioni lasciate dai miei clienti.
+      Queste sono le recensioni lasciate dai miei clienti su Google.
       <a href={social.maps} target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark font-semibold hover:underline">
         Leggile sulla scheda Google →
       </a>
     </p>
+
+    <script>
+      const grid = document.getElementById('review-grid')!;
+      const items = Array.from(grid.querySelectorAll<HTMLElement>('article'));
+      const search = document.getElementById('review-search') as HTMLInputElement;
+      const rating = document.getElementById('review-rating') as HTMLSelectElement;
+      const sort = document.getElementById('review-sort') as HTMLSelectElement;
+      const count = document.getElementById('review-count')!;
+      const empty = document.getElementById('review-empty')!;
+
+      const num = (el: HTMLElement, k: string) => Number(el.dataset[k]);
+      // Undated reviews sort last for "recent" and first for "oldest".
+      const time = (el: HTMLElement) => (el.dataset.date ? Date.parse(el.dataset.date) : 0);
+      const sorters: Record<string, (a: HTMLElement, b: HTMLElement) => number> = {
+        recent: (a, b) => time(b) - time(a) || num(a, 'index') - num(b, 'index'),
+        oldest: (a, b) => time(a) - time(b) || num(a, 'index') - num(b, 'index'),
+        high: (a, b) => num(b, 'rating') - num(a, 'rating') || time(b) - time(a),
+        low: (a, b) => num(a, 'rating') - num(b, 'rating') || time(b) - time(a),
+      };
+
+      function update() {
+        const q = search.value.trim().toLowerCase();
+        const stars = Number(rating.value);
+        let shown = 0;
+        for (const el of [...items].sort(sorters[sort.value])) {
+          const ok = (!stars || num(el, 'rating') === stars) && (!q || el.dataset.text!.includes(q));
+          el.hidden = !ok;
+          if (ok) shown++;
+          grid.appendChild(el);
+        }
+        count.textContent = `${shown} ${shown === 1 ? 'recensione' : 'recensioni'}`;
+        empty.hidden = shown > 0;
+      }
+      [search, rating, sort].forEach((c) => c.addEventListener('input', update));
+      update();
+    </script>
 
     <style>
       .masonry-grid {
@@ -96,6 +134,7 @@ const testimonials = [
       @media (min-width: 1024px) {
         .masonry-grid { columns: 3; }
       }
+      .masonry-item[hidden] { display: none; }
       .masonry-item {
         break-inside: avoid;
         margin-bottom: 1.25rem;
@@ -112,13 +151,13 @@ const testimonials = [
         Sei la prossima?
       </h2>
       <p class="text-navy/80 dark:text-text-dark/80 mb-8 leading-relaxed">
-        Dai un'occhiata a <a href={`${base}/cosa-offro`} class="text-accent dark:text-accent-dark font-semibold hover:underline">i percorsi che offro a Trento, Rovereto e online</a>, oppure vieni a conoscermi con una consulenza gratuita.
+        Dai un'occhiata a <a href={`${base}/cosa-offro`} class="text-accent dark:text-accent-dark font-semibold hover:underline">i percorsi che offro a Trento, Rovereto e online</a>, oppure vieni a conoscermi con una consulenza.
       </p>
       <a
         href={`${base}/contatti`}
         class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
       >
-        Prenota una consulenza gratuita
+        Prenota una consulenza
       </a>
     </div>
   </Section>

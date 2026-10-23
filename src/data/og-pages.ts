@@ -23,7 +23,7 @@ export const ogPages: Record<string, OgPage> = {
   },
   'contatti': {
     title: 'Contattami',
-    subtitle: 'Consulenza gratuita di 30 minuti, senza impegno',
+    subtitle: 'Consulenza di 30 minuti, senza impegno',
   },
   'dicono-di-me': {
     title: 'Dicono di me',

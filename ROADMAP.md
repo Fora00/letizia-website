@@ -41,7 +41,7 @@ Ordered by expected value:
       osteoarticolare / gravidanza / terza età) with own title, FAQ, Service schema.
       Captures long-tail local queries ("attività fisica adattata Trento"), zero ad spend.
 - [ ] **"Come funziona il percorso" section** (home or cosa-offro): 4 transparent steps —
-      consulenza gratuita → valutazione → programma su misura → verifiche periodiche.
+      consulenza → valutazione → programma su misura → verifiche periodiche.
       (Already exists in English on /en — translate/adapt.)
 - [ ] **"Dove ricevo" studio blocks** — photo, parking/transit, maps link for BOTH sedi
       (assets exist in letizia_asset/). Local SEO + lowers the barrier for anxious
@@ -55,11 +55,6 @@ Ordered by expected value:
 - [ ] **vCard download button** on contatti — unlike the rejected `.ics` idea, contact
       info (name/phone/address/email) is exact and known today, so there's no guessed-data
       risk. Pairs well with the phone-number decision below.
-- [ ] **German-language mini-page** (mirrors the /en one-pager) — Trentino borders
-      Alto Adige/Südtirol, cross-border German-speaking traffic. Caveat: Letizia doesn't
-      speak German, so (a) the inquiry funnel must route German visitors to Italian/English
-      contact, not promise German-language sessions, and (b) any translation needs a
-      professional review pass since she can't self-verify accuracy the way she can for EN.
 - [ ] **Free downloadable educational PDF guides** — e.g. "Cosa portare al primo incontro",
       "Muoversi in sicurezza in gravidanza". Handed out at first consult / linked from the
       pillar pages once those exist. No email-wall or gate — stays inside the trust-first

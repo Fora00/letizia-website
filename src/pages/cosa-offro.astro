@@ -53,15 +53,6 @@ const formats = [
     packages: "Lezione singola €55 · 8 lezioni €370 · 12 lezioni €520",
   },
   {
-    title: "Piccoli gruppi",
-    description: "La soluzione per chi cerca equilibrio tra attenzione personalizzata e dinamiche di gruppo.",
-    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-    highlight: "3-5 persone",
-    price: "€80",
-    priceDetail: "al mese (4 lezioni)",
-    packages: "gruppi di 3–5 persone",
-  },
-  {
     title: "Coaching",
     description: "Scheda di allenamento personalizzata con controlli periodici per chi è lontano o preferisce allenarsi in autonomia.",
     iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01",
@@ -69,6 +60,14 @@ const formats = [
     price: "€350",
     priceDetail: "semestrale (4 visite + scheda)",
     packages: "€600 annuale (8 visite + scheda)"
+  },
+  {
+    title: "Piccoli gruppi",
+    description: "La soluzione per chi cerca equilibrio tra attenzione personalizzata e dinamiche di gruppo.",
+    iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    highlight: "2-8 persone",
+    price: "scrivimi ",
+    packages: "gruppi di 2–8 persone",
   }
 ];
 
@@ -129,9 +128,7 @@ const serviceSchema = {
       },
       {
         "@type": "Offer",
-        "name": "Piccoli gruppi (3–5 persone), 4 lezioni al mese",
-        "price": 80,
-        "priceCurrency": "EUR"
+        "name": "Piccoli gruppi (2–8 persone), prezzo su richiesta"
       },
       {
         "@type": "Offer",
@@ -270,7 +267,7 @@ const serviceSchema = {
           </div>
           <div class="pb-8 pt-1">
             <h3 class="font-semibold text-navy dark:text-text-dark mb-1">Contattami</h3>
-            <p class="text-navy/70 dark:text-text-dark/70">Raccontami la tua situazione e i tuoi obiettivi via form, email o prenota una call gratuita.</p>
+            <p class="text-navy/70 dark:text-text-dark/70">Raccontami la tua situazione e i tuoi obiettivi via form, email o prenota una call.</p>
           </div>
         </li>
         <li class="flex gap-4">
