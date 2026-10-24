@@ -12,18 +12,18 @@
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/raleway": "^5.3.0",
     "@fontsource/raleway": "^5.3.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.16.15",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.12",
     "@resvg/resvg-js": "^2.6.2",
     "pa11y-ci": "^5.0.0",
-    "satori": "^0.26.0",
+    "satori": "^0.63.2",
     "typescript": "^5.9.3"
   }
 }
