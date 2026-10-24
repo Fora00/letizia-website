@@ -22,7 +22,7 @@ const videoPaths = [
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+      <span class="inline-block bg-page dark:bg-navy-dark text-accent-text dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
         Eventi
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
@@ -39,7 +39,7 @@ const videoPaths = [
     {upcoming.length === 0 && (
       <p class="text-center text-navy/70 dark:text-text-dark/70 max-w-xl mx-auto">
         Al momento non ci sono eventi in programma. Iscriviti alla
-        <a href={`${base}/newsletter`} class="text-accent dark:text-accent-dark font-semibold hover:underline">newsletter</a>
+        <a href={`${base}/newsletter`} class="text-accent-text dark:text-accent-dark font-semibold hover:underline">newsletter</a>
         per sapere quando verranno annunciate le prossime date.
       </p>
     )}
@@ -56,7 +56,7 @@ const videoPaths = [
           </span>
 
           <!-- Date pill -->
-          <span class="inline-flex items-center gap-1.5 bg-accent/10 dark:bg-accent-dark/20 text-accent dark:text-accent-dark text-sm font-semibold px-3 py-1 rounded-full w-fit">
+          <span class="inline-flex items-center gap-1.5 bg-accent/10 dark:bg-accent-dark/20 text-accent-text dark:text-accent-dark text-sm font-semibold px-3 py-1 rounded-full w-fit">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
@@ -64,7 +64,7 @@ const videoPaths = [
           </span>
 
           <!-- Title -->
-          <h3 class="font-heading font-bold text-lg text-navy dark:text-text-dark leading-snug pr-20 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
+          <h3 class="font-heading font-bold text-lg text-navy dark:text-text-dark leading-snug pr-20 group-hover:text-accent-text dark:group-hover:text-accent-dark transition-colors">
             {event.title}
           </h3>
 
@@ -84,7 +84,7 @@ const videoPaths = [
           </p>
 
           <!-- CTA -->
-          <span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-accent dark:text-accent-dark group-hover:underline">
+          <span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-accent-text dark:text-accent-dark group-hover:underline">
             Scopri di più
             <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -124,7 +124,7 @@ const videoPaths = [
   <div class="text-center mt-6 pb-2">
     <p class="text-sm text-navy/60 dark:text-text-dark/60">
       Vuoi sapere quando si aprono le iscrizioni?
-      <a href={`${base}/newsletter`} class="text-accent dark:text-accent-dark font-semibold hover:underline ml-1">
+      <a href={`${base}/newsletter`} class="text-accent-text dark:text-accent-dark font-semibold hover:underline ml-1">
         Iscriviti alla newsletter →
       </a>
     </p>

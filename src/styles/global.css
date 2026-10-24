@@ -1,41 +1,44 @@
 @import "tailwindcss";
-@import "@fontsource-variable/montserrat";
-@import "@fontsource-variable/open-sans";
+@import "@fontsource-variable/raleway";
+/* Custom heading font: add its @font-face / @import here, then point --font-heading-family at it. */
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ── Brand palette ──────────────────────────────────────────
+   The ONLY place raw colours live. Change a hex here and the whole site
+   follows (components use the semantic tokens in @theme below, never hex).
+   Source: brand colour guide (Verde pastello / Blu scuro / Avorio / Terracotta). */
+:root {
+  --brand-verde:            #b7cdb7;
+  --brand-blu:              #000a2d;
+  --brand-avorio:           #fffff0;
+  --brand-terracotta:       #dc9d8b;
+  /* Terracotta darkened for TEXT on avorio/verde: the pure brand tone is only
+     2.2:1 on avorio (WCAG AA needs 4.5:1, pa11y-gated in CI). ≥4.6:1 on both. */
+  --brand-terracotta-deep:  #833d2a;
+}
+
+/* ── Semantic tokens (these generate the Tailwind classes) ── */
 @theme {
-  /* Light mode colors */
-  --color-navy: #000a2d;
-  --color-sage: #b7cdb7;
-  --color-accent: #056608;
-  --color-sage-light: #e8f0e8;
+  /* Light mode */
+  --color-page:        var(--brand-avorio);       /* bg-page: page + cards */
+  --color-navy:        var(--brand-blu);          /* text-navy, bg-navy: header, footer, CTA band */
+  --color-sage:        var(--brand-verde);
+  --color-sage-light:  var(--brand-verde);        /* bg-sage-light: tinted sections */
+  --color-accent:      var(--brand-terracotta);   /* bg-accent, rings, badges */
+  --color-accent-text: var(--brand-terracotta-deep); /* text-accent-text: readable terracotta */
 
-  /* Dark mode colors */
-  --color-navy-dark: #0a1628;
-  --color-sage-dark: #1a2f1a;
-  --color-text-dark: #e8f0e8;
-  --color-accent-dark: #4ade80;
-  --color-surface-dark: #0f1d2e;
+  /* Dark mode */
+  --color-navy-dark:    var(--brand-blu);
+  --color-surface-dark: color-mix(in srgb, var(--brand-blu) 88%, white);
+  --color-sage-dark:    color-mix(in srgb, var(--brand-verde) 22%, var(--brand-blu));
+  --color-text-dark:    var(--brand-avorio);
+  --color-accent-dark:  var(--brand-terracotta);
 
-  --font-heading: "Montserrat Variable", sans-serif;
-  --font-body: "Open Sans Variable", sans-serif;
-}
-
-/* ── v5 palette: deep blue + vivid green ────────────────── */
-html.v5 {
-  --color-navy:       #0f2c52;
-  --color-sage:       #48bb78;
-  /* ≥4.5:1 on both white and sage-light (WCAG AA, pa11y-gated in CI) */
-  --color-accent:     #067f41;
-  --color-sage-light: #f0f6ff;
-}
-html.v5.dark {
-  --color-navy-dark:    #07192d;
-  --color-sage-dark:    #1a5223;
-  --color-text-dark:    #e2f0f9;
-  --color-accent-dark:  #34d058;
-  --color-surface-dark: #0d2340;
+  /* Fonts: one family for now. To use a custom font for titles, change only
+     --font-heading (headings use font-heading); body text stays on --font-body. */
+  --font-body:    "Raleway Variable", sans-serif;
+  --font-heading: var(--font-body);
 }
 
 .fade-in-up {

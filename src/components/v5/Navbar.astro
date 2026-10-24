@@ -44,8 +44,8 @@ const isActive = (href: string) => currentPath === (href.replace(/\/$/, '') || `
               href={item.href}
               aria-current={isActive(item.href) ? 'page' : undefined}
               class:list={[
-                "flex items-center gap-1.5 font-medium text-sm hover:text-sage dark:hover:text-accent-dark transition-colors",
-                isActive(item.href) ? "text-sage dark:text-accent-dark" : "text-white/80 dark:text-text-dark"
+                "flex items-center gap-1.5 font-medium text-sm hover:text-accent dark:hover:text-accent-dark transition-colors",
+                isActive(item.href) ? "text-accent dark:text-accent-dark" : "text-white/80 dark:text-text-dark"
               ]}
             >
               {item.icon === 'home' && (
@@ -102,8 +102,8 @@ const isActive = (href: string) => currentPath === (href.replace(/\/$/, '') || `
           class:list={[
             "flex items-center gap-1.5 font-medium text-sm px-4 py-2 rounded-full transition-colors",
             isActive(contactItem.href)
-              ? "bg-accent dark:bg-accent-dark text-white dark:text-navy-dark"
-              : "bg-white/10 text-white hover:bg-accent hover:text-white dark:bg-sage-dark dark:text-text-dark dark:hover:bg-accent-dark dark:hover:text-navy-dark"
+              ? "bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark"
+              : "bg-white/10 text-white hover:bg-accent hover:text-navy dark:bg-sage-dark dark:text-text-dark dark:hover:bg-accent-dark dark:hover:text-navy-dark"
           ]}
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -139,7 +139,7 @@ const isActive = (href: string) => currentPath === (href.replace(/\/$/, '') || `
               class:list={[
                 "flex items-center gap-2 py-2 px-4 rounded-lg font-medium transition-colors",
                 isActive(item.href)
-                  ? "text-sage dark:text-accent-dark bg-white/10 dark:bg-surface-dark"
+                  ? "text-accent dark:text-accent-dark bg-white/10 dark:bg-surface-dark"
                   : "text-white/80 dark:text-text-dark hover:bg-white/10 dark:hover:bg-surface-dark"
               ]}
             >

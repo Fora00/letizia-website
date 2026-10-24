@@ -55,7 +55,7 @@ const serviceSchema = {
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+      <span class="inline-block bg-page dark:bg-navy-dark text-accent-text dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
         {t('services.header.badge')}
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
@@ -72,8 +72,8 @@ const serviceSchema = {
     <div class="grid md:grid-cols-2 gap-6">
       {services.map((service, i) => (
         <article class="fade-in-up bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-all duration-200" style={`transition-delay: ${i * 80}ms`}>
-          <div class="w-14 h-14 bg-white dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
-            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div class="w-14 h-14 bg-page dark:bg-navy-dark rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-accent-text dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconPath} />
             </svg>
           </div>
@@ -101,7 +101,7 @@ const serviceSchema = {
           <article class="fade-in-up bg-white/95 dark:bg-navy-dark/90 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 border border-white/20 flex flex-col backdrop-blur-sm" style={`transition-delay: ${i * 100}ms`}>
             <div class="flex items-start gap-4 mb-4">
               <div class="w-14 h-14 bg-sage-light dark:bg-surface-dark rounded-xl flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="w-7 h-7 text-accent-text dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={format.iconPath} />
                 </svg>
               </div>
@@ -110,7 +110,7 @@ const serviceSchema = {
                   <h3 class="font-heading font-semibold text-lg text-navy dark:text-text-dark">
                     {format.title}
                   </h3>
-                  <span class="self-start text-xs font-medium bg-accent/10 dark:bg-accent-dark/20 text-accent dark:text-accent-dark px-2 py-0.5 rounded-lg border-0 border-accent/30 dark:border-accent-dark/30">
+                  <span class="self-start text-xs font-medium bg-accent/10 dark:bg-accent-dark/20 text-accent-text dark:text-accent-dark px-2 py-0.5 rounded-lg border-0 border-accent/30 dark:border-accent-dark/30">
                     {format.highlight}
                   </span>
                 </div>
@@ -121,7 +121,7 @@ const serviceSchema = {
             </div>
             <div class="mt-auto pt-4 border-t border-sage/20 dark:border-white/10">
               <div class="flex items-baseline gap-2 mb-1">
-                <span class="font-heading font-bold text-2xl text-accent dark:text-accent-dark">{format.price}</span>
+                <span class="font-heading font-bold text-2xl text-accent-text dark:text-accent-dark">{format.price}</span>
                 <span class="text-sm text-navy/60 dark:text-text-dark/60">{format.priceDetail}</span>
               </div>
               <p class="text-sm font-medium text-navy/80 dark:text-text-dark/80">{format.packages}</p>
@@ -163,7 +163,7 @@ const serviceSchema = {
       <ol>
         <li class="flex gap-4">
           <div class="flex flex-col items-center">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">1</span>
             <div class="w-px flex-1 bg-accent/30 dark:bg-accent-dark/30 mt-2"></div>
           </div>
           <div class="pb-8 pt-1">
@@ -173,7 +173,7 @@ const serviceSchema = {
         </li>
         <li class="flex gap-4">
           <div class="flex flex-col items-center">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">2</span>
             <div class="w-px flex-1 bg-accent/30 dark:bg-accent-dark/30 mt-2"></div>
           </div>
           <div class="pb-8 pt-1">
@@ -183,14 +183,14 @@ const serviceSchema = {
         </li>
         <li class="flex gap-4">
           <div class="flex flex-col items-center">
-            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+            <span class="w-10 h-10 bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark rounded-full flex items-center justify-center font-bold shrink-0">3</span>
           </div>
           <div class="pt-1">
             <h3 class="font-semibold text-navy dark:text-text-dark mb-1">{steps[2].title}</h3>
             <p class="text-navy/70 dark:text-text-dark/70 mb-6">{steps[2].text}</p>
             <a
               href={localizedHref('/contatti', lang)}
-              class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+              class="inline-block bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white dark:hover:bg-text-dark transition-colors"
             >
               {t('services.cta')}
             </a>

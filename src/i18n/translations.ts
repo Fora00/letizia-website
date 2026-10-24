@@ -28,8 +28,7 @@ export const translations = {
   },
   footer: {
     contacts_title: ['Contatti', 'Contact'],
-    address: ['Via Brescia, 15 - Trento', 'Via Brescia, 15 - Trento, Italy'],
-    also_available: ['Disponibile anche a Rovereto e Online', 'Also available in Rovereto and online'],
+    also_available: ['Disponibile anche online', 'Also available online'],
     links_title: ['Link utili', 'Useful links'],
     link_reviews: ['Dicono di me', 'Reviews'],
     link_newsletter: ['Newsletter', 'Newsletter'],

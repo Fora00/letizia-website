@@ -12,7 +12,7 @@ const rights = t.group('privacy.rights.list');
 <Layout lang={lang} title={t('privacy.meta.title')} description={t('privacy.meta.description')}>
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+      <span class="inline-block bg-page dark:bg-navy-dark text-accent-text dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
         {t('privacy.header.badge')}
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
@@ -42,7 +42,7 @@ const rights = t.group('privacy.rights.list');
         <ul class="space-y-3 list-none">
           {services.map((svc: { html: string }) => (
             <li class="flex gap-3">
-              <span class="text-accent dark:text-accent-dark font-bold shrink-0">→</span>
+              <span class="text-accent-text dark:text-accent-dark font-bold shrink-0">→</span>
               <span set:html={svc.html} />
             </li>
           ))}
@@ -89,7 +89,7 @@ const rights = t.group('privacy.rights.list');
         <ul class="space-y-1.5 list-none">
           {rights.map((right: { text: string }) => (
             <li class="flex gap-2">
-              <span class="text-accent dark:text-accent-dark shrink-0">✓</span>
+              <span class="text-accent-text dark:text-accent-dark shrink-0">✓</span>
               <span>{right.text}</span>
             </li>
           ))}

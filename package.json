@@ -12,15 +12,14 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
-    "@fontsource-variable/montserrat": "^5.2.8",
-    "@fontsource-variable/open-sans": "^5.2.7",
+    "@fontsource-variable/raleway": "^5.3.0",
+    "@fontsource/raleway": "^5.3.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.15",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@fontsource/montserrat": "^5.2.8",
     "@resvg/resvg-js": "^2.6.2",
     "satori": "^0.26.0",
     "typescript": "^5.9.3"

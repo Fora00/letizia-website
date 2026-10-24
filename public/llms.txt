@@ -1,8 +1,8 @@
 # Letizia Mancini — Chinesiologa Clinica e Personal Trainer
 
 > Letizia Mancini è una chinesiologa clinica e personal trainer specializzata in Attività
-> Fisica Adattata. Riceve a Trento (Via Brescia 15) e a Rovereto (Via Brione 39), in
-> Trentino-Alto Adige, e segue clienti anche online. Aiuta persone con patologie croniche
+> Fisica Adattata. Riceve a Trento (Via Brescia 15), a Rovereto (Più Club, Via Brione 39) e a Lavis
+> (Essere Centro, Via dei Felti 2/A), in Trentino-Alto Adige, e segue clienti anche online. Aiuta persone con patologie croniche
 > stabilizzate (diabete, ipertensione, patologie cardiovascolari), disturbi del comportamento
 > alimentare (DCA), dolori osteoarticolari, oltre a chi cerca un percorso di ricomposizione
 > corporea sano e sostenibile. Lavora in collaborazione con il medico curante del cliente.
@@ -21,7 +21,7 @@ Prima consulenza: 30 minuti, online o in presenza, senza impegno.
 
 ## Formati e prezzi
 - Lezioni individuali: singola €55 · 4 lezioni €190 · 8 lezioni €370 · 12 lezioni €520
-- Coaching online: €350 semestrale (4 visite + scheda) · €600 annuale (8 visite + scheda)
+- Coaching online: €270 semestrale (4 visite + scheda) · €600 annuale (8 visite + scheda)
 - Piccoli gruppi (2–8 persone): prezzo su richiesta
 
 ## Formazione

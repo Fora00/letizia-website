@@ -46,9 +46,9 @@ const faqSchema = {
     <!-- Mobile: dark overlay for text legibility -->
     <div class="absolute inset-0 block md:hidden" style="background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0) 100%);"></div>
     <!-- Desktop (light): gradient fade left-to-right -->
-    <div class="absolute inset-0 hidden md:block dark:hidden" style="background: linear-gradient(to right, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 75%);"></div>
+    <div class="absolute inset-0 hidden md:block dark:hidden" style="background: linear-gradient(to right, var(--brand-avorio) 20%, transparent 75%);"></div>
     <!-- Desktop (dark): gradient fade left-to-right -->
-    <div class="absolute inset-0 hidden md:dark:block" style="background: linear-gradient(to right, rgba(7,25,45,1) 20%, rgba(7,25,45,0) 75%);"></div>
+    <div class="absolute inset-0 hidden md:dark:block" style="background: linear-gradient(to right, var(--color-navy-dark) 20%, transparent 75%);"></div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
       <div class="max-w-xl">
@@ -63,7 +63,7 @@ const faqSchema = {
         </p>
         <a
           href={localizedHref('/contatti', lang)}
-          class="inline-block bg-accent text-white font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white transition-colors"
+          class="inline-block bg-accent text-navy font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white transition-colors"
         >
           {t('home.hero.cta')}
         </a>
@@ -121,10 +121,10 @@ const faqSchema = {
     <div class="grid md:grid-cols-2 gap-6">
       {services.map((service: any, i: number) => (
         <a href={service.href} class="fade-in-up group block bg-sage-light dark:bg-surface-dark rounded-2xl p-6 hover:shadow-md transition-all duration-200" style={`transition-delay: ${i * 100}ms`}>
-          <svg class="w-6 h-6 text-accent dark:text-accent-dark mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="w-6 h-6 text-accent-text dark:text-accent-dark mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconPath} />
           </svg>
-          <span class="text-xs font-semibold text-accent dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/20 px-2 py-0.5 rounded-full">
+          <span class="text-xs font-semibold text-accent-text dark:text-accent-dark bg-accent/10 dark:bg-accent-dark/20 px-2 py-0.5 rounded-full">
             {service.badge}
           </span>
           <h3 class="font-heading font-semibold text-lg text-navy dark:text-text-dark mt-3 mb-2">
@@ -137,7 +137,7 @@ const faqSchema = {
       ))}
     </div>
     <div class="text-center mt-8">
-      <a href={localizedHref('/cosa-offro', lang)} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+      <a href={localizedHref('/cosa-offro', lang)} class="text-accent-text dark:text-accent-dark font-semibold hover:underline">
         {t('home.services_section.all')}
       </a>
     </div>
@@ -156,7 +156,7 @@ const faqSchema = {
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href={localizedHref('/contatti', lang)}
-          class="inline-flex items-center justify-center gap-2 bg-sage text-navy font-semibold px-8 py-4 rounded-full hover:bg-white transition-colors"
+          class="inline-flex items-center justify-center gap-2 bg-accent text-navy font-semibold px-8 py-4 rounded-full hover:bg-page transition-colors"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

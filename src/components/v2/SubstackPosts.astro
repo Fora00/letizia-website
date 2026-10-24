@@ -26,7 +26,7 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
           href={post.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col bg-white dark:bg-surface-dark rounded-2xl shadow-sm border border-sage/30 dark:border-sage-dark/30 overflow-hidden hover:shadow-md transition-shadow"
+          class="group flex flex-col bg-page dark:bg-surface-dark rounded-2xl shadow-sm border border-sage/30 dark:border-sage-dark/30 overflow-hidden hover:shadow-md transition-shadow"
         >
           {post.image && (
             <div class="aspect-video overflow-hidden bg-sage-light dark:bg-sage-dark">
@@ -42,13 +42,13 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
             {post.date && (
               <p class="text-xs text-navy/40 dark:text-text-dark/40 mb-2">{post.date}{lang !== 'it' && ` · ${t('shared.posts.original_italian')}`}</p>
             )}
-            <h3 class="font-heading font-semibold text-navy dark:text-text-dark mb-3 leading-snug group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
+            <h3 class="font-heading font-semibold text-navy dark:text-text-dark mb-3 leading-snug group-hover:text-accent-text dark:group-hover:text-accent-dark transition-colors">
               {post.title}
             </h3>
             <p class="text-sm text-navy/70 dark:text-text-dark/70 leading-relaxed flex-1">
               {post.description}
             </p>
-            <span class="mt-4 text-sm text-accent dark:text-accent-dark font-semibold">
+            <span class="mt-4 text-sm text-accent-text dark:text-accent-dark font-semibold">
               {t('shared.posts.read')}
             </span>
           </div>
@@ -62,7 +62,7 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
           href={SUBSTACK_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent dark:text-accent-dark font-semibold hover:underline"
+          class="text-accent-text dark:text-accent-dark font-semibold hover:underline"
         >
           {t('shared.posts.read_all')}
         </a>

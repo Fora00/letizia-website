@@ -22,7 +22,7 @@ const formation: any[] = t.group('about.formation.items').map((item: any, i: num
   <!-- Page header -->
   <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+      <span class="inline-block bg-page dark:bg-navy-dark text-accent-text dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
         {t('about.header.badge')}
       </span>
       <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
@@ -60,9 +60,9 @@ const formation: any[] = t.group('about.formation.items').map((item: any, i: num
   <Section bgColor="sage-light" title={t('about.formation.title')} centered>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
       {formation.map((item: any, i: number) => (
-        <div class="fade-in-up bg-white dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200 flex flex-col" style={`transition-delay: ${i * 80}ms`}>
+        <div class="fade-in-up bg-page dark:bg-navy-dark rounded-xl p-6 text-center transition-colors duration-200 flex flex-col" style={`transition-delay: ${i * 80}ms`}>
           <div class="w-14 h-14 bg-accent/10 dark:bg-accent-dark/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-7 h-7 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg class="w-7 h-7 text-accent-text dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.iconPath} />
             </svg>
           </div>
@@ -70,7 +70,7 @@ const formation: any[] = t.group('about.formation.items').map((item: any, i: num
             <h3 class="font-heading font-semibold text-navy dark:text-text-dark mb-2">{item.title}</h3>
           </div>
           <p class="text-sm text-navy/70 dark:text-text-dark/70 mb-3">{item.sub}</p>
-          <span class="inline-block text-xs text-accent/70 dark:text-accent-dark/70">{item.date}</span>
+          <span class="inline-block text-xs text-accent-text/70 dark:text-accent-dark/70">{item.date}</span>
         </div>
       ))}
     </div>
@@ -98,7 +98,7 @@ const formation: any[] = t.group('about.formation.items').map((item: any, i: num
       </p>
       <a
         href={localizedHref('/contatti', lang)}
-        class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+        class="inline-block bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark font-semibold px-8 py-4 rounded-full hover:bg-navy hover:text-white dark:hover:bg-text-dark transition-colors"
       >
         {t('about.cta.button')}
       </a>

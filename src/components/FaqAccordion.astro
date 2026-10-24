@@ -8,10 +8,10 @@ const { faqs } = Astro.props;
 <div class="max-w-3xl mx-auto divide-y divide-navy/10 dark:divide-text-dark/10">
   {faqs.map(({ question, answer }, i) => (
     <details class="fade-in-up group py-5" style={`transition-delay: ${i * 80}ms`}>
-      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-navy dark:text-text-dark hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <summary class="flex justify-between items-center cursor-pointer list-none font-semibold text-navy dark:text-text-dark hover:text-accent-text dark:hover:text-accent-dark transition-colors">
         <span>{question}</span>
         <svg
-          class="w-5 h-5 shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180 text-accent dark:text-accent-dark"
+          class="w-5 h-5 shrink-0 ml-4 transition-transform duration-300 group-open:rotate-180 text-accent-text dark:text-accent-dark"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

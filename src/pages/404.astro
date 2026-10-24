@@ -23,7 +23,7 @@ const both = (key: any) => [it(key), en(key)] as const;
       <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
         <a
           href={localizedHref('/', 'it')}
-          class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-7 py-3.5 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
+          class="inline-block bg-accent dark:bg-accent-dark text-navy dark:text-navy-dark font-semibold px-7 py-3.5 rounded-full hover:bg-navy hover:text-white dark:hover:bg-text-dark transition-colors"
         >
           {it('notfound.home')} / {en('notfound.home')}
         </a>
@@ -46,7 +46,7 @@ const both = (key: any) => [it(key), en(key)] as const;
           { href: localizedHref('/dicono-di-me', 'it'), key: 'notfound.reviews' },
           { href: localizedHref('/newsletter', 'it'), key: 'notfound.newsletter' },
         ].map(link => (
-          <a href={link.href} class="text-accent dark:text-accent-dark hover:underline font-medium">
+          <a href={link.href} class="text-accent-text dark:text-accent-dark hover:underline font-medium">
             {both(link.key).filter((v, i, a) => a.indexOf(v) === i).join(' / ')} →
           </a>
         ))}

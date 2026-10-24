@@ -7,22 +7,22 @@ import { ogPages } from '../../data/og-pages';
 
 // Build-time generated Open Graph cards (1200x630) for nicer WhatsApp/social
 // shares. One PNG per entry in og-pages.ts; LayoutV5 picks them up by slug.
-// Satori needs non-variable fonts, hence @fontsource/montserrat's woff files
+// Satori needs non-variable fonts, hence @fontsource/raleway's woff files
 // (the site itself ships the variable woff2 — this dep is build-only).
 
 export function getStaticPaths() {
   return Object.keys(ogPages).map((slug) => ({ params: { slug } }));
 }
 
-const fontDir = resolve(process.cwd(), 'node_modules/@fontsource/montserrat/files');
-const [montserratBold, montserratMedium] = await Promise.all([
-  readFile(resolve(fontDir, 'montserrat-latin-700-normal.woff')),
-  readFile(resolve(fontDir, 'montserrat-latin-500-normal.woff')),
+const fontDir = resolve(process.cwd(), 'node_modules/@fontsource/raleway/files');
+const [ralewayBold, ralewayMedium] = await Promise.all([
+  readFile(resolve(fontDir, 'raleway-latin-700-normal.woff')),
+  readFile(resolve(fontDir, 'raleway-latin-500-normal.woff')),
 ]);
 
-const NAVY = '#0f2c52';
-const NAVY_DEEP = '#07192d';
-const SAGE = '#48bb78';
+const NAVY = '#0b1a4d';
+const NAVY_DEEP = '#000a2d';
+const SAGE = '#dc9d8b';
 
 export const GET: APIRoute = async ({ params }) => {
   const page = ogPages[params.slug as string];
@@ -40,7 +40,7 @@ export const GET: APIRoute = async ({ params }) => {
           padding: '72px 80px',
           backgroundImage: `linear-gradient(135deg, ${NAVY} 0%, ${NAVY_DEEP} 100%)`,
           color: '#ffffff',
-          fontFamily: 'Montserrat',
+          fontFamily: 'Raleway',
         },
         children: [
           {
@@ -135,8 +135,8 @@ export const GET: APIRoute = async ({ params }) => {
       width: 1200,
       height: 630,
       fonts: [
-        { name: 'Montserrat', data: montserratBold, weight: 700, style: 'normal' },
-        { name: 'Montserrat', data: montserratMedium, weight: 500, style: 'normal' },
+        { name: 'Raleway', data: ralewayBold, weight: 700, style: 'normal' },
+        { name: 'Raleway', data: ralewayMedium, weight: 500, style: 'normal' },
       ],
     }
   );
