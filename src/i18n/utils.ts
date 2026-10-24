@@ -1,16 +1,15 @@
 import { translations } from './translations';
+import { routes } from './routes';
 
 export const languages = ['it', 'en'] as const;
 export type Lang = (typeof languages)[number];
 export const defaultLang: Lang = 'it';
 
 // Routes (language-neutral, Italian slugs) that exist in each language.
-// When you add src/pages/en/<slug>.astro, add '/<slug>' to the 'en' list:
-// the navbar then links to it and the language switcher lands on it.
-export const translatedRoutes: Record<Lang, string[]> = {
-  it: ['/', '/chi-sono', '/cosa-offro', '/dicono-di-me', '/newsletter', '/contatti', '/privacy'],
-  en: ['/', '/chi-sono', '/cosa-offro', '/dicono-di-me', '/newsletter', '/contatti', '/privacy'],
-};
+// Derived from ./routes.ts: every page is built in every language.
+export const translatedRoutes: Record<Lang, string[]> = Object.fromEntries(
+  languages.map((l) => [l, routes.map((r) => r.route as string)])
+) as Record<Lang, string[]>;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 

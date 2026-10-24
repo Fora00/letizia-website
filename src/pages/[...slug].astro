@@ -1,0 +1,22 @@
+---
+// One page template for every translated route (see src/i18n/routes.ts).
+// Italian lives at /<slug>, English at /en/<slug>.
+import { routes } from '../i18n/routes';
+import { languages, defaultLang } from '../i18n/utils';
+
+const views = import.meta.glob('../views/*.astro', { eager: true }) as Record<string, { default: any }>;
+
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    routes.map(({ route, view }) => {
+      const path = route === '/' ? '' : route.slice(1);
+      const slug = lang === defaultLang ? path : [lang, path].filter(Boolean).join('/');
+      return { params: { slug: slug || undefined }, props: { view } };
+    })
+  );
+}
+
+const { view } = Astro.props;
+const View = views[`../views/${view}.astro`].default;
+---
+<View />

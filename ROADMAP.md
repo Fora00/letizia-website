@@ -49,7 +49,7 @@ Ordered by expected value:
 - [ ] **"Come funziona il percorso" section** (home or cosa-offro): 4 transparent steps —
       consulenza → valutazione → programma su misura → verifiche periodiche.
       (Already exists in English on /en — translate/adapt.)
-- [ ] **"Dove ricevo" studio blocks** — photo, parking/transit, maps link for BOTH sedi
+- [ ] **"Dove ricevo" studio blocks** — photo, parking/transit for ALL 3 sedi (Trento Via Brescia 15, Rovereto Più Club, Lavis Essere Centro; maps links + addresses already live in src/constants/locations.ts)
       (assets exist in letizia_asset/). Local SEO + lowers the barrier for anxious
       first-timers.
 - [x] **On-domain newsletter archive** (shipped: /newsletter + rss.xml) — short summaries per Substack post, canonical
@@ -59,7 +59,7 @@ Ordered by expected value:
 - [x] **Per-page OG images** (Astro + satori; shipped, see og-pages.ts) — nicer WhatsApp shares.
 - [x] **Testimonials**: keep real quotes only, never incentivized. (2026-10-23: all 24
       Google reviews with text imported into src/data/reviews.json; page has search/stars/sort.)
-- [ ] **vCard download button** on contatti — unlike the rejected `.ics` idea, contact
+- [x] **vCard download button** on contatti (shipped; lists all 3 sedi) — unlike the rejected `.ics` idea, contact
       info (name/phone/address/email) is exact and known today, so there's no guessed-data
       risk. Pairs well with the phone-number decision below.
 - [ ] **Free downloadable educational PDF guides** — e.g. "Cosa portare al primo incontro",
@@ -84,7 +84,7 @@ Ordered by expected value:
 
 ## OPEN — off-site (Francesco/Letizia, not repo work)
 
-- [ ] Google Business Profile for BOTH sedi (map listing, not ads); NAP identical to site.
+- [ ] Google Business Profile for ALL 3 sedi (map listing, not ads); NAP identical to site.
 - [ ] Google Search Console + Bing Webmaster: verify domain, submit sitemap-index.xml
       (after migration).
 - [ ] Plausible dashboard: create goal "prenota-consulenza" (site already tags the CTAs).
@@ -115,7 +115,7 @@ NS delegation step below is actually done — it's not live infrastructure yet.
 - [ ] Google Search Console: verify domain, submit sitemap-index.xml.
 - [ ] Point GBP, Instagram/LinkedIn/Facebook bios, Substack About at letiziamancini.it.
 - [ ] Leave the GH Pages URL serving (it 301s automatically once the custom domain is set).
-- [ ] Nice-to-have: hreflang alternates between / and /en (deferred until real domain).
+- [x] hreflang alternates IT/EN (shipped in LayoutV5, derived from src/i18n/routes.ts).
 
 ---
 
@@ -145,6 +145,16 @@ Gotchas learned the hard way:
 ---
 
 ## DONE — changelog (newest first; details in git history)
+
+### 2026-10-24 — palette, Raleway, favicon, sedi, route registry
+- Brand palette in one block in global.css (verde/blu/avorio/terracotta); `text-accent-text` = darker
+  terracotta because pure terracotta fails AA contrast (pa11y gate). Raleway everywhere; `--font-heading`
+  is the single knob for the future custom title font. Favicon from the LM logo.
+- Sedi: Trento (Via Brescia 15), Rovereto (Più Club, Via Brione 39 — Più Club's own site says 41, verify),
+  Lavis (Essere Centro, Via dei Felti 2/A). All in src/constants/locations.ts.
+- Adding a page: view in src/views/ + one line in src/i18n/routes.ts (no per-language wrappers any more;
+  src/pages/[...slug].astro builds / and /en/). Newsletter fetch is already automated (deploy.yml weekly cron);
+  only reviews.json import is manual.
 
 ### 2026-10-24 — full IT/EN site
 - Italian at `/`, English at `/en/` (Astro i18n, no prefix for Italian). Same slugs in both (`/en/chi-sono`).
