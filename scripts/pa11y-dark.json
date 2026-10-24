@@ -1,5 +1,5 @@
 {
   "defaults": {
-    "chromeLaunchConfig": { "args": ["--blink-settings=preferredColorScheme=0"] }
+    "chromeLaunchConfig": { "args": ["--no-sandbox", "--blink-settings=preferredColorScheme=0"] }
   }
 }

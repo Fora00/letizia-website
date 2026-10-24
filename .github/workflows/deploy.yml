@@ -56,17 +56,21 @@ jobs:
           python3 -m http.server 8080 --directory _site &
           sleep 2
 
-      # WCAG 2 AA gate over every page in the sitemap. Uses the runner's
-      # preinstalled Chrome (skips puppeteer's Chromium download).
-      - name: Accessibility gate (pa11y-ci)
+      # WCAG 2 AA gate over every page in the sitemap, in light AND dark mode
+      # (scripts/pa11y-{light,dark}.json force prefers-color-scheme). Uses the
+      # runner's preinstalled Chrome (skips puppeteer's Chromium download).
+      - name: Accessibility gate (pa11y-ci, light + dark)
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
-        run: >
-          npx --yes pa11y-ci
-          --sitemap http://localhost:8080/letizia-website/sitemap-0.xml
-          --sitemap-find "https://fora00.github.io"
-          --sitemap-replace "http://localhost:8080"
+        run: |
+          for scheme in light dark; do
+            npx --yes pa11y-ci \
+              --config "scripts/pa11y-$scheme.json" \
+              --sitemap http://localhost:8080/letizia-website/sitemap-0.xml \
+              --sitemap-find "https://fora00.github.io" \
+              --sitemap-replace "http://localhost:8080"
+          done
 
       - name: Upload artifact
         if: github.event_name != 'pull_request'
