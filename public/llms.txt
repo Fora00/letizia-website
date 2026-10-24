@@ -36,4 +36,12 @@ Prima consulenza: 30 minuti, online o in presenza, senza impegno.
 - Contatti e prenotazione consulenza: https://letiziamancini.it/contatti/
 - Testimonianze: https://letiziamancini.it/dicono-di-me/
 - Newsletter su movimento e salute: https://letiziamancini.it/newsletter/
-- English page (sessions available in English): https://letiziamancini.it/en/
+
+## English version
+Every page above has an English equivalent under https://letiziamancini.it/en/ (sessions available in English, in person or online):
+- Home: https://letiziamancini.it/en/
+- About me: https://letiziamancini.it/en/chi-sono/
+- What I offer: https://letiziamancini.it/en/cosa-offro/
+- Contact: https://letiziamancini.it/en/contatti/
+- Reviews: https://letiziamancini.it/en/dicono-di-me/
+- Newsletter: https://letiziamancini.it/en/newsletter/

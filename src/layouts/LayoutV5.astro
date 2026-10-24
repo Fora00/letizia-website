@@ -5,6 +5,7 @@ import Footer from '../components/v5/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import { social } from '../constants/socials';
 import { ogPages } from '../data/og-pages';
+import { alternates, parsePath, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -16,13 +17,17 @@ interface Props {
 
 const {
   title,
-  description = "Letizia Mancini, chinesiologa clinica e personal trainer a Trento e Rovereto, anche online. Contattami per un percorso di allenamento personalizzato.",
+  description,
   image,
   noindex = false,
   lang = "it"
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { route } = parsePath(Astro.url.pathname);
+const t = useTranslations(lang as Lang);
+const metaDescription = description ?? t('meta.default_description');
+const hreflangs = alternates(route);
 const siteUrl = Astro.site?.origin || "https://letiziamancini.it";
 // Temporary GitHub Pages deployment: keep it out of search indexes so all
 // SEO equity starts clean on letiziamancini.it. Flips off automatically once
@@ -32,31 +37,34 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const fullTitle = `${title} | Letizia Mancini`;
 
 const segmentLabels: Record<string, string> = {
-  'chi-sono': 'Chi sono',
-  'cosa-offro': 'Cosa offro',
-  'contatti': 'Contatti',
-  'dicono-di-me': 'Dicono di me',
-  'newsletter': 'Newsletter',
-  'en': 'English',
+  'chi-sono': t('meta.breadcrumb.chi_sono'),
+  'cosa-offro': t('meta.breadcrumb.cosa_offro'),
+  'contatti': t('meta.breadcrumb.contatti'),
+  'dicono-di-me': t('meta.breadcrumb.dicono_di_me'),
+  'newsletter': t('meta.breadcrumb.newsletter'),
+  'privacy': t('meta.breadcrumb.privacy'),
 };
 const cleanPath = base ? Astro.url.pathname.slice(base.length) : Astro.url.pathname;
 const segments = cleanPath.split('/').filter(Boolean);
+// Breadcrumbs follow the language prefix: /en/ is the English home, not a "page".
+const crumbSegments = lang === 'it' ? segments : segments.slice(1);
+const homeUrl = lang === 'it' ? `${siteUrl}/` : `${siteUrl}/${lang}/`;
 
 // Per-page OG card generated at build time (see pages/og/[slug].png.ts);
 // an explicit `image` prop wins, unknown paths fall back to the shared image.
 const ogSlug = segments.join('-') || 'home';
 const resolvedImage = image ?? (ogSlug in ogPages ? `${base}/og/${ogSlug}.png` : `${base}/images/og-image.jpg`);
 const ogImageUrl = new URL(resolvedImage, siteUrl).href;
-const breadcrumbSchema = segments.length > 0 ? {
+const breadcrumbSchema = crumbSegments.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
-    ...segments.map((seg, i) => ({
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+    ...crumbSegments.map((seg, i) => ({
       "@type": "ListItem",
       "position": i + 2,
       "name": segmentLabels[seg] ?? seg.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
-      "item": `${siteUrl}/${segments.slice(0, i + 1).join('/')}/`
+      "item": `${homeUrl}${crumbSegments.slice(0, i + 1).join('/')}/`
     }))
   ]
 } : null;
@@ -69,32 +77,26 @@ const jsonLd = {
       "@id": `${siteUrl}/#website`,
       "url": siteUrl,
       "name": "Letizia Mancini",
-      "description": "Chinesiologa clinica e personal trainer",
-      "inLanguage": "it-IT"
+      "description": t('meta.website_description'),
+      "inLanguage": lang === 'en' ? 'en-GB' : 'it-IT'
     },
     {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       "name": "Letizia Mancini",
-      "jobTitle": "Chinesiologa clinica e Personal Trainer",
+      "jobTitle": t('meta.job_title'),
       "url": siteUrl,
       "email": "letiziamancini.chinesiologa@gmail.com",
       "alumniOf": [
         { "@type": "CollegeOrUniversity", "name": "Università degli Studi di Roma \"Foro Italico\"" }
       ],
       "hasCredential": [
-        { "@type": "EducationalOccupationalCredential", "name": "Laurea in Scienze Motorie", "educationalLevel": "Laurea" },
-        { "@type": "EducationalOccupationalCredential", "name": "European Master of Science in Health and Physical Activity", "educationalLevel": "Laurea magistrale" },
-        { "@type": "EducationalOccupationalCredential", "name": "Ginnastica Ipopressiva — Metodo Caufriez" },
-        { "@type": "EducationalOccupationalCredential", "name": "Medicina Predittiva e Regolazione Funzionale — Open Academy of Medicine" }
+        { "@type": "EducationalOccupationalCredential", "name": t('meta.degree_motor_sciences'), "educationalLevel": t('meta.degree_level_bachelor') },
+        { "@type": "EducationalOccupationalCredential", "name": "European Master of Science in Health and Physical Activity", "educationalLevel": t('meta.degree_level_master') },
+        { "@type": "EducationalOccupationalCredential", "name": t('meta.credential_hypopressive') },
+        { "@type": "EducationalOccupationalCredential", "name": t('meta.credential_predictive') }
       ],
-      "knowsAbout": [
-        "Chinesiologia clinica",
-        "Attività Fisica Adattata",
-        "Esercizio fisico per patologie croniche",
-        "Movimento e disturbi del comportamento alimentare",
-        "Ginnastica ipopressiva"
-      ],
+      "knowsAbout": t.group('meta.knows_about').map((k: { name: string }) => k.name),
       "sameAs": [
         "https://www.instagram.com/letiziamancini_chinesiologa",
         "https://www.facebook.com/profile.php?id=61555750393500",
@@ -104,8 +106,8 @@ const jsonLd = {
     {
       "@type": "LocalBusiness",
       "@id": `${siteUrl}/#business`,
-      "name": "Letizia Mancini — Chinesiologa Clinica",
-      "description": "Servizi di chinesiologia clinica e personal training in Trentino-Alto Adige e online",
+      "name": t('meta.business_name'),
+      "description": t('meta.business_description'),
       "url": siteUrl,
       "email": "letiziamancini.chinesiologa@gmail.com",
       "hasMap": social.maps,
@@ -130,9 +132,9 @@ const jsonLd = {
         { "@type": "Place", "name": "Trento" },
         { "@type": "Place", "name": "Rovereto" },
         { "@type": "Place", "name": "Trentino-Alto Adige" },
-        { "@type": "Place", "name": "Online" }
+        { "@type": "Place", "name": t('meta.area_online') }
       ],
-      "serviceType": ["Chinesiologia clinica", "Attività Fisica Adattata", "Personal training", "Allenamento online"],
+      "serviceType": t.group('meta.service_types').map((k: { name: string }) => k.name),
       "sameAs": [
         "https://www.instagram.com/letiziamancini_chinesiologa",
         "https://www.facebook.com/profile.php?id=61555750393500",
@@ -155,20 +157,22 @@ const jsonLd = {
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
     {(noindex || isTempDomain) && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalUrl} />
+    {hreflangs.length > 1 && hreflangs.map((alt) => <link rel="alternate" hreflang={alt.lang} href={new URL(alt.href, siteUrl).href} />)}
+    {hreflangs.length > 1 && <link rel="alternate" hreflang="x-default" href={new URL(hreflangs.find((a) => a.lang === 'it')!.href, siteUrl).href} />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content={{ it: 'it_IT', en: 'en_GB' }[lang] ?? 'it_IT'} />
     <meta property="og:site_name" content="Letizia Mancini" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
@@ -192,7 +196,7 @@ const jsonLd = {
   </head>
   <body class="font-body text-navy bg-white dark:bg-navy-dark dark:text-text-dark min-h-screen flex flex-col transition-colors duration-200">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
-      Vai al contenuto principale
+      {t('layout.skip_to_content')}
     </a>
     <Navbar />
     <main id="main-content" class="flex-1">
@@ -219,7 +223,7 @@ const jsonLd = {
       id="back-to-top"
       class="fixed bottom-8 left-5 z-40 w-10 h-10 bg-accent dark:bg-accent-dark text-white dark:text-navy rounded-full shadow-lg hover:opacity-90 transition-opacity items-center justify-center"
       style="display: none"
-      aria-label="Torna in cima"
+      aria-label={t('layout.back_to_top')}
     >
       <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />

@@ -1,47 +1,53 @@
 ---
 import Layout from '../layouts/LayoutV5.astro';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { useTranslations, localizedHref } from '../i18n/utils';
+
+// 404.html is one static file: it can't know the visitor's language, so show Italian and English together.
+const it = useTranslations('it');
+const en = useTranslations('en');
+const both = (key: any) => [it(key), en(key)] as const;
 ---
 
-<Layout title="Pagina non trovata" description="La pagina che cerchi non esiste o è stata spostata. Torna alla home di letiziamancini.it." noindex>
+<Layout title={`${it('notfound.meta_title')} · ${en('notfound.meta_title')}`} description={`${it('notfound.meta_description')} ${en('notfound.meta_description')}`} noindex>
   <div class="min-h-[60vh] flex items-center justify-center px-4 py-16">
     <div class="text-center max-w-lg mx-auto">
       <p class="font-heading font-bold text-8xl text-sage mb-2">404</p>
       <h1 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">
-        Pagina non trovata
+        {it('notfound.title')} <span class="block text-lg font-semibold text-navy/60 dark:text-text-dark/60 mt-1" lang="en">{en('notfound.title')}</span>
       </h1>
       <p class="text-navy/70 dark:text-text-dark/70 mb-8 leading-relaxed">
-        La pagina che cerchi non esiste o è stata spostata. Ecco alcune destinazioni utili:
+        {it('notfound.text')}
+        <span class="block mt-3" lang="en">{en('notfound.text')}</span>
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
         <a
-          href={`${base}/`}
+          href={localizedHref('/', 'it')}
           class="inline-block bg-accent dark:bg-accent-dark text-white dark:text-navy-dark font-semibold px-7 py-3.5 rounded-full hover:bg-navy dark:hover:bg-text-dark transition-colors"
         >
-          Home
+          {it('notfound.home')} / {en('notfound.home')}
         </a>
         <a
-          href={`${base}/cosa-offro`}
+          href={localizedHref('/cosa-offro', 'it')}
           class="inline-block bg-sage-light dark:bg-surface-dark text-navy dark:text-text-dark font-semibold px-7 py-3.5 rounded-full hover:bg-sage hover:text-white transition-colors"
         >
-          Servizi
+          {it('notfound.services')} / {en('notfound.services')}
         </a>
         <a
-          href={`${base}/contatti`}
+          href={localizedHref('/contatti', 'it')}
           class="inline-block bg-sage-light dark:bg-surface-dark text-navy dark:text-text-dark font-semibold px-7 py-3.5 rounded-full hover:bg-sage hover:text-white transition-colors"
         >
-          Contattami
+          {it('notfound.contact')} / {en('notfound.contact')}
         </a>
       </div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm max-w-xs mx-auto text-left">
         {[
-          { href: `${base}/chi-sono`, label: 'Chi sono' },
-          { href: `${base}/dicono-di-me`, label: 'Testimonianze' },
-          { href: `${base}/newsletter`, label: 'Newsletter' },
+          { href: localizedHref('/chi-sono', 'it'), key: 'notfound.about' },
+          { href: localizedHref('/dicono-di-me', 'it'), key: 'notfound.reviews' },
+          { href: localizedHref('/newsletter', 'it'), key: 'notfound.newsletter' },
         ].map(link => (
           <a href={link.href} class="text-accent dark:text-accent-dark hover:underline font-medium">
-            {link.label} →
+            {both(link.key).filter((v, i, a) => a.indexOf(v) === i).join(' / ')} →
           </a>
         ))}
       </div>

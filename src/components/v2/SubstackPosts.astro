@@ -1,6 +1,11 @@
 ---
 import allPosts from '../../data/newsletter-posts.json';
 
+import { parsePath, useTranslations } from '../../i18n/utils';
+
+const { lang } = parsePath(Astro.url.pathname);
+const t = useTranslations(lang);
+
 const SUBSTACK_URL = "https://tadamove.substack.com";
 
 interface Props {
@@ -35,7 +40,7 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
           )}
           <div class="flex flex-col flex-1 p-5">
             {post.date && (
-              <p class="text-xs text-navy/40 dark:text-text-dark/40 mb-2">{post.date}</p>
+              <p class="text-xs text-navy/40 dark:text-text-dark/40 mb-2">{post.date}{lang !== 'it' && ` · ${t('shared.posts.original_italian')}`}</p>
             )}
             <h3 class="font-heading font-semibold text-navy dark:text-text-dark mb-3 leading-snug group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
               {post.title}
@@ -44,7 +49,7 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
               {post.description}
             </p>
             <span class="mt-4 text-sm text-accent dark:text-accent-dark font-semibold">
-              Leggi →
+              {t('shared.posts.read')}
             </span>
           </div>
         </a>
@@ -59,7 +64,7 @@ const posts = limit == null ? allPosts : allPosts.slice(0, limit);
           rel="noopener noreferrer"
           class="text-accent dark:text-accent-dark font-semibold hover:underline"
         >
-          Leggi tutti gli articoli su Substack →
+          {t('shared.posts.read_all')}
         </a>
       </div>
     )}

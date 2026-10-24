@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+import { parsePath, useTranslations } from '../i18n/utils';
+
+const { lang } = parsePath(Astro.url.pathname);
+const t = useTranslations(lang);
+const services = t.group('privacy.data.services');
+const rights = t.group('privacy.rights.list');
+---
+
+<Layout lang={lang} title={t('privacy.meta.title')} description={t('privacy.meta.description')}>
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        {t('privacy.header.badge')}
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        {t('privacy.header.title')}
+      </h1>
+      <p class="text-navy/60 dark:text-text-dark/60 text-sm">
+        {t('privacy.header.updated')}
+      </p>
+    </div>
+  </section>
+
+  <Section animate={false}>
+    <div class="max-w-3xl mx-auto space-y-10 text-navy/80 dark:text-text-dark/80 leading-relaxed">
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">{t('privacy.controller.title')}</h2>
+        <p>
+          <strong>Letizia Mancini</strong><br />
+          {t('privacy.controller.role')}<br />
+          {t('privacy.controller.email')}: <Fragment set:html={t.html('privacy.controller.mail_link')} />
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">{t('privacy.data.title')}</h2>
+        <p class="mb-3">{t('privacy.data.intro')}</p>
+        <ul class="space-y-3 list-none">
+          {services.map((svc: { html: string }) => (
+            <li class="flex gap-3">
+              <span class="text-accent dark:text-accent-dark font-bold shrink-0">→</span>
+              <span set:html={svc.html} />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">{t('privacy.storage.title')}</h2>
+        <p class="mb-4">{t('privacy.storage.intro')}</p>
+        <div class="overflow-x-auto rounded-xl border border-navy/10 dark:border-text-dark/10">
+          <table class="w-full text-sm">
+            <thead class="bg-sage-light dark:bg-surface-dark">
+              <tr>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">{t('privacy.storage.col_key')}</th>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">{t('privacy.storage.col_type')}</th>
+                <th class="text-left px-4 py-3 font-semibold text-navy dark:text-text-dark">{t('privacy.storage.col_purpose')}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-navy/10 dark:divide-text-dark/10">
+              <tr>
+                <td class="px-4 py-3 font-mono text-xs">theme</td>
+                <td class="px-4 py-3">localStorage</td>
+                <td class="px-4 py-3">{t('privacy.storage.theme_purpose')}</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-mono text-xs">cookie-ok</td>
+                <td class="px-4 py-3">localStorage</td>
+                <td class="px-4 py-3">{t('privacy.storage.cookie_ok_purpose')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-sm">{t('privacy.storage.note')}</p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">{t('privacy.third_party.title')}</h2>
+        <p>{t('privacy.third_party.text')}</p>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-bold text-2xl text-navy dark:text-text-dark mb-3">{t('privacy.rights.title')}</h2>
+        <p class="mb-3">{t('privacy.rights.intro')}</p>
+        <ul class="space-y-1.5 list-none">
+          {rights.map((right: { text: string }) => (
+            <li class="flex gap-2">
+              <span class="text-accent dark:text-accent-dark shrink-0">✓</span>
+              <span>{right.text}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">{t('privacy.rights.exercise')} <Fragment set:html={t.html('privacy.controller.mail_link')} />.</p>
+      </div>
+
+    </div>
+  </Section>
+</Layout>

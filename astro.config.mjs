@@ -9,6 +9,11 @@ export default defineConfig({
   site: isGitHubPages ? 'https://fora00.github.io' : 'https://letiziamancini.it',
   ...(isGitHubPages ? { base: '/letizia-website/' } : {}),
   output: 'static',
+  i18n: {
+    locales: ['it', 'en'],
+    defaultLocale: 'it',
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [sitemap()],
   server: {
     port: 3000

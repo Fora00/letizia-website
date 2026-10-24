@@ -146,6 +146,15 @@ Gotchas learned the hard way:
 
 ## DONE — changelog (newest first; details in git history)
 
+### 2026-10-24 — full IT/EN site
+- Italian at `/`, English at `/en/` (Astro i18n, no prefix for Italian). Same slugs in both (`/en/chi-sono`).
+- All copy lives in `src/i18n/translations.ts` (navbar/footer/cookie/meta) + `src/i18n/pages/*.ts`;
+  leaf = `['italiano', 'english']`. Pages are views in `src/views/`, `src/pages/**` are thin wrappers.
+  Helpers in `src/i18n/utils.ts` (`useTranslations`, `t.group`, `t.html`, `translatedRoutes`).
+- Single-button language switcher next to the theme toggle; hreflang tags; EN OG cards.
+- Reviews and Substack post data stay in original Italian (labelled). English copy needs Letizia's read-through.
+- The old standalone /en page ("How it works" steps, Calendly/email buttons) was replaced by the translated home.
+
 **2026-10-23 (content & scope round):**
 - Events section hidden (`src/pages/_eventi/`, underscore = not routed); links removed from
   Navbar/Footer/404/llms.txt, OG cards dropped. German page deleted (nav, footer, en link,

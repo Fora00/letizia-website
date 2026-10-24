@@ -6,7 +6,10 @@ interface Props {
 }
 const { showPostsLink = false } = Astro.props;
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { parsePath, useTranslations, localizedHref } from '../../i18n/utils';
+
+const { lang } = parsePath(Astro.url.pathname);
+const t = useTranslations(lang);
 ---
 
 <div class="max-w-xl mx-auto text-center">
@@ -14,45 +17,45 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
     </svg>
-    Newsletter
+    {t('shared.newsletter.badge')}
   </div>
 
   <h2 class="font-heading font-bold text-2xl md:text-3xl text-navy dark:text-text-dark mb-4">
-   Vuoi approfondire? 
+    {t('shared.newsletter.title')}
   </h2>
   <p class="text-navy/70 dark:text-text-dark/70 mb-8 leading-relaxed">
-  Consigli pratici su movimento, salute e benessere.
+    {t('shared.newsletter.text')}
   </p>
 
   <form
     id="substack-form"
     class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
   >
-    <label for="substack-email" class="sr-only">La tua email</label>
+    <label for="substack-email" class="sr-only">{t('shared.newsletter.email')}</label>
     <input
       type="email"
       id="substack-email"
       name="email"
       required
-      placeholder="La tua email"
+      placeholder={t('shared.newsletter.email')}
       class="flex-1 px-5 py-3 rounded-full border border-sage dark:border-sage-dark bg-white dark:bg-surface-dark text-navy dark:text-text-dark placeholder-navy/40 dark:placeholder-text-dark/40 focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-accent-dark"
     />
     <button
       type="submit"
       class="bg-accent dark:bg-accent-dark text-white dark:text-navy font-semibold px-7 py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
     >
-      Iscriviti gratis alla newsletter
-      <span class="sr-only">(si apre in una nuova finestra)</span>
+      {t('shared.newsletter.button')}
+      <span class="sr-only">{t('shared.newsletter.new_window')}</span>
     </button>
   </form>
 
-  <p class="mt-4 text-xs text-navy/40 dark:text-text-dark/40">Gratis · Nessuno spam · Disdici quando vuoi</p>
+  <p class="mt-4 text-xs text-navy/40 dark:text-text-dark/40">{t('shared.newsletter.reassurance')}</p>
 
   {showPostsLink && (
     <p class="mt-6 text-sm text-navy/60 dark:text-text-dark/60">
-      Curioso di sapere cosa scrivo?{' '} 
-      <a href={`${base}/newsletter`} class="text-accent dark:text-accent-dark font-semibold hover:underline">
-        Leggi gli ultimi articoli →
+      {t('shared.newsletter.curious')}{' '}
+      <a href={localizedHref('/newsletter', lang)} class="text-accent dark:text-accent-dark font-semibold hover:underline">
+        {t('shared.newsletter.latest_link')}
       </a>
     </p>
   )}

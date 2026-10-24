@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/LayoutV5.astro';
+import Section from '../components/v5/Section.astro';
+import SubstackPosts from '../components/v2/SubstackPosts.astro';
+import SubstackSignup from '../components/v2/SubstackSignup.astro';
+import { parsePath, useTranslations, localizedHref } from '../i18n/utils';
+
+const { lang } = parsePath(Astro.url.pathname);
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t('newsletter.meta.title')} description={t('newsletter.meta.description')}>
+  <!-- Page header -->
+  <section class="bg-sage-light dark:bg-surface-dark py-12 md:py-16 transition-colors duration-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block bg-white dark:bg-navy-dark text-accent dark:text-accent-dark font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+        {t('newsletter.header.badge')}
+      </span>
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-navy dark:text-text-dark mb-4">
+        {t('newsletter.header.title')}
+      </h1>
+      <p class="text-lg text-navy/70 dark:text-text-dark/70 max-w-2xl leading-relaxed">
+        {t('newsletter.header.subtitle')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Posts: full on-domain archive, each card links out to the canonical Substack post -->
+  <Section title={t('newsletter.posts_title')} centered>
+    <SubstackPosts showAllLink={true} />
+  </Section>
+
+  <!-- Subscribe CTA -->
+  <Section bgColor="sage-light" centered>
+    <SubstackSignup />
+  </Section>
+</Layout>

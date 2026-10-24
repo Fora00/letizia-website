@@ -33,8 +33,29 @@ export const ogPages: Record<string, OgPage> = {
     title: 'Newsletter',
     subtitle: 'Movimento, salute e benessere — ogni settimana',
   },
+  // English pages: slug is the path under the /en/ prefix ('en' = English home)
   'en': {
-    title: 'English-speaking Kinesiologist in Trento',
-    subtitle: 'Sessions in English — in person or online',
+    title: 'Clinical Kinesiologist & Personal Trainer',
+    subtitle: 'Movement tailored to your health',
+  },
+  'en-chi-sono': {
+    title: 'About me',
+    subtitle: 'Clinical kinesiologist — MSc in Health and Physical Activity',
+  },
+  'en-cosa-offro': {
+    title: 'What I offer',
+    subtitle: 'Clinical kinesiology and tailored personal training',
+  },
+  'en-contatti': {
+    title: 'Contact me',
+    subtitle: '30-minute consultation, no commitment',
+  },
+  'en-dicono-di-me': {
+    title: 'Reviews',
+    subtitle: 'Experiences of people who have worked with me',
+  },
+  'en-newsletter': {
+    title: 'Newsletter',
+    subtitle: 'Movement, health and wellbeing — every week',
   },
 };

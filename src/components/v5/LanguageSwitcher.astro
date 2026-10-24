@@ -1,0 +1,40 @@
+---
+import { languages, switchHref, useTranslations, type Lang } from '../../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  route: string;
+}
+
+const { lang, route } = Astro.props;
+const t = useTranslations(lang);
+
+// Like the theme toggle, the button shows what you get when you click it.
+const target = languages.find((l) => l !== lang)!;
+---
+
+<a
+  href={switchHref(route, target)}
+  hreflang={target}
+  lang={target}
+  aria-label={t('navbar.language_switch')}
+  title={t('navbar.language_switch')}
+  class="flex items-center gap-1.5 p-2 rounded-lg text-white/80 dark:text-text-dark hover:bg-white/10 dark:hover:bg-surface-dark transition-colors text-xs font-semibold uppercase"
+>
+  {target === 'it' ? (
+    <svg class="w-6 h-4 rounded-[2px] shrink-0" viewBox="0 0 3 2" aria-hidden="true">
+      <rect width="1" height="2" fill="#009246" />
+      <rect x="1" width="1" height="2" fill="#fff" />
+      <rect x="2" width="1" height="2" fill="#ce2b37" />
+    </svg>
+  ) : (
+    <svg class="w-6 h-4 rounded-[2px] shrink-0" viewBox="0 0 60 30" aria-hidden="true">
+      <rect width="60" height="30" fill="#012169" />
+      <path d="M0 0L60 30M60 0L0 30" stroke="#fff" stroke-width="6" />
+      <path d="M0 0L60 30M60 0L0 30" stroke="#C8102E" stroke-width="2.5" />
+      <path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="10" />
+      <path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6" />
+    </svg>
+  )}
+  {target}
+</a>
