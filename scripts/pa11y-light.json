@@ -1,0 +1,5 @@
+{
+  "defaults": {
+    "chromeLaunchConfig": { "args": ["--blink-settings=preferredColorScheme=1"] }
+  }
+}

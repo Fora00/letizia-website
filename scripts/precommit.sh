@@ -31,8 +31,13 @@ SERVER=$!
 trap 'kill $SERVER 2>/dev/null' EXIT
 sleep 1
 
-echo "pre-commit: pa11y (accessibility)"
-PUPPETEER_SKIP_DOWNLOAD=true PUPPETEER_EXECUTABLE_PATH="$CHROME" npx pa11y-ci \
-  --sitemap "http://localhost:$PORT/sitemap-0.xml" \
-  --sitemap-find "https://letiziamancini.it" \
-  --sitemap-replace "http://localhost:$PORT"
+# Light AND dark: Chrome follows the OS theme, so without forcing it a local run
+# would silently test only one of the two palettes (CI runs light).
+for scheme in light dark; do
+  echo "pre-commit: pa11y ($scheme mode)"
+  PUPPETEER_SKIP_DOWNLOAD=true PUPPETEER_EXECUTABLE_PATH="$CHROME" npx pa11y-ci \
+    --config "scripts/pa11y-$scheme.json" \
+    --sitemap "http://localhost:$PORT/sitemap-0.xml" \
+    --sitemap-find "https://letiziamancini.it" \
+    --sitemap-replace "http://localhost:$PORT"
+done
