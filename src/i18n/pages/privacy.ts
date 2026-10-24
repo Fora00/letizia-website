@@ -1,8 +1,8 @@
 // privacy page strings. Leaf = ['italiano', 'english'].
 const a = (href: string, text: string) =>
-  `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-accent dark:text-accent-dark hover:underline">${text}</a>`;
+  `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-accent-text dark:text-accent-dark hover:underline">${text}</a>`;
 const mail = 'letiziamancini.chinesiologa@gmail.com';
-const mailLink = `<a href="mailto:${mail}" class="text-accent dark:text-accent-dark hover:underline">${mail}</a>`;
+const mailLink = `<a href="mailto:${mail}" class="text-accent-text dark:text-accent-dark hover:underline">${mail}</a>`;
 
 export const privacy = {
   meta: {

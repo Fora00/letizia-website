@@ -31,7 +31,7 @@ function localize(node: any, lang: Lang): any {
   return node;
 }
 
-const linkClass = 'text-accent dark:text-accent-dark font-semibold hover:underline';
+const linkClass = 'text-accent-text dark:text-accent-dark font-semibold hover:underline';
 
 export function useTranslations(lang: Lang) {
   const get = (key: string): any => {
